@@ -61,6 +61,7 @@ class Login extends Component {
         password: password
       })
       .then(res => {
+        console.log('res', res)
         this.setState({
           message: "success",
           isLoggedIn: true,
@@ -75,23 +76,11 @@ class Login extends Component {
       });
   }
 
-  handleClickLogOut = () => {
-    axios
-      .get("/users/logout")
-      .then( (res) => {
-        this.setState({
-          loggedIn: false
-        })
-      })
-      .catch( (err) => {
-        console.log(err);
-      })
-  }
-
   render() {
-    if(this.state.isLoggedIn === true) {
-      return <Redirect to='/cb/feed' />
-    }
+    console.log('state', this.state.username)
+    console.log('state', this.state.password)
+    console.log('message', this.state.message)
+    console.log('isloggedin', this.state.isLoggedIn)
     return (
       <div className="Modal">
       <div>
@@ -103,11 +92,11 @@ class Login extends Component {
       >
       <button className="xButton" onClick={this.closeModalLogin}>x</button>
         <h2 ref={subtitle => this.subtitle = subtitle}>Log In</h2>
-        <form onSubmit={this.handleLoginFormSubmit}>
+
           <input className="input formInput" type="text" placeholder="Username" onChange={this.handleFormInput} name='username' value={this.state.username}></input>
           <input className="input formInput" type="password" placeholder="Password" onChange={this.handleFormInput} name='password' value={this.state.password}></input>
-          <button className="formButton">Log in</button>
-        </form>
+          <button className="formButton" onClick={this.handleLoginFormSubmit}>Log in</button>
+
         <p>{this.state.message}</p>
       </Modal>
       </div>

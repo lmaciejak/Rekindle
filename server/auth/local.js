@@ -15,18 +15,17 @@ passport.use(
       .any("SELECT * FROM users WHERE username=$1", [username])
       .then(rows => {
         const user = rows[0];
-        console.log("user: ", user);
         if (!user) {
           return done(null, false);
         }
-        if (!authHelpers.comparePass(password, user.password_digest)) {
-          return done(null, false);
+        if (authHelpers.comparePass(password, user.password)) {
+          var userNoPass = { user_id: user.user_id, username: username}
+          return done(null, userNoPass);
         } else {
-          return done(null, user);
+          return done(null, false);
         }
       })
       .catch(err => {
-        console.log("error: ", err);
         return done(err);
       });
   })
