@@ -46,3 +46,8 @@ CREATE TABLE hangoutparticipants (
   hangoutparticipants_id SERIAL PRIMARY KEY, 
   hangoutpartaker_id INTEGER REFERENCES users
 ); 
+
+/* password for test is testtest */
+INSERT INTO users (username, password, email, full_name, user_img)
+  VALUES ('test', '$2a$10$tHvwaxuv8qwR18wMXmQesuUWOxFT3xjQTTnvauZwYrZ6bM/r53kVW',
+  'test@gmail.com', 'Tester Testy', 'https://openclipart.org/download/247324/abstract-user-flat-1.svg')
