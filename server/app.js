@@ -9,6 +9,8 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+const session = require('express-session');
+const passport = require("passport");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
