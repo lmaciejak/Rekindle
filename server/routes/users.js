@@ -7,10 +7,9 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.get('/logout', loginRequired, db.logoutUser);
+// router.get('/logout', db.logoutUser);
 
-
-router.post('/register', db.registerUser);
+router.post('/register', db.createUser);
 router.post('/login', db.loginUser);
 
 module.exports = router;

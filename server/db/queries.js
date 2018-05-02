@@ -50,4 +50,6 @@ function loginUser(req, res, next) {
 
 module.exports = {
 createUser,
+loginUser, 
+
 }
