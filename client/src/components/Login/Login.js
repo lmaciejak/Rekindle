@@ -77,8 +77,6 @@ class Login extends Component {
   }
 
   render() {
-    console.log('state', this.state.username)
-    console.log('state', this.state.password)
     console.log('message', this.state.message)
     console.log('isloggedin', this.state.isLoggedIn)
     return (
