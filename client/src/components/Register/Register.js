@@ -120,8 +120,7 @@ class Register extends Component {
         <h2 ref={subtitle => this.subtitle = subtitle}>Register</h2>
         <form onSubmit={this.handleLoginFormSubmit}>
           <input className="input formInput" type="text" placeholder="Username" onChange={this.handleFormInput} name='username' required></input> <br />
-          <input className="input formInput" type="text" placeholder="Firstname" onChange={this.handleFormInput} name='firstname' required></input> <br />
-          <input className="input formInput" type="text" placeholder="Lastname" onChange={this.handleFormInput} name='lastname' required></input> <br />
+          <input className="input formInput" type="text" placeholder="Fullname" onChange={this.handleFormInput} name='fullname' required></input> <br />
           <input className="input formInput" type="email" placeholder="Email" onChange={this.handleFormInput} name='email' required></input> <br />
           <input className="input formInput" type="password" placeholder="Password" onChange={this.handleFormInput} name='password' required></input> <br />
           <input className="input formInput" type="password" placeholder="Confirm Password" onChange={this.handleFormInput} name='confirmpassword' required></input> <br />
