@@ -18,6 +18,7 @@ class LandingPage extends React.Component {
     const { user } = this.state
     return (
      <div>
+     <h1> Rekindle </h1> 
      <Login />
      <Register />
     </div> )

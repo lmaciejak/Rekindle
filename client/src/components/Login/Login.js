@@ -79,6 +79,9 @@ class Login extends Component {
   render() {
     console.log('message', this.state.message)
     console.log('isloggedin', this.state.isLoggedIn)
+    if(this.state.isLoggedIn === true) {
+      return <Redirect to='/rekindle' />
+    }
     return (
       <div className="Modal">
       <div>
