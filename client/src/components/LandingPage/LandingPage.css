@@ -27,5 +27,13 @@
 }
 
 .landingContainer { 
+z-index: 10000; 
+display: flex; 
+justify-content: center; 
+}
 
+.landingName { 
+  font-family: 'Homemade Apple', cursive;
+  font-size: 100px; 
+  z-index: 10000; 
 }

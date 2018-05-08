@@ -19,7 +19,8 @@ class LandingPage extends React.Component {
     const { user } = this.state
     return (
      <div className="landingContainer">
-     <h1> Rekindle </h1> 
+     <img className="landingImage" src="https://images.pexels.com/photos/325521/pexels-photo-325521.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350"/>
+     <h1 className="landingName"> Rekindle </h1> 
      <Login className="landingButton"/>
      <Register className="landingButton"/>
     </div> )
@@ -28,4 +29,3 @@ class LandingPage extends React.Component {
 
 export default LandingPage
 
-// <img className="landingImage" src="https://images.pexels.com/photos/325521/pexels-photo-325521.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350"/>
