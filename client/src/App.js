@@ -6,6 +6,7 @@ import './App.css';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import LandingPage from './components/LandingPage/LandingPage'
+import Homepage from './components/Homepage/Homepage'
 
 class App extends Component {
   render() {
@@ -13,7 +14,7 @@ class App extends Component {
       <div className="App">
       <Switch>
         <Route exact path='/' component={LandingPage} />
-        <Route exact path='/home' component={LandingPage} />
+        <Route exact path='/rekindle' component={Homepage} />
       </Switch>
       </div>
     );

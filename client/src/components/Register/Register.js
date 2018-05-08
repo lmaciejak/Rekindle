@@ -72,14 +72,13 @@ class Register extends Component {
   handleLoginFormSubmit = e => {
     e.preventDefault();
 
-    const { username, password, email, confirmpassword, firstname,  lastname } = this.state;
+    const { username, password, email, confirmpassword, full_name } = this.state;
     axios
       .post("/users/register", {
           username: username,
           password: password,
           email: email,
-          first_name: firstname,
-          last_name: lastname
+          full_name: full_name
       })
       .then(() => {
         axios
@@ -106,10 +105,14 @@ class Register extends Component {
 
   render() {
     const { confirmpassword, password, username, email, isLoggedIn } = this.state
-
+console.log('isloggedin', isLoggedIn)
+if(this.state.isLoggedIn === true) {
+  return <Redirect to='/rekindle' />
+}
     return (
       <div className="Modal">
       <div>
+      <button className="button formButton" onClick={this.openModal}>Register</button>
       {this.state.loggedInForRegister !== "loggedIn"? <button className="button formButton" onClick={this.openModal}>Register</button>: ""}
       <Modal
         isOpen={this.state.modalIsOpen}
@@ -120,7 +123,7 @@ class Register extends Component {
         <h2 ref={subtitle => this.subtitle = subtitle}>Register</h2>
         <form onSubmit={this.handleLoginFormSubmit}>
           <input className="input formInput" type="text" placeholder="Username" onChange={this.handleFormInput} name='username' required></input> <br />
-          <input className="input formInput" type="text" placeholder="Fullname" onChange={this.handleFormInput} name='fullname' required></input> <br />
+          <input className="input formInput" type="text" placeholder="Fullname" onChange={this.handleFormInput} name='full_name' required></input> <br />
           <input className="input formInput" type="email" placeholder="Email" onChange={this.handleFormInput} name='email' required></input> <br />
           <input className="input formInput" type="password" placeholder="Password" onChange={this.handleFormInput} name='password' required></input> <br />
           <input className="input formInput" type="password" placeholder="Confirm Password" onChange={this.handleFormInput} name='confirmpassword' required></input> <br />
