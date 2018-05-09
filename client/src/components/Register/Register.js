@@ -112,7 +112,6 @@ if(this.state.isLoggedIn === true) {
     return (
       <div className="Modal">
       <div>
-      <button className="button formButton" onClick={this.openModal}>Register</button>
       {this.state.loggedInForRegister !== "loggedIn"? <button className="button formButton" onClick={this.openModal}>Register</button>: ""}
       <Modal
         isOpen={this.state.modalIsOpen}
