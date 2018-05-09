@@ -1,0 +1,11 @@
+.homeName { 
+  font-family: 'Homemade Apple', cursive;
+  font-size: 70px; 
+  z-index: 1; 
+  color: rgb(255, 230, 0); 
+  font-family: 'Yesteryear', cursive;
+  text-shadow: 3px 3px #000000;
+  text-align: left; 
+  padding-left: 30px; 
+  margin-top: -5px; 
+}

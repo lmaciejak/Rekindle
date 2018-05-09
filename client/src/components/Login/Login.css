@@ -6,7 +6,7 @@
   /* background-color: rgb(72, 255, 0);  */
   /* background-color: rgb(255, 125, 175);  */
   /* background-color: rgb(79, 238, 198);  */
-    background-color: rgb(44, 226, 135); 
+    background-color: rgba(44, 226, 135, 0.829); 
   font-size: 20px; 
   font-family: 'Mitr', sans-serif;
   color: rgb(0, 0, 0); 
@@ -15,6 +15,7 @@
   margin-left: 20px; 
   border-radius: 5px; 
   z-index: 10; 
+  /* background-color: rgba(201, 201, 201, 0.815);  */
 }
 
 .Modal { 
