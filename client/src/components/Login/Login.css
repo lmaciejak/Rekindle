@@ -14,4 +14,17 @@
   margin-right: 20px; 
   margin-left: 20px; 
   border-radius: 5px; 
+  z-index: 10; 
 }
+
+.Modal { 
+  z-index: 10000; 
+}
+
+.ReactModal__Overlay {
+  z-index: 10000;
+}
+
+button:focus {outline:0;}
+
+button:hover { transform: scale(1.1); }

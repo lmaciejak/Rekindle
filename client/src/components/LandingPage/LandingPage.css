@@ -31,7 +31,7 @@
 } */
 
 .landingContainer { 
-z-index: 10000; 
+z-index: 100; 
 display: flex; 
 flex-direction: column; 
 justify-content: center; 
@@ -40,18 +40,19 @@ justify-content: center;
 .landingName { 
   font-family: 'Homemade Apple', cursive;
   font-size: 150px; 
-  z-index: 10000; 
+  z-index: 1; 
   color: rgb(255, 230, 0); 
   font-family: 'Yesteryear', cursive;
   text-shadow: 3px 2px #000000;
 }
 
 .landingTagLine { 
-  z-index: 10000; 
+  z-index: 500; 
   color: rgb(255, 230, 0); 
   font-size: 30px; 
   font-family: 'Mitr', sans-serif;
   margin-top: -120px; 
+  text-shadow: 2px 2px #000000;
 }
 
 .buttonContainer { 
