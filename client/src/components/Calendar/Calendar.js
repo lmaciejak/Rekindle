@@ -1,6 +1,10 @@
 import React from 'react'
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
+import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
+
+import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 
 
 // Setup the localizer by providing the moment (or globalize) Object
