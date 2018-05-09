@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import axios from "axios"
 import { Redirect } from "react-router-dom"
+import './Login.css'
 
 const customStyles = {
   content : {

@@ -20,11 +20,15 @@
        -webkit-filter: blur(1px); /* Safari 6.0 - 9.0 */
        filter: blur(1px);  
        margin-top: -15%; 
+       z-index: -1; 
 }
 
-.landingButton { 
-  z-index: 10000; 
-}
+/* .landingButton { 
+  z-index: 1000; 
+  padding: 15px 32px;
+  border: none;
+  color: yellow; 
+} */
 
 .landingContainer { 
 z-index: 10000; 
@@ -39,12 +43,26 @@ justify-content: center;
   z-index: 10000; 
   color: rgb(255, 230, 0); 
   font-family: 'Yesteryear', cursive;
+  text-shadow: 3px 2px #000000;
 }
 
 .landingTagLine { 
   z-index: 10000; 
   color: rgb(255, 230, 0); 
-  font-size: 40px; 
-  font-family: 'Yesteryear', cursive;
-  margin-top: -100px; 
+  font-size: 30px; 
+  font-family: 'Mitr', sans-serif;
+  margin-top: -120px; 
+}
+
+.buttonContainer { 
+  display: flex; 
+  justify-content: center; 
+}
+
+.loginButton { 
+  margin-right: 5px; 
+}
+
+.registerButton { 
+  margin-left: 100px; 
 }
