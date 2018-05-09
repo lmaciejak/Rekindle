@@ -5,6 +5,7 @@ import { Redirect } from 'react-router'
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import './Homepage.css'
+import Calendar from '../Calendar/Calendar';
 
 class LandingPage extends React.Component {
   constructor() {
@@ -20,6 +21,7 @@ class LandingPage extends React.Component {
     return (
      <div className="homepageContainer">
      <h1 className="homeName"> Rekindle </h1> 
+     <Calendar />
 
     </div> )
   }
