@@ -13,21 +13,21 @@ const
       id: 0,
       title: 'All Day Event very long title',
       allDay: true,
-      start: new Date(2015, 3, 0),
-      end: new Date(2015, 3, 1),
+      start: new Date(2018, 7, 0),
+      end: new Date(2018, 7, 1),
     },
     {
       id: 1,
       title: 'Long Event',
-      start: new Date(2015, 3, 7),
-      end: new Date(2015, 3, 10),
+      start: new Date(2018, 8, 7),
+      end: new Date(2018, 8, 10),
     },
   
     {
       id: 2,
       title: 'DTS STARTS',
-      start: new Date(2016, 2, 13, 0, 0, 0),
-      end: new Date(2016, 2, 20, 0, 0, 0),
+      start: new Date(2018, 10, 13, 0, 0, 0),
+      end: new Date(2018, 10, 20, 0, 0, 0),
     }]
 
 const Calendar = props => (
