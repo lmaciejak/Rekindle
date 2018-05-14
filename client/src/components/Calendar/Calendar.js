@@ -184,7 +184,7 @@ class Calendar extends Component {
         onRequestClose={this.closeDialog}
       >
         <TextField
-          floatingLabelText="Title"
+          floatingLabelText="Suggest an activity"
           name="title"
           onChange={e => {
             this.changeTitle(e.target.value);
@@ -231,7 +231,7 @@ class Calendar extends Component {
     >
       <TextField
         defaultValue={this.state.title}
-        floatingLabelText="Title"
+        floatingLabelText="Suggest an activity"
         onChange={e => {
           this.changeTitle(e.target.value);
         }}

@@ -6,6 +6,7 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import './Homepage.css'
 import Calendar from '../Calendar/Calendar';
+import NavBar from '../NavBar/NavBar';
 
 class LandingPage extends React.Component {
   constructor() {
@@ -20,6 +21,7 @@ class LandingPage extends React.Component {
     const { user } = this.state
     return (
      <div className="homepageContainer">
+     <NavBar />
      <h1 className="homeName"> Rekindle </h1> 
      <Calendar />
 
