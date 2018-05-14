@@ -118,13 +118,15 @@ onEventClick(event) {
           // onSelectEvent={(this.eventSelected)}
           onSelectEvent={event => this.handleEventSelected(event)}
           // onSelectSlot={slotInfo => this.handleSlotSelected(slotInfo)}
-          onSelectSlot={slotInfo =>
+          onSelectSlot={slotInfo =>{
+            console.log('hello')
             alert(
               `selected slot: \n\nstart ${slotInfo.start.toLocaleString()} ` +
                 `\nend: ${slotInfo.end.toLocaleString()}` +
                 `\naction: ${slotInfo.action}`
-            )
+            );
           }
+        }
           style={{ height: "80vh" }}
           timeslots={2}
         />
