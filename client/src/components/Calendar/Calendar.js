@@ -38,11 +38,11 @@ class Calendar extends Component {
     };
   }
 
-  handleClose = () => {
+  closeDialog = () => {
     this.setState({ openEvent: false, openSlot: false });
   };
 
-  setTitle(e) {
+  changeTitle(e) {
     this.setState({ title: e });
   }
 
@@ -50,11 +50,11 @@ class Calendar extends Component {
     this.setState({ desc: e });
   }
 
-  handleStartTime = (event, date) => {
+  handleEventStartTime = (event, date) => {
     this.setState({ start: date });
   };
 
-  handleEndTime = (event, date) => {
+  handleEventEndTime = (event, date) => {
     this.setState({ end: date });
   };
 
@@ -128,34 +128,34 @@ class Calendar extends Component {
         label="Cancel"
         primary={false}
         keyboardFocused={true}
-        onClick={this.handleClose}
+        onClick={this.closeDialog}
       />,
       <FlatButton
         label="Delete"
         secondary={true}
         keyboardFocused={true}
         onClick={() => {
-          this.deleteEvent(), this.handleClose();
+          this.deleteEvent(), this.closeDialog();
         }}
       />,
       <FlatButton
         label="Confirm Edit"
         primary={true}
         keyboardFocused={true}
-        onClick={this.handleClose}
+        onClick={this.closeDialog}
         onClick={() => {
-          this.updateEvent(), this.handleClose();
+          this.updateEvent(), this.closeDialog();
         }}
       />
     ];
     const appointmentActions = [
-      <FlatButton label="Cancel" secondary={true} onClick={this.handleClose} />,
+      <FlatButton label="Cancel" secondary={true} onClick={this.closeDialog} />,
       <FlatButton
         label="Submit"
         primary={true}
         keyboardFocused={true}
         onClick={() => {
-          this.setNewAppointment(), this.handleClose();
+          this.setNewAppointment(), this.closeDialog();
         }}
       />
     ];
@@ -172,31 +172,24 @@ class Calendar extends Component {
           onSelectEvent={event => this.handleEventSelected(event)}
           onSelectSlot={slotInfo => this.handleSlotSelected(slotInfo)}
         />
-
-
-      <Dialog
-        title={this.state.selection  === 'slot' ? `Alert friends that you are free on: ${moment(
-          this.state.start
-        ).format("MMMM Do")}` : `View/Edit Appointment of ${moment(this.state.start).format(
+        <Dialog
+        title={`Change the time ${moment(this.state.start).format(
           "MMMM Do YYYY"
         )}`}
-        actions={this.state.selection  === 'slot' ? appointmentActions : eventActions}
+        actions={appointmentActions}
         modal={false}
-        open={this.state.selection  === 'slot' ? this.state.openEvent : this.state.openSlot}
-        onRequestClose={this.handleClose}
+        open={this.state.openSlot}
+        onRequestClose={this.closeDialog}
       >
         <TextField
-          defaultValue={this.state.title}
           floatingLabelText="Title"
           onChange={e => {
-            this.setTitle(e.target.value);
+            this.changeTitle(e.target.value);
           }}
         />
         <br />
         <TextField
           floatingLabelText="Description"
-          multiLine={true}
-          defaultValue={this.state.desc}
           onChange={e => {
             this.setDescription(e.target.value);
           }}
@@ -204,18 +197,59 @@ class Calendar extends Component {
         <TimePicker
           format="ampm"
           floatingLabelText="Start Time"
-          minutesStep={10}
+          minutesStep={5}
           value={this.state.start}
-          onChange={this.handleStartTime}
+          onChange={this.handleEventStartTime}
         />
         <TimePicker
           format="ampm"
           floatingLabelText="End Time"
-          minutesStep={10}
+          minutesStep={5}
           value={this.state.end}
-          onChange={this.handleEndTime}
+          onChange={this.handleEventEndTime}
         />
       </Dialog>
+
+      <Dialog
+      title={`View/Edit Appointment of ${moment(this.state.start).format(
+        "MMMM Do YYYY"
+      )}`}
+      actions={eventActions}
+      modal={false}
+      open={this.state.openEvent}
+      onRequestClose={this.closeDialog}
+    >
+      <TextField
+        defaultValue={this.state.title}
+        floatingLabelText="Title"
+        onChange={e => {
+          this.changeTitle(e.target.value);
+        }}
+      />
+      <br />
+      <TextField
+        floatingLabelText="Description"
+        multiLine={true}
+        defaultValue={this.state.desc}
+        onChange={e => {
+          this.setDescription(e.target.value);
+        }}
+      />
+      <TimePicker
+        format="ampm"
+        floatingLabelText="Start Time"
+        minutesStep={5}
+        value={this.state.start}
+        onChange={this.handleEventStartTime}
+      />
+      <TimePicker
+        format="ampm"
+        floatingLabelText="End Time"
+        minutesStep={5}
+        value={this.state.end}
+        onChange={this.handleEventEndTime}
+      />
+    </Dialog>
       </div>
     );
   }
