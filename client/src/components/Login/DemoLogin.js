@@ -98,7 +98,7 @@ class DemoLogin extends Component {
         <h2 ref={subtitle => this.subtitle = subtitle}>Log In</h2>
 
           <input className="input formInput" type="text" placeholder="Username" name='username' value='Demo'></input>
-          <input className="input formInput" type="password" placeholder="Password" onChange={this.handleFormInput} name='password' value={this.state.password}></input>
+          <input className="input formInput" type="password" placeholder="Password" name='password' value='testtest'></input>
           <button className="formButton" onClick={this.handleLoginFormSubmit}>Log in</button>
 
         <p>{this.state.message}</p>
