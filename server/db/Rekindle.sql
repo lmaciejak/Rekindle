@@ -57,12 +57,4 @@ INSERT INTO users (username, password, email, full_name, user_img)
   'test@gmail.com', 'June Davis', 'https://openclipart.org/download/247324/abstract-user-flat-1.svg');
 
 INSERT INTO friendships (friend_initial, friend_befriended, befriended_user_status, lastHangoutDate)
-VALUES (1, 2, 'accepted', NULL), (1, 3, 'accepted', null)
-
-CREATE TABLE friendships ( 
-  friendship_id SERIAL PRIMARY KEY, 
-  friend_initial INTEGER REFERENCES users, 
-  friend_befriended INTEGER REFERENCES users, 
-  befriended_user_status VARCHAR, 
-  lastHangoutDate date
-);
+VALUES (1, 2, 'accepted', NULL), (1, 3, 'accepted', null);

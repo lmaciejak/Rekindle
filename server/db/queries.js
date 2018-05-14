@@ -48,6 +48,19 @@ function loginUser(req, res, next) {
   })(req, res, next);
 }
 
+function getUserFriends(req, res, next) { 
+  db.any(
+    `SELECT * FROM friendships JOIN users ON(friend_befriended=user_id) WHERE friend_initial=$1 OR friend_befriended=$1`, 
+    [req.params.userID]
+  )
+  .then(data => {
+    res.json(data);
+  })
+  .catch(error => {
+    res.json(error);
+  });
+}
+
 module.exports = {
 createUser,
 loginUser, 
