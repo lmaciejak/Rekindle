@@ -1,0 +1,25 @@
+#bigCalendar {
+  height: 100%;
+  width: 80%;
+  margin: auto;
+  margin-top:50px;
+  margin-bottom: 50px;
+}
+
+.rbc-month-view{
+  flex-basis: 500px !important;
+}
+
+.rbc-toolbar-label {
+  font-weight: bold;
+  font-size: 22px;
+  color: rgb(0, 0, 0)
+}
+
+.rbc-date-cell {
+  color: rgb(0, 0, 0);
+}
+
+.rbc-today {
+  background-color: rgb(196, 226, 250) !important;
+}
