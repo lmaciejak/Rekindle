@@ -58,8 +58,27 @@ class Calendar extends Component {
         end: new Date(moment().add(1, "days")),
         title: "Some title"
       }
-    ]
+    ],
+    title: "",
+    start: "",
+    end: "",
+    desc: "",
+    openSlot: false,
+    openEvent: false,
+    clickedEvent: {}
   };
+
+  handleEventSelected(event) {
+    console.log("event", event);
+    this.setState({
+      openEvent: true,
+      clickedEvent: event,
+      start: event.start,
+      end: event.end,
+      title: event.title,
+      desc: event.desc
+    });
+  }
 
   onEventResize = (type, { event, start, end, allDay }) => {
     this.setState(state => {
@@ -73,6 +92,16 @@ class Calendar extends Component {
     console.log(start);
   };
 
+//   onSlotChange(slotInfo) {
+//     var startDate = moment(slotInfo.start.toLocaleString()).format("YYYY-MM-DDm:ss");
+//     var endDate = moment(slotInfo.end.toLocaleString()).format("YYYY-MM-DDm:ss");
+//     console.log('selected')
+// }
+
+onEventClick(event) {
+  console.log(event) //Shows the event details provided while booking
+}
+
   render() {
     return (
       <div className="App">
@@ -83,7 +112,21 @@ class Calendar extends Component {
           onEventDrop={this.onEventDrop}
           onEventResize={this.onEventResize}
           resizable
+          selectable={true}
+          // onSelectSlot={(slotInfo) => this.dateSelected(slotInfo)}
+          // // onSelectSlot={(this.slotSelected)}
+          // onSelectEvent={(this.eventSelected)}
+          onSelectEvent={event => this.handleEventSelected(event)}
+          // onSelectSlot={slotInfo => this.handleSlotSelected(slotInfo)}
+          onSelectSlot={slotInfo =>
+            alert(
+              `selected slot: \n\nstart ${slotInfo.start.toLocaleString()} ` +
+                `\nend: ${slotInfo.end.toLocaleString()}` +
+                `\naction: ${slotInfo.action}`
+            )
+          }
           style={{ height: "80vh" }}
+          timeslots={2}
         />
       </div>
     );
