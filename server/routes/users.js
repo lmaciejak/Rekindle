@@ -7,6 +7,8 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+router.get('/getfriends/:userID', db.getUserFriends);
+
 // router.get('/logout', db.logoutUser);
 
 router.post('/register', db.createUser);

@@ -4,6 +4,7 @@
   margin: auto;
   margin-top:50px;
   margin-bottom: 50px;
+  /* background-color: rgb(142, 142, 238);  */
 }
 
 .rbc-month-view{
@@ -18,6 +19,10 @@
 
 .rbc-date-cell {
   color: rgb(0, 0, 0);
+}
+
+.rbc-day { 
+  background-color: black; 
 }
 
 .rbc-today {

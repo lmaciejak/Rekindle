@@ -64,5 +64,5 @@ function getUserFriends(req, res, next) {
 module.exports = {
 createUser,
 loginUser, 
-
+getUserFriends,
 }
