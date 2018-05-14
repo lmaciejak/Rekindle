@@ -6,6 +6,7 @@ import TimePicker from "material-ui/TimePicker";
 import Dialog from "material-ui/Dialog";
 import FlatButton from "material-ui/FlatButton";
 import TextField from "material-ui/TextField";
+import Select from "react-select";
 
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -30,7 +31,7 @@ class Calendar extends Component {
       title: "",
       start: "",
       end: "",
-      desc: "",
+      description: "",
       openSlot: false,
       openEvent: false,
       clickedEvent: {},
@@ -43,6 +44,7 @@ class Calendar extends Component {
   };
 
   changeTitle(e) {
+    console.log('e', e)
     this.setState({ title: e });
   }
 
@@ -58,11 +60,11 @@ class Calendar extends Component {
     this.setState({ end: date });
   };
 
-  setNewAppointment = () => {
+  setNewAvailability = () => {
     const { start, end, title, desc } = this.state;
-    let appointment = { title, start, end, desc };
+    let availability = { title, start, end, desc };
     let events = this.state.events.slice();
-    events.push(appointment);
+    events.push(availability);
     this.setState({ events });
   };
 
@@ -148,14 +150,14 @@ class Calendar extends Component {
         }}
       />
     ];
-    const appointmentActions = [
+    const availabilityActions = [
       <FlatButton label="Cancel" secondary={true} onClick={this.closeDialog} />,
       <FlatButton
         label="Submit"
         primary={true}
         keyboardFocused={true}
         onClick={() => {
-          this.setNewAppointment(), this.closeDialog();
+          this.setNewAvailability(), this.closeDialog();
         }}
       />
     ];
@@ -173,16 +175,17 @@ class Calendar extends Component {
           onSelectSlot={slotInfo => this.handleSlotSelected(slotInfo)}
         />
         <Dialog
-        title={`Change the time ${moment(this.state.start).format(
-          "MMMM Do YYYY"
+        title={`Tell your friends you're free on ${moment(this.state.start).format(
+          "MMMM Do"
         )}`}
-        actions={appointmentActions}
+        actions={availabilityActions}
         modal={false}
         open={this.state.openSlot}
         onRequestClose={this.closeDialog}
       >
         <TextField
           floatingLabelText="Title"
+          name="title"
           onChange={e => {
             this.changeTitle(e.target.value);
           }}
@@ -190,29 +193,36 @@ class Calendar extends Component {
         <br />
         <TextField
           floatingLabelText="Description"
+          name="description"
           onChange={e => {
             this.setDescription(e.target.value);
           }}
         />
         <TimePicker
+          defaultTime="19:00:00"
           format="ampm"
-          floatingLabelText="Start Time"
+          floatingLabelText="Starting At"
           minutesStep={5}
           value={this.state.start}
           onChange={this.handleEventStartTime}
         />
         <TimePicker
+          defaultTime="22:00:00"
           format="ampm"
-          floatingLabelText="End Time"
+          floatingLabelText="Ending At"
           minutesStep={5}
           value={this.state.end}
           onChange={this.handleEventEndTime}
         />
+        <Select 
+        name="form-field-name"
+        multi
+        placeholder="Share availability with friends"/>
       </Dialog>
 
       <Dialog
-      title={`View/Edit Appointment of ${moment(this.state.start).format(
-        "MMMM Do YYYY"
+      title={`Edit your availability on this day ${moment(this.state.start).format(
+        "MMMM Do"
       )}`}
       actions={eventActions}
       modal={false}
@@ -237,14 +247,14 @@ class Calendar extends Component {
       />
       <TimePicker
         format="ampm"
-        floatingLabelText="Start Time"
+        floatingLabelText="Starting At"
         minutesStep={5}
         value={this.state.start}
         onChange={this.handleEventStartTime}
       />
       <TimePicker
         format="ampm"
-        floatingLabelText="End Time"
+        floatingLabelText="Ending At"
         minutesStep={5}
         value={this.state.end}
         onChange={this.handleEventEndTime}
