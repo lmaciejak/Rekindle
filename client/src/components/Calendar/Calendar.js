@@ -27,6 +27,7 @@ class Calendar extends Component {
   constructor() {
     super();
     this.state = {
+      following: [],
       events: [],
       title: "",
       start: "",
@@ -35,7 +36,8 @@ class Calendar extends Component {
       openSlot: false,
       openEvent: false,
       clickedEvent: {},
-      selection: ''
+      selection: '', 
+      selectedFriends: ""
     };
   }
 
@@ -120,11 +122,24 @@ class Calendar extends Component {
   )
   };
 
+  handleFriendSelect = value => {
+    const { selectedFriends } = this.state;
+    this.setState({
+      selectedFriends: value
+    });
+  };
+
 
   render() {
     console.log("render()");
     console.log('this.state', this.state)
     const { selection } = this.state
+
+    const stateOptions = this.state.following.map(elem => ({
+      value: elem.user_id,
+      label: elem.username
+    }));
+
     const eventActions = [
       <FlatButton
         label="Cancel"
@@ -174,6 +189,9 @@ class Calendar extends Component {
           onSelectEvent={event => this.handleEventSelected(event)}
           onSelectSlot={slotInfo => this.handleSlotSelected(slotInfo)}
         />
+
+
+
         <Dialog
         title={`Tell your friends you're free on ${moment(this.state.start).format(
           "MMMM Do"
@@ -217,8 +235,14 @@ class Calendar extends Component {
         <Select 
         name="form-field-name"
         multi
+        value={this.state.selectedFriends}
+        onChange={this.handleFriendSelect}
+        options={stateOptions}
         placeholder="Share availability with friends"/>
       </Dialog>
+
+    
+
 
       <Dialog
       title={`Edit your availability on this day ${moment(this.state.start).format(
