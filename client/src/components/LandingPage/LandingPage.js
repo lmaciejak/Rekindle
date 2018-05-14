@@ -5,6 +5,7 @@ import { Redirect } from 'react-router'
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import './LandingPage.css'
+import DemoLogin from '../Login/DemoLogin';
 
 class LandingPage extends React.Component {
   constructor() {
@@ -25,6 +26,7 @@ class LandingPage extends React.Component {
     <div className="buttonContainer">
      <Login className="landingButton loginButton"/>
      <Register className="landingButton registerButton"/>
+     <DemoLogin />
      </div>
     </div> )
   }
