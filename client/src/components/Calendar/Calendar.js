@@ -11,7 +11,6 @@ import axios from "axios";
 
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import TimePickerExampleSimple from "./TimePicker";
 import "./Calendar.css";
 import SlotAndEventDialog from "./EventDialog";
 
@@ -182,46 +181,7 @@ class Calendar extends Component {
           updatedEvent={this.updateEvent}
         />
 
-        <Dialog
-          title={`Edit your availability on this day ${moment(
-            this.state.start
-          ).format("MMMM Do")}`}
-          actions={eventActions}
-          modal={false}
-          open={this.state.openEvent}
-          onRequestClose={this.closeDialog}
-        >
-          <TextField
-            defaultValue={this.state.title}
-            floatingLabelText="Suggest an activity"
-            onChange={e => {
-              this.changeTitle(e.target.value);
-            }}
-          />
-          <br />
-          <TextField
-            floatingLabelText="Description"
-            multiLine={true}
-            defaultValue={this.state.desc}
-            onChange={e => {
-              this.setDescription(e.target.value);
-            }}
-          />
-          <TimePicker
-            format="ampm"
-            floatingLabelText="Starting At"
-            minutesStep={5}
-            value={this.state.start}
-            onChange={this.handleEventStartTime}
-          />
-          <TimePicker
-            format="ampm"
-            floatingLabelText="Ending At"
-            minutesStep={5}
-            value={this.state.end}
-            onChange={this.handleEventEndTime}
-          />
-        </Dialog>
+        
       </div>
     );
   }

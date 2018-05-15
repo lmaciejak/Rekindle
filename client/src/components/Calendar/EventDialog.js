@@ -60,12 +60,13 @@ class SlotAndEventDialog extends Component {
 
     return (
       <Dialog
-      title={`Tell your friends you're free on ${moment(this.props.calendarState.start).format(
-        "MMMM Do"
-      )}`}
-      actions={availabilityActions}
+      title={this.props.calendarState.selection === 'slot' ? `Tell your friends you're free on ${moment(this.props.calendarState.start).format(
+        "MMMM Do")}` :`Edit your availability on this day ${moment(
+          this.props.calendarState.start
+        ).format("MMMM Do")}`}
+      actions={this.props.calendarState.selection === 'slot' ? availabilityActions : eventActions}
       modal={false}
-      open={this.props.calendarState.openSlot}
+      open={this.props.calendarState.selection === 'slot' ? this.props.calendarState.openSlot : this.props.calendarState.openEvent}
       onRequestClose={this.props.closeDialog}
     >
       <TextField
