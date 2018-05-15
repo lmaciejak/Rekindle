@@ -32,6 +32,32 @@ class SlotAndEventDialog extends Component {
       />
     ];
 
+    const eventActions = [
+      <FlatButton
+        label="Cancel"
+        primary={false}
+        keyboardFocused={true}
+        onClick={this.props.closeDialog}
+      />,
+      <FlatButton
+        label="Delete"
+        secondary={true}
+        keyboardFocused={true}
+        onClick={() => {
+          this.props.deleteEvent(), this.props.closeDialog();
+        }}
+      />,
+      <FlatButton
+        label="Confirm Edit"
+        primary={true}
+        keyboardFocused={true}
+        onClick={this.closeDialog}
+        onClick={() => {
+          this.props.updateEvent(), this.props.closeDialog();
+        }}
+      />
+    ];
+
     return (
       <Dialog
       title={`Tell your friends you're free on ${moment(this.props.calendarState.start).format(

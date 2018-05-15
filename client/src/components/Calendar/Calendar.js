@@ -155,31 +155,7 @@ class Calendar extends Component {
     console.log("this.state", this.state);
     const { selection } = this.state;
 
-    const eventActions = [
-      <FlatButton
-        label="Cancel"
-        primary={false}
-        keyboardFocused={true}
-        onClick={this.closeDialog}
-      />,
-      <FlatButton
-        label="Delete"
-        secondary={true}
-        keyboardFocused={true}
-        onClick={() => {
-          this.deleteEvent(), this.closeDialog();
-        }}
-      />,
-      <FlatButton
-        label="Confirm Edit"
-        primary={true}
-        keyboardFocused={true}
-        onClick={this.closeDialog}
-        onClick={() => {
-          this.updateEvent(), this.closeDialog();
-        }}
-      />
-    ];
+
 
     return (
       <div id="bigCalendar">
@@ -202,6 +178,8 @@ class Calendar extends Component {
           handleEventStartTime={this.handleEventStartTime}
           handleEventEndTime={this.handleEventEndTime}
           handleFriendSelect={this.handleFriendSelect}
+          deleteEvent={this.deleteEvent}
+          updatedEvent={this.updateEvent}
         />
 
         <Dialog
