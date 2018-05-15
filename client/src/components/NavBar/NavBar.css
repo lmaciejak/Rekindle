@@ -67,9 +67,22 @@
   border-bottom-width: 3px;
   border-bottom-style: solid;
   border-bottom-color: rgb(235, 232, 232);
-  background-color: white;
+  background-color: rgba(44, 226, 135, 0.829);
+  /* background-color: rgb(76, 59, 235); */
+
   display: flex;
   justify-content: space-between;
   z-index: 40;
   margin-bottom: -40px; 
+}
+
+.searchBarName { 
+  font-family: 'Homemade Apple', cursive;
+  font-size: 60px; 
+  z-index: 1; 
+  color: rgb(255, 230, 0); 
+  font-family: 'Yesteryear', cursive;
+  text-shadow: 3px 2px #000000;
+  margin-top: 0; 
+  margin-bottom: 0; 
 }

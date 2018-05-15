@@ -22,7 +22,6 @@ class LandingPage extends React.Component {
     return (
       <div className="homepageContainer">
         <NavBar />
-        <h1 className="homeName"> Rekindle </h1>
         <Calendar />
       </div>
     );
@@ -32,3 +31,4 @@ class LandingPage extends React.Component {
 export default LandingPage;
 
 // <h1> Rekindle makes it easier to schedule hangouts. </h1>
+// <h1 className="homeName"> Rekindle </h1>

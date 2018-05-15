@@ -140,7 +140,7 @@ class NavBar extends Component {
   render() {
     const { value, suggestions, redirectLanding } = this.state;
     const inputProps = {
-      placeholder: "Search by recipe, username, full name",
+      placeholder: "Search for friends",
       value,
       onChange: this.onChange,
       onKeyPress: this.onKeyPress
@@ -151,6 +151,7 @@ class NavBar extends Component {
         <Link to={`/cb/feed`}>
           <img className="searchbarLogo hoverIncrease" />
         </Link>
+        <h1 className="searchBarName"> Rekindle </h1>
 
         <Autosuggest
           suggestions={suggestions}
