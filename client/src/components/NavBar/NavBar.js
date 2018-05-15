@@ -7,11 +7,11 @@ import Modal from "react-modal";
 import './NavBar.css'
 
 function getSuggestionValue(suggestion) {
-  return suggestion.identifier;
+  return suggestion;
 }
 
 function renderSuggestion(suggestion) {
-  return <span>{suggestion.identifier}</span>;
+  return <span>{suggestion.full_name}</span>;
 }
 
 const customStyles = {
@@ -82,37 +82,20 @@ class NavBar extends Component {
     this.setState({ modalIsOpen: false, message: "", redirect: false });
   }
 
-  onChange = (event, { newValue, method }) => {
+  onChange = (event, { newValue }) => {
     this.setState({
       value: newValue
     });
   };
 
   onSuggestionsFetchRequested = ({ value }) => {
-    fetch(`/users/searchbyrecipe/${value}`)
+    fetch(`/users/searchbyuser/${value}`)
       .then(response => response.json())
       .then(data => {
-        const dataFormatted = data.map((elem, index) => {
-          if (index === 0) {
-            return { title: "recipe name", info: elem };
-          }
-          if (index === 1) {
-            return { title: "username", info: elem };
-          }
-          if (index === 2) {
-            return { title: "full name", info: elem };
-          }
-        });
-
-        const newData = dataFormatted
-          .map(elem => elem.info)
-          .reduce((prev, curr) => prev.concat(curr));
-
         this.setState({
-          suggestions: newData,
-          searchInput: data
+          suggestions: data
         });
-      });
+        });
   };
 
   onSuggestionsClearRequested = () => {
@@ -138,6 +121,8 @@ class NavBar extends Component {
   }
 
   render() {
+    console.log('rendered')
+    console.log('this.state.suggestions', this.state.suggestions)
     const { value, suggestions, redirectLanding } = this.state;
     const inputProps = {
       placeholder: "Find your friends",
