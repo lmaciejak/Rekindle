@@ -1,24 +1,22 @@
-import React from 'react'
-import axios from 'axios'
-import { Route, Switch } from 'react-router'
-import { Redirect } from 'react-router'
-import LandingPage from './LandingPage/LandingPage'
+import React from "react";
+import axios from "axios";
+import { Route, Switch } from "react-router";
+import { Redirect } from "react-router";
+import LandingPage from "./LandingPage/LandingPage";
 
 class Rekindle extends React.Component {
   constructor() {
     super();
     this.state = {
-      user: '',
-      fetchingUser: true,
-    }
+      user: "",
+      fetchingUser: true
+    };
   }
 
   render() {
-    const { user } = this.state
-    return (
-     <div>
-    </div> )
+    const { user } = this.state;
+    return <div />;
   }
 }
 
-export default Rekindle
+export default Rekindle;

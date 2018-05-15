@@ -46,7 +46,6 @@ class NavBar extends Component {
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
-  
 
   handleClickLogout = e => {
     axios
@@ -149,9 +148,7 @@ class NavBar extends Component {
     return (
       <div className="searchbar">
         <Link to={`/cb/feed`}>
-          <img
-            className="searchbarLogo hoverIncrease"
-          />
+          <img className="searchbarLogo hoverIncrease" />
         </Link>
 
         <Autosuggest
@@ -164,24 +161,24 @@ class NavBar extends Component {
           onSuggestionSelected={this.onSuggestionSelected}
         />
 
-          {this.state.finalSuggestion
-            ? this.state.finalSuggestion.map(elem => {
-                const link = elem.recipe_id
-                  ? `/cb/${elem.username}/${elem.recipe_id}`
-                  : `/cb/profile/${elem.user_id}`;
-                return (
-                  <Link
-                    to={link}
-                    className="searchLink"
-                    onClick={this.handleModalClick}
-                  >
-                    <p key={Math.random()}> {elem.identifier} </p>
-                  </Link>
-                );
-              })
-            : "no results"}
-          <br />
-          <button onClick={this.closeModal}>close</button>
+        {this.state.finalSuggestion
+          ? this.state.finalSuggestion.map(elem => {
+              const link = elem.recipe_id
+                ? `/cb/${elem.username}/${elem.recipe_id}`
+                : `/cb/profile/${elem.user_id}`;
+              return (
+                <Link
+                  to={link}
+                  className="searchLink"
+                  onClick={this.handleModalClick}
+                >
+                  <p key={Math.random()}> {elem.identifier} </p>
+                </Link>
+              );
+            })
+          : "no results"}
+        <br />
+        <button onClick={this.closeModal}>close</button>
       </div>
     );
   }

@@ -6,14 +6,13 @@ import TextField from "material-ui/TextField";
 import FlatButton from "material-ui/FlatButton";
 import Select from "react-select";
 
-
 class SlotAndEventDialog extends Component {
   constructor(props) {
     super(props);
   }
 
-  render() { 
-    console.log('props', this.props)
+  render() {
+    console.log("props", this.props);
 
     const stateOptions = this.props.calendarState.friendsArr.map(elem => ({
       value: elem.user_id,
@@ -21,7 +20,11 @@ class SlotAndEventDialog extends Component {
     }));
 
     const availabilityActions = [
-      <FlatButton label="Cancel" secondary={true} onClick={this.props.closeDialog} />,
+      <FlatButton
+        label="Cancel"
+        secondary={true}
+        onClick={this.props.closeDialog}
+      />,
       <FlatButton
         label="Submit"
         primary={true}
@@ -60,49 +63,63 @@ class SlotAndEventDialog extends Component {
 
     return (
       <Dialog
-      title={this.props.calendarState.selection === 'slot' ? `Tell your friends you're free on ${moment(this.props.calendarState.start).format(
-        "MMMM Do")}` :`Edit your availability on this day ${moment(
-          this.props.calendarState.start
-        ).format("MMMM Do")}`}
-      actions={this.props.calendarState.selection === 'slot' ? availabilityActions : eventActions}
-      modal={false}
-      open={this.props.calendarState.selection === 'slot' ? this.props.calendarState.openSlot : this.props.calendarState.openEvent}
-      onRequestClose={this.props.closeDialog}
-    >
-      <TextField
-        floatingLabelText="Suggest an activity"
-        name="title"
-        onChange={e => {
-          this.props.changeTitle(e.target.value);
-        }}
-      />
-      <br />
-      <TimePicker
-        defaultTime="19:00:00"
-        format="ampm"
-        floatingLabelText="Starting At"
-        minutesStep={5}
-        value={this.props.calendarState.start}
-        onChange={this.props.handleEventStartTime}
-      />
-      <TimePicker
-        defaultTime="22:00:00"
-        format="ampm"
-        floatingLabelText="Ending At"
-        minutesStep={5}
-        value={this.props.calendarState.end}
-        onChange={this.props.handleEventEndTime}
-      />
-      <Select 
-      name="form-field-name"
-      multi
-      value={this.props.calendarState.selectedFriends}
-      onChange={this.props.handleFriendSelect}
-      options={stateOptions}
-      placeholder="Share availability with friends"/>
-    </Dialog>
-    )
+        title={
+          this.props.calendarState.selection === "slot"
+            ? `Tell your friends you're free on ${moment(
+                this.props.calendarState.start
+              ).format("MMMM Do")}`
+            : `Edit your availability on this day ${moment(
+                this.props.calendarState.start
+              ).format("MMMM Do")}`
+        }
+        actions={
+          this.props.calendarState.selection === "slot"
+            ? availabilityActions
+            : eventActions
+        }
+        modal={false}
+        open={
+          this.props.calendarState.selection === "slot"
+            ? this.props.calendarState.openSlot
+            : this.props.calendarState.openEvent
+        }
+        onRequestClose={this.props.closeDialog}
+      >
+        <TextField
+          floatingLabelText="Suggest an activity"
+          name="title"
+          onChange={e => {
+            this.props.changeTitle(e.target.value);
+          }}
+        />
+        <br />
+        <TimePicker
+          defaultTime="19:00:00"
+          format="ampm"
+          floatingLabelText="Starting At"
+          minutesStep={5}
+          value={this.props.calendarState.start}
+          onChange={this.props.handleEventStartTime}
+        />
+        <TimePicker
+          defaultTime="22:00:00"
+          format="ampm"
+          floatingLabelText="Ending At"
+          minutesStep={5}
+          value={this.props.calendarState.end}
+          onChange={this.props.handleEventEndTime}
+        />
+        <Select
+          name="form-field-name"
+          multi
+          value={this.props.calendarState.selectedFriends}
+          onChange={this.props.handleFriendSelect}
+          options={stateOptions}
+          placeholder="Share availability with friends"
+        />
+      </Dialog>
+    );
   }
 }
 
-export default SlotAndEventDialog; 
+export default SlotAndEventDialog;

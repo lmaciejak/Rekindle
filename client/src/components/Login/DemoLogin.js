@@ -1,58 +1,56 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import Modal from 'react-modal';
-import axios from "axios"
-import { Redirect } from "react-router-dom"
-import './Login.css'
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import Modal from "react-modal";
+import axios from "axios";
+import { Redirect } from "react-router-dom";
+import "./Login.css";
 
 const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)',
-    // backgroundColor       : 'rgba(44, 226, 135)', 
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)"
+    // backgroundColor       : 'rgba(44, 226, 135)',
     // borderRadius          : '5px'
   }
 };
 
-Modal.setAppElement('#root')
-
+Modal.setAppElement("#root");
 
 class DemoLogin extends Component {
   constructor() {
     super();
 
     this.state = {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
       isLoggedIn: false,
-      message: '',
+      message: "",
       modalIsOpen: false,
       loggedIn: false,
-      toggle: false,
-    }
+      toggle: false
+    };
     this.openModal = this.openModal.bind(this);
     this.closeModalLogin = this.closeModalLogin.bind(this);
   }
- componentWillMount() {
- }
+  componentWillMount() {}
 
   openModal() {
-    this.setState({modalIsOpen: true});
+    this.setState({ modalIsOpen: true });
   }
 
   closeModalLogin() {
-    this.setState({modalIsOpen: false, message: ''});
+    this.setState({ modalIsOpen: false, message: "" });
   }
 
   handleFormInput = e => {
     this.setState({
       [e.target.name]: e.target.value
-    })
-  }
+    });
+  };
 
   handleLoginFormSubmit = e => {
     e.preventDefault();
@@ -60,14 +58,14 @@ class DemoLogin extends Component {
     const { username, password } = this.state;
     axios
       .post("/users/login", {
-        username: 'Tom',
-        password: 'testtest'
+        username: "Tom",
+        password: "testtest"
       })
       .then(res => {
-        console.log('res', res)
+        console.log("res", res);
         this.setState({
           message: "success",
-          isLoggedIn: true,
+          isLoggedIn: true
         });
       })
       .catch(err => {
@@ -77,33 +75,60 @@ class DemoLogin extends Component {
           message: `${err.response.data}`
         });
       });
-  }
+  };
 
   render() {
-    console.log('message', this.state.message)
-    console.log('isloggedin', this.state.isLoggedIn)
-    if(this.state.isLoggedIn === true) {
-      return <Redirect to='/rekindle' />
+    console.log("message", this.state.message);
+    console.log("isloggedin", this.state.isLoggedIn);
+    if (this.state.isLoggedIn === true) {
+      return <Redirect to="/rekindle" />;
     }
     return (
       <div className="Modal">
-      <div>
-      {this.state.loggedIn === "loggedIn"? <button onClick={this.handleClickLogOut} className="button formButton">Log Out</button> :<button className="button formButton" onClick={this.openModal}>Demo</button>}
-      <Modal
-        isOpen={this.state.modalIsOpen}
-        onRequestClose={this.closeModalLogin}
-        style={customStyles}
-      >
-      <button className="xButton" onClick={this.closeModalLogin}>x</button>
-        <h2 ref={subtitle => this.subtitle = subtitle}>Log In</h2>
+        <div>
+          {this.state.loggedIn === "loggedIn" ? (
+            <button
+              onClick={this.handleClickLogOut}
+              className="button formButton"
+            >
+              Log Out
+            </button>
+          ) : (
+            <button className="button formButton" onClick={this.openModal}>
+              Demo
+            </button>
+          )}
+          <Modal
+            isOpen={this.state.modalIsOpen}
+            onRequestClose={this.closeModalLogin}
+            style={customStyles}
+          >
+            <button className="xButton" onClick={this.closeModalLogin}>
+              x
+            </button>
+            <h2 ref={subtitle => (this.subtitle = subtitle)}>Log In</h2>
 
-          <input className="input formInput" type="text" placeholder="Username" name='username' value='Demo'></input>
-          <input className="input formInput" type="password" placeholder="Password" name='password' value='testtest'></input>
-          <button className="formButton" onClick={this.handleLoginFormSubmit}>Log in</button>
+            <input
+              className="input formInput"
+              type="text"
+              placeholder="Username"
+              name="username"
+              value="Demo"
+            />
+            <input
+              className="input formInput"
+              type="password"
+              placeholder="Password"
+              name="password"
+              value="testtest"
+            />
+            <button className="formButton" onClick={this.handleLoginFormSubmit}>
+              Log in
+            </button>
 
-        <p>{this.state.message}</p>
-      </Modal>
-      </div>
+            <p>{this.state.message}</p>
+          </Modal>
+        </div>
       </div>
     );
   }

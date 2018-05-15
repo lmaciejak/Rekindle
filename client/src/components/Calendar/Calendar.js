@@ -61,14 +61,14 @@ class Calendar extends Component {
     this.setState({ openEvent: false, openSlot: false });
   };
 
-  changeTitle = (e) => {
+  changeTitle = e => {
     console.log("e", e);
     this.setState({ title: e });
-  }
+  };
 
-  setDescription = (e) => {
+  setDescription = e => {
     this.setState({ desc: e });
-  }
+  };
 
   handleEventStartTime = (event, date) => {
     this.setState({ start: date });
@@ -154,8 +154,6 @@ class Calendar extends Component {
     console.log("this.state", this.state);
     const { selection } = this.state;
 
-
-
     return (
       <div id="bigCalendar">
         <BigCalendar
@@ -180,8 +178,6 @@ class Calendar extends Component {
           deleteEvent={this.deleteEvent}
           updatedEvent={this.updateEvent}
         />
-
-        
       </div>
     );
   }
