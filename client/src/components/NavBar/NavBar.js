@@ -140,7 +140,7 @@ class NavBar extends Component {
   render() {
     const { value, suggestions, redirectLanding } = this.state;
     const inputProps = {
-      placeholder: "Find friends",
+      placeholder: "Find your friends",
       value,
       onChange: this.onChange,
       onKeyPress: this.onKeyPress
