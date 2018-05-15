@@ -195,7 +195,7 @@ class Calendar extends Component {
 
 
 
-<SlotAndEventDialog calendarState={this.state} />
+<SlotAndEventDialog calendarState={this.state} closeDialog={this.closeDialog}/>
 
     
 
