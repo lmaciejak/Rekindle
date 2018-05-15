@@ -29,3 +29,7 @@
 .rbc-today {
   background-color: rgb(196, 226, 250) !important;
 }
+
+.rbc-toolbar-label { 
+  font-family: 'Homemade Apple', cursive;
+}

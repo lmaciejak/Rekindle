@@ -140,7 +140,7 @@ class NavBar extends Component {
   render() {
     const { value, suggestions, redirectLanding } = this.state;
     const inputProps = {
-      placeholder: "Search for friends",
+      placeholder: "Find friends",
       value,
       onChange: this.onChange,
       onKeyPress: this.onKeyPress
@@ -148,9 +148,6 @@ class NavBar extends Component {
 
     return (
       <div className="searchbar">
-        <Link to={`/cb/feed`}>
-          <img className="searchbarLogo hoverIncrease" />
-        </Link>
         <h1 className="searchBarName"> Rekindle </h1>
 
         <Autosuggest
@@ -162,25 +159,6 @@ class NavBar extends Component {
           inputProps={inputProps}
           onSuggestionSelected={this.onSuggestionSelected}
         />
-
-        {this.state.finalSuggestion
-          ? this.state.finalSuggestion.map(elem => {
-              const link = elem.recipe_id
-                ? `/cb/${elem.username}/${elem.recipe_id}`
-                : `/cb/profile/${elem.user_id}`;
-              return (
-                <Link
-                  to={link}
-                  className="searchLink"
-                  onClick={this.handleModalClick}
-                >
-                  <p key={Math.random()}> {elem.identifier} </p>
-                </Link>
-              );
-            })
-          : "no results"}
-        <br />
-        <button onClick={this.closeModal}>close</button>
       </div>
     );
   }

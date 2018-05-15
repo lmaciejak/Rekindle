@@ -1,6 +1,5 @@
 .react-autosuggest__container {
   position: relative;
-  margin-left: 27%;
 }
 
 .react-autosuggest__input {
@@ -71,7 +70,7 @@
   /* background-color: rgb(76, 59, 235); */
 
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   z-index: 40;
   margin-bottom: -40px; 
   margin-top: -20px; 
