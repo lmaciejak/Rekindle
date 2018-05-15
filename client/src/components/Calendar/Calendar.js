@@ -7,6 +7,7 @@ import Dialog from "material-ui/Dialog";
 import FlatButton from "material-ui/FlatButton";
 import TextField from "material-ui/TextField";
 import Select from "react-select";
+import axios from "axios";
 
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -27,7 +28,7 @@ class Calendar extends Component {
   constructor() {
     super();
     this.state = {
-      following: [],
+      friendsArr: [],
       events: [],
       title: "",
       start: "",
@@ -39,6 +40,22 @@ class Calendar extends Component {
       selection: '', 
       selectedFriends: ""
     };
+  }
+
+  componentDidMount = () => { 
+    axios
+    .get(`/users/getfriends/1`)
+    .then(res => {
+      console.log('res', res)
+      this.setState({
+        friendsArr: res.data,
+      });
+    })
+    .catch(err => {
+      this.setState({
+        message: `${err.response}`
+      });
+    });
   }
 
   closeDialog = () => {
@@ -135,10 +152,6 @@ class Calendar extends Component {
     console.log('this.state', this.state)
     const { selection } = this.state
 
-    const stateOptions = this.state.following.map(elem => ({
-      value: elem.user_id,
-      label: elem.username
-    }));
 
     const eventActions = [
       <FlatButton
@@ -165,17 +178,7 @@ class Calendar extends Component {
         }}
       />
     ];
-    const availabilityActions = [
-      <FlatButton label="Cancel" secondary={true} onClick={this.closeDialog} />,
-      <FlatButton
-        label="Submit"
-        primary={true}
-        keyboardFocused={true}
-        onClick={() => {
-          this.setNewAvailability(), this.closeDialog();
-        }}
-      />
-    ];
+
     return (
       <div id="bigCalendar">
 
@@ -192,54 +195,7 @@ class Calendar extends Component {
 
 
 
-        <Dialog
-        title={`Tell your friends you're free on ${moment(this.state.start).format(
-          "MMMM Do"
-        )}`}
-        actions={availabilityActions}
-        modal={false}
-        open={this.state.openSlot}
-        onRequestClose={this.closeDialog}
-      >
-        <TextField
-          floatingLabelText="Suggest an activity"
-          name="title"
-          onChange={e => {
-            this.changeTitle(e.target.value);
-          }}
-        />
-        <br />
-        <TextField
-          floatingLabelText="Description"
-          name="description"
-          onChange={e => {
-            this.setDescription(e.target.value);
-          }}
-        />
-        <TimePicker
-          defaultTime="19:00:00"
-          format="ampm"
-          floatingLabelText="Starting At"
-          minutesStep={5}
-          value={this.state.start}
-          onChange={this.handleEventStartTime}
-        />
-        <TimePicker
-          defaultTime="22:00:00"
-          format="ampm"
-          floatingLabelText="Ending At"
-          minutesStep={5}
-          value={this.state.end}
-          onChange={this.handleEventEndTime}
-        />
-        <Select 
-        name="form-field-name"
-        multi
-        value={this.state.selectedFriends}
-        onChange={this.handleFriendSelect}
-        options={stateOptions}
-        placeholder="Share availability with friends"/>
-      </Dialog>
+<SlotAndEventDialog calendarState={this.state} />
 
     
 
