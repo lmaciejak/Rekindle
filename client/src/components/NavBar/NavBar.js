@@ -4,6 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import Autosuggest from "react-autosuggest";
 import Modal from "react-modal";
+import './NavBar.css'
 
 function getSuggestionValue(suggestion) {
   return suggestion.identifier;
