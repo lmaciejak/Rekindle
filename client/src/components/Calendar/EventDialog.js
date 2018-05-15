@@ -10,13 +10,10 @@ import Select from "react-select";
 class SlotAndEventDialog extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
   }
 
   render() { 
     console.log('props', this.props)
-    const { selection  } = this.props
 
     const stateOptions = this.props.calendarState.friendsArr.map(elem => ({
       value: elem.user_id,
@@ -30,7 +27,7 @@ class SlotAndEventDialog extends Component {
         primary={true}
         keyboardFocused={true}
         onClick={() => {
-          this.setNewAvailability(), this.props.closeDialog();
+          this.props.setNewAvailability(), this.props.closeDialog();
         }}
       />
     ];
@@ -49,24 +46,17 @@ class SlotAndEventDialog extends Component {
         floatingLabelText="Suggest an activity"
         name="title"
         onChange={e => {
-          this.changeTitle(e.target.value);
+          this.props.changeTitle(e.target.value);
         }}
       />
       <br />
-      <TextField
-        floatingLabelText="Description"
-        name="description"
-        onChange={e => {
-          this.setDescription(e.target.value);
-        }}
-      />
       <TimePicker
         defaultTime="19:00:00"
         format="ampm"
         floatingLabelText="Starting At"
         minutesStep={5}
         value={this.props.calendarState.start}
-        onChange={this.handleEventStartTime}
+        onChange={this.props.handleEventStartTime}
       />
       <TimePicker
         defaultTime="22:00:00"
@@ -74,13 +64,13 @@ class SlotAndEventDialog extends Component {
         floatingLabelText="Ending At"
         minutesStep={5}
         value={this.props.calendarState.end}
-        onChange={this.handleEventEndTime}
+        onChange={this.props.handleEventEndTime}
       />
       <Select 
       name="form-field-name"
       multi
       value={this.props.calendarState.selectedFriends}
-      onChange={this.handleFriendSelect}
+      onChange={this.props.handleFriendSelect}
       options={stateOptions}
       placeholder="Share availability with friends"/>
     </Dialog>

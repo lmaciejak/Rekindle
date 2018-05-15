@@ -37,37 +37,37 @@ class Calendar extends Component {
       openSlot: false,
       openEvent: false,
       clickedEvent: {},
-      selection: '', 
+      selection: "",
       selectedFriends: ""
     };
   }
 
-  componentDidMount = () => { 
+  componentDidMount = () => {
     axios
-    .get(`/users/getfriends/1`)
-    .then(res => {
-      console.log('res', res)
-      this.setState({
-        friendsArr: res.data,
+      .get(`/users/getfriends/1`)
+      .then(res => {
+        console.log("res", res);
+        this.setState({
+          friendsArr: res.data
+        });
+      })
+      .catch(err => {
+        this.setState({
+          message: `${err.response}`
+        });
       });
-    })
-    .catch(err => {
-      this.setState({
-        message: `${err.response}`
-      });
-    });
-  }
+  };
 
   closeDialog = () => {
     this.setState({ openEvent: false, openSlot: false });
   };
 
-  changeTitle(e) {
-    console.log('e', e)
+  changeTitle = (e) => {
+    console.log("e", e);
     this.setState({ title: e });
   }
 
-  setDescription(e) {
+  setDescription = (e) => {
     this.setState({ desc: e });
   }
 
@@ -108,35 +108,39 @@ class Calendar extends Component {
   };
 
   handleSlotSelected = slotInfo => {
-    console.log('slot clicked')
-    this.setState({ 
-      selection: 'slot'
-    }, () => 
-    this.setState({
-      title: "",
-      desc: "",
-      start: slotInfo.start,
-      end: slotInfo.end,
-      openSlot: true
-    })
-  )
+    console.log("slot clicked");
+    this.setState(
+      {
+        selection: "slot"
+      },
+      () =>
+        this.setState({
+          title: "",
+          desc: "",
+          start: slotInfo.start,
+          end: slotInfo.end,
+          openSlot: true
+        })
+    );
   };
 
   handleEventSelected = event => {
-    console.log('event clicked')
-    console.log('event',event)
-    this.setState({ 
-      selection: 'event'
-    }, () => 
-    this.setState({
-      openEvent: true,
-      clickedEvent: event,
-      start: event.start,
-      end: event.end,
-      title: event.title,
-      desc: event.desc
-    })
-  )
+    console.log("event clicked");
+    console.log("event", event);
+    this.setState(
+      {
+        selection: "event"
+      },
+      () =>
+        this.setState({
+          openEvent: true,
+          clickedEvent: event,
+          start: event.start,
+          end: event.end,
+          title: event.title,
+          desc: event.desc
+        })
+    );
   };
 
   handleFriendSelect = value => {
@@ -146,12 +150,10 @@ class Calendar extends Component {
     });
   };
 
-
   render() {
     console.log("render()");
-    console.log('this.state', this.state)
-    const { selection } = this.state
-
+    console.log("this.state", this.state);
+    const { selection } = this.state;
 
     const eventActions = [
       <FlatButton
@@ -181,7 +183,6 @@ class Calendar extends Component {
 
     return (
       <div id="bigCalendar">
-
         <BigCalendar
           events={this.state.events}
           views={["month", "week", "agenda"]}
@@ -193,53 +194,56 @@ class Calendar extends Component {
           onSelectSlot={slotInfo => this.handleSlotSelected(slotInfo)}
         />
 
+        <SlotAndEventDialog
+          calendarState={this.state}
+          closeDialog={this.closeDialog}
+          setNewAvailability={this.setNewAvailability}
+          changeTitle={this.changeTitle}
+          handleEventStartTime={this.handleEventStartTime}
+          handleEventEndTime={this.handleEventEndTime}
+          handleFriendSelect={this.handleFriendSelect}
+        />
 
-
-<SlotAndEventDialog calendarState={this.state} closeDialog={this.closeDialog}/>
-
-    
-
-
-      <Dialog
-      title={`Edit your availability on this day ${moment(this.state.start).format(
-        "MMMM Do"
-      )}`}
-      actions={eventActions}
-      modal={false}
-      open={this.state.openEvent}
-      onRequestClose={this.closeDialog}
-    >
-      <TextField
-        defaultValue={this.state.title}
-        floatingLabelText="Suggest an activity"
-        onChange={e => {
-          this.changeTitle(e.target.value);
-        }}
-      />
-      <br />
-      <TextField
-        floatingLabelText="Description"
-        multiLine={true}
-        defaultValue={this.state.desc}
-        onChange={e => {
-          this.setDescription(e.target.value);
-        }}
-      />
-      <TimePicker
-        format="ampm"
-        floatingLabelText="Starting At"
-        minutesStep={5}
-        value={this.state.start}
-        onChange={this.handleEventStartTime}
-      />
-      <TimePicker
-        format="ampm"
-        floatingLabelText="Ending At"
-        minutesStep={5}
-        value={this.state.end}
-        onChange={this.handleEventEndTime}
-      />
-    </Dialog>
+        <Dialog
+          title={`Edit your availability on this day ${moment(
+            this.state.start
+          ).format("MMMM Do")}`}
+          actions={eventActions}
+          modal={false}
+          open={this.state.openEvent}
+          onRequestClose={this.closeDialog}
+        >
+          <TextField
+            defaultValue={this.state.title}
+            floatingLabelText="Suggest an activity"
+            onChange={e => {
+              this.changeTitle(e.target.value);
+            }}
+          />
+          <br />
+          <TextField
+            floatingLabelText="Description"
+            multiLine={true}
+            defaultValue={this.state.desc}
+            onChange={e => {
+              this.setDescription(e.target.value);
+            }}
+          />
+          <TimePicker
+            format="ampm"
+            floatingLabelText="Starting At"
+            minutesStep={5}
+            value={this.state.start}
+            onChange={this.handleEventStartTime}
+          />
+          <TimePicker
+            format="ampm"
+            floatingLabelText="Ending At"
+            minutesStep={5}
+            value={this.state.end}
+            onChange={this.handleEventEndTime}
+          />
+        </Dialog>
       </div>
     );
   }
