@@ -22,7 +22,9 @@ class LandingPage extends React.Component {
     return (
       <div className="homepageContainer">
         <NavBar />
+        <div className="calendarBig">
         <Calendar />
+        </div>
       </div>
     );
   }

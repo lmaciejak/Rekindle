@@ -74,6 +74,7 @@
   justify-content: space-between;
   z-index: 40;
   margin-bottom: -40px; 
+  margin-top: -20px; 
 }
 
 .searchBarName { 
