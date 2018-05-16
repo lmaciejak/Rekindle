@@ -85,7 +85,7 @@ function searchByUser(req, res, next) {
 function getUser(req, res, next) {
   db
     .any(
-      `SELECT user_id, username, email, full_name
+      `SELECT user_id, username, email, full_name, user_img
           FROM users
           WHERE user_id=$1`,
       [req.user.user_id]
@@ -145,5 +145,8 @@ module.exports = {
   createUser,
   loginUser,
   getUserFriends, 
-  searchByUser
+  searchByUser, 
+  getUser, 
+  addUserAvailability, 
+  shareAvailabilityWithFriend
 };
