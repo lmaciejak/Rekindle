@@ -94,7 +94,6 @@ class SlotAndEventDialog extends Component {
         />
         <br />
         <TimePicker
-          defaultTime="19:00:00"
           format="ampm"
           floatingLabelText="Starting At"
           minutesStep={5}
@@ -102,7 +101,6 @@ class SlotAndEventDialog extends Component {
           onChange={this.props.handleEventStartTime}
         />
         <TimePicker
-          defaultTime="22:00:00"
           format="ampm"
           floatingLabelText="Ending At"
           minutesStep={5}
@@ -117,6 +115,10 @@ class SlotAndEventDialog extends Component {
           options={stateOptions}
           placeholder="Share availability with friends"
         />
+        <br />
+        <br />
+        <br />
+        <br />
       </Dialog>
     );
   }

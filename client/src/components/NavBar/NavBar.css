@@ -32,8 +32,8 @@
 .react-autosuggest__suggestions-container--open {
   display: block;
   position: absolute;
-  top: 31px;
-  width: 320px;
+  top: 57px;
+  width: 360px;
   border: 1px solid #aaa;
   background-color: #fff;
   font-family: Helvetica, sans-serif;

@@ -28,7 +28,10 @@ class Calendar extends Component {
     super();
     this.state = {
       friendsArr: [],
-      events: [],
+      events: [{
+        end: new Date('Thu May 17 2018 15:00:00 GMT-0400 (EDT)'),
+        start: new Date('Thu May 17 2018 14:10:00 GMT-0400 (EDT)'),
+        title:'yoga'}],
       title: "",
       start: "",
       end: "",
@@ -71,6 +74,8 @@ class Calendar extends Component {
   };
 
   handleEventStartTime = (event, date) => {
+    console.log('date start', date)
+    console.log('event', event)
     this.setState({ start: date });
   };
 
@@ -149,10 +154,45 @@ class Calendar extends Component {
     });
   };
 
+  submitAvailabilityToFriend = e => {
+    axios
+      .post(`/users/addInviteeToPotluck/${this.props.potluckID["potluckID"]}`, {
+        invitees: this.state.selectedValues
+      })
+      .then(() => {
+        axios
+          .get(
+            `/users/getNewInviteesPotluck/${
+              this.props.potluckID["potluckID"]
+            }/${this.state.potluck_info.organizer_id}`
+          )
+          .then(res => {
+            this.setState({
+              following: res.data,
+              selectedValues: ""
+            });
+          });
+      })
+      .then(() => {
+        axios
+          .get(`/users/getsinglepotluck/${this.props.potluckID["potluckID"]}`)
+          .then(res => {
+            this.setState({
+              potluck_invitations: res.data[1]
+            });
+          });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
     console.log("render()");
     console.log("this.state", this.state);
+    console.log('this.state.start', this.state.start)
     const { selection } = this.state;
+    console.log('date format', moment('Thu May 17 2018 15:00:00 GMT-0400 (EDT)').format('YYYY MM DD'))
 
     return (
       <div id="bigCalendar">
