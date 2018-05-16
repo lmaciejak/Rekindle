@@ -37,12 +37,23 @@ class App extends Component {
     this.loggedInUser();
   }
 
+  renderHomepage = props => {
+    const { user, fetchingUser } = this.state
+    if (fetchingUser) {
+      return <div>loading!</div>
+    } else if(!user) {
+      return <Redirect to='/' />
+    } else {
+      return <Homepage user={user} />
+    }
+  }
+
   render() {
     return (
       <div className="App">
         <Switch>
           <Route exact path="/" component={LandingPage} />
-          <Route exact path="/rekindle" component={Homepage} />
+          <Route exact path="/rekindle" render={this.renderHomepage} />
         </Switch>
       </div>
     );
