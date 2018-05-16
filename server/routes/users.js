@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/getfriends/:userID', db.getUserFriends);
+router.get('/searchbyuser/:search', db.searchByUser)
 
 // router.get('/logout', db.logoutUser);
 

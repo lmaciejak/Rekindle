@@ -82,8 +82,34 @@ function searchByUser(req, res, next) {
     });
 }
 
+/* post */
+function shareAvailabilityWithFriend(req, res, next) {
+  return db
+    .task(t => {
+      const invitees = req.body.invitees;
+      const queries = invitees.map(invitee => {
+        return t.none(
+          "INSERT INTO potluckinvitations (potluck_id, user_id, seen) " +
+            "VALUES (${potluckID}, ${userID}, false)",
+          {
+            potluckID: req.params.potluckID,
+            userID: invitee.value
+          }
+        );
+      });
+      return t.batch(queries);
+    })
+    .then(data => {
+      res.json("success");
+    })
+    .catch(error => {
+      res.json(error);
+    });
+}
+
 module.exports = {
   createUser,
   loginUser,
-  getUserFriends
+  getUserFriends, 
+  searchByUser
 };
