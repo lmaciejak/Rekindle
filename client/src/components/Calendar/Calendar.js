@@ -192,7 +192,7 @@ class Calendar extends Component {
     console.log("this.state", this.state);
     console.log('this.state.start', this.state.start)
     const { selection } = this.state;
-    console.log('date format', moment('Thu May 17 2018 15:00:00 GMT-0400 (EDT)').format('YYYY MM DD'))
+    console.log('date format', moment('Thu May 17 2018 15:00:00 GMT-0400 (EDT)').format('YYYY-MM-DD HH:MM:SS'))
 
     return (
       <div id="bigCalendar">

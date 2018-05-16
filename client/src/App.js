@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios'
 import { Route, Switch } from "react-router-dom";
 import { Redirect } from "react-router";
 import logo from "./logo.svg";
@@ -9,6 +10,33 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import Homepage from "./components/Homepage/Homepage";
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      user: '',
+      fetchingUser: true,
+    }
+  }
+
+  loggedInUser = () => {
+    axios.get('/users')
+    .then(response =>{
+      if(response.data){
+        this.setState({
+          user: response.data[0],
+          fetchingUser: false
+        })
+      }
+    })
+    .catch(error =>{
+      console.log('user fetch did not work')
+    })
+  }
+
+  componentDidMount(){
+    this.loggedInUser();
+  }
+
   render() {
     return (
       <div className="App">
