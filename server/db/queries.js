@@ -82,6 +82,22 @@ function searchByUser(req, res, next) {
     });
 }
 
+function getUser(req, res, next) {
+  db
+    .any(
+      `SELECT user_id, username, email, full_name
+          FROM users
+          WHERE user_id=$1`,
+      [req.user.user_id]
+    )
+    .then(data => {
+      res.json(data);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+}
+
 /* post */
 function shareAvailabilityWithFriend(req, res, next) {
   return db

@@ -22,6 +22,7 @@ CREATE TABLE friendships (
 
 CREATE TABLE availabilities (
   availability_id SERIAL PRIMARY KEY, 
+  availability_user_id INTEGER REFERENCES users, 
   availability_starttime timestamp, 
   availability_endtime timestamp, 
   availability_title VARCHAR); 
