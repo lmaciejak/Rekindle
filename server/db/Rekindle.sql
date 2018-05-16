@@ -22,10 +22,9 @@ CREATE TABLE friendships (
 
 CREATE TABLE availabilities (
   availability_id SERIAL PRIMARY KEY, 
-  availability_date date, 
-  availability_starttime time, 
-  availability_endtime time
-); 
+  availability_starttime timestamp, 
+  availability_endtime timestamp, 
+  availability_title VARCHAR); 
 
 CREATE TABLE availabilityshares (
   availabilityshare_id SERIAL PRIMARY KEY, 

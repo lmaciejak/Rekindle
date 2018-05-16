@@ -107,6 +107,24 @@ function shareAvailabilityWithFriend(req, res, next) {
     });
 }
 
+function addUserAvailability(req, res, next) {
+  return db
+    .none(
+      "INSERT INTO availabilities (availability_starttime, availability_endtime, availability_title) VALUES (TIMESTAMP ${timestamp_start}, TIMESTAMP ${timestamp_end}, ${title}",
+      {
+        timestamp_start: req.body.timestamp_start,
+        timestamp_end: req.user.timestamp_end,
+        title: req.body.title,
+      }
+    )
+    .then(data => {
+      res.json("success");
+    })
+    .catch(error => {
+      res.json(error);
+    });
+}
+
 module.exports = {
   createUser,
   loginUser,
