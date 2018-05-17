@@ -106,8 +106,7 @@ function shareAvailabilityWithFriend(req, res, next) {
       const queries = invitees.map(invitee => {
         return t.none(
           "INSERT INTO availabilityshares (availability_id, usertosharewith_id) " +
-            "VALUES (${availability_id}, ${usertosharewith_id})" +
-            " RETURNING availability_id",
+            "VALUES (${availability_id}, ${usertosharewith_id})",
           {
             availability_id: req.params.potluckID,
             usertosharewith_id: invitee.value
@@ -126,8 +125,10 @@ function shareAvailabilityWithFriend(req, res, next) {
 
 function addUserAvailability(req, res, next) {
   return db
-    .none(
-      "INSERT INTO availabilities (availability_user_id, availability_starttime, availability_endtime, availability_title) VALUES (${availability_user_id}, TIMESTAMP ${availability_starttime}, TIMESTAMP ${availability_endtime}, ${availability_title})",
+    .one(
+      "INSERT INTO availabilities (availability_user_id, availability_starttime, availability_endtime, availability_title)" +
+     " VALUES (${availability_user_id}, TIMESTAMP ${availability_starttime}, TIMESTAMP ${availability_endtime}, ${availability_title})" + 
+     " RETURNING availability_id",
       {
         availability_user_id: req.user.user_id,
         availability_starttime: req.body.availability_starttime,
@@ -136,7 +137,7 @@ function addUserAvailability(req, res, next) {
       }
     )
     .then(data => {
-      res.json("success");
+      res.json({ availability_id: data.availability_id});
     })
     .catch(error => {
       res.json(error);
