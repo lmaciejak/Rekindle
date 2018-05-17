@@ -105,11 +105,12 @@ function shareAvailabilityWithFriend(req, res, next) {
       const invitees = req.body.invitees;
       const queries = invitees.map(invitee => {
         return t.none(
-          "INSERT INTO potluckinvitations (potluck_id, user_id, seen) " +
-            "VALUES (${potluckID}, ${userID}, false)",
+          "INSERT INTO availabilityshares (availability_id, usertosharewith_id) " +
+            "VALUES (${availability_id}, ${usertosharewith_id})" +
+            " RETURNING availability_id",
           {
-            potluckID: req.params.potluckID,
-            userID: invitee.value
+            availability_id: req.params.potluckID,
+            usertosharewith_id: invitee.value
           }
         );
       });
@@ -145,9 +146,9 @@ function addUserAvailability(req, res, next) {
 module.exports = {
   createUser,
   loginUser,
-  getUserFriends, 
-  searchByUser, 
-  getUser, 
-  addUserAvailability, 
+  getUserFriends,
+  searchByUser,
+  getUser,
+  addUserAvailability,
   shareAvailabilityWithFriend
 };
