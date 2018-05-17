@@ -126,11 +126,12 @@ function shareAvailabilityWithFriend(req, res, next) {
 function addUserAvailability(req, res, next) {
   return db
     .none(
-      "INSERT INTO availabilities (availability_starttime, availability_endtime, availability_title) VALUES (TIMESTAMP ${timestamp_start}, TIMESTAMP ${timestamp_end}, ${title}",
+      "INSERT INTO availabilities (availability_user_id, availability_starttime, availability_endtime, availability_title) VALUES (${availability_user_id}, TIMESTAMP ${availability_starttime}, TIMESTAMP ${availability_endtime}, ${availability_title})",
       {
-        timestamp_start: req.body.timestamp_start,
-        timestamp_end: req.user.timestamp_end,
-        title: req.body.title,
+        availability_user_id: req.user.user_id,
+        availability_starttime: req.body.availability_starttime,
+        availability_endtime: req.body.availability_endtime,
+        availability_title: req.body.availability_title
       }
     )
     .then(data => {
