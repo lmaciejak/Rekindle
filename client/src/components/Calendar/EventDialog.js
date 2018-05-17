@@ -30,7 +30,7 @@ class SlotAndEventDialog extends Component {
         primary={true}
         keyboardFocused={true}
         onClick={() => {
-          this.props.setNewAvailability(), this.props.closeDialog();
+          this.props.setNewAvailability(), this.props.closeDialog(), this.props.addUserAvailability();
         }}
       />
     ];

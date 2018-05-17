@@ -39,13 +39,7 @@ class App extends Component {
 
   renderHomepage = props => {
     const { user, fetchingUser } = this.state
-    if (fetchingUser) {
-      return <div>loading!</div>
-    } else if(!user) {
-      return <Redirect to='/' />
-    } else {
       return <Homepage user={user} />
-    }
   }
 
   render() {

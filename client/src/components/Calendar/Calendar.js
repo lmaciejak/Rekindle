@@ -40,7 +40,8 @@ class Calendar extends Component {
       openEvent: false,
       clickedEvent: {},
       selection: "",
-      selectedFriends: ""
+      selectedFriends: "", 
+      message: ''
     };
   }
 
@@ -59,6 +60,26 @@ class Calendar extends Component {
         });
       });
   };
+
+  addUserAvailability = () => { 
+    axios
+      .post(`/users/addUserAvailability`, {
+        availability_starttime: "Tom",
+        availability_endtime: "testtest", 
+        availability_title: "free"
+      })
+      .then(res => {
+        console.log("res", res);
+        this.setState({
+          message: "success"
+        });
+      })
+      .catch(err => {
+        this.setState({
+          message: `${err.response.data}`
+        });
+      });
+  }
 
   closeDialog = () => {
     this.setState({ openEvent: false, openSlot: false });

@@ -8,7 +8,7 @@ import "./Homepage.css";
 import Calendar from "../Calendar/Calendar";
 import NavBar from "../NavBar/NavBar";
 
-class LandingPage extends React.Component {
+class Homepage extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -30,7 +30,7 @@ class LandingPage extends React.Component {
   }
 }
 
-export default LandingPage;
+export default Homepage;
 
 // <h1> Rekindle makes it easier to schedule hangouts. </h1>
 // <h1 className="homeName"> Rekindle </h1>
