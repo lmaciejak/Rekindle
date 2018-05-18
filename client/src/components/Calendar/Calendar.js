@@ -60,6 +60,19 @@ class Calendar extends Component {
           message: `${err.response}`
         });
       });
+    axios 
+      .get(`/users/getalluseravailabilities`)
+      .then(res => { 
+        console.log('res')
+        this.setState({ 
+          events: res.data
+        })
+      })
+      .catch(err => {
+        this.setState({
+          message: `${err.response}`
+        });
+      })
   };
 
   addUserAvailability = () => { 
@@ -197,7 +210,7 @@ class Calendar extends Component {
     console.log('this.state.start', this.state.start)
     const { selection } = this.state;
     console.log('date format', moment('Thu May 17 2018 15:00:00 GMT-0400 (EDT)').format('YYYY-MM-DD HH:MM:SS'))
-
+    console.log('second date format', new Date('2018-05-18T06:05:00.000Z'))
     return (
       <div id="bigCalendar">
         <BigCalendar
