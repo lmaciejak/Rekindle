@@ -71,15 +71,19 @@ class Calendar extends Component {
       })
       .then(res => {
         console.log("res", res);
-        const availability_id = res.data.availability_id
-        this.setState({ availability_id: availability_id })
+        console.log('ran**')
+        this.setState({ availability_id: res.data['availability_id']})
+        console.log('avaialbility id ****', this.state.availability_id)
     })
       .then(() => {
+        console.log('avaialbility id ****', this.state.availability_id)
+        const availabilityID = this.state.availability_id
         axios
-        .post(`/users/shareavailability/${this.state.availability_id}`, {
+        .post(`/users/shareavailability/1`, {
           invitees: this.state.selectedFriends
         })
         .then(res => {
+          console.log('rannnnnn')
           this.setState({
             selectedFriends: ""
           });
