@@ -41,6 +41,7 @@ class Calendar extends Component {
       clickedEvent: {},
       selection: "",
       selectedFriendsForCalendar: "", 
+      selectedFriends: '',
       message: ''
     };
   }

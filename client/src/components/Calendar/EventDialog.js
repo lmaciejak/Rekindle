@@ -11,16 +11,9 @@ class SlotAndEventDialog extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedFriends: ""
+      // selectedFriends: ""
     };
   }
-
-  handleFriendSelect = value => {
-    const { selectedFriends } = this.state;
-    this.setState({
-      selectedFriends: value
-    });
-  };
 
 
   render() {
@@ -122,8 +115,8 @@ class SlotAndEventDialog extends Component {
         <Select
           name="form-field-name"
           multi
-          value={this.state.selectedFriends}
-          onChange={this.handleFriendSelect}
+          value={this.props.calendarState.selectedFriends}
+          onChange={this.props.handleFriendSelect}
           options={stateOptions}
           placeholder="Share availability with friends"
         />
