@@ -77,9 +77,8 @@ class Calendar extends Component {
     })
       .then(() => {
         console.log('avaialbility id ****', this.state.availability_id)
-        const availabilityID = this.state.availability_id
         axios
-        .post(`/users/shareavailability/1`, {
+        .post(`/users/shareavailability/${this.state.availability_id}`, {
           invitees: this.state.selectedFriends
         })
         .then(res => {
