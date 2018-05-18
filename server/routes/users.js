@@ -7,13 +7,14 @@ const { loginRequired } = require("../auth/helpers");
 /* GET users listing. */
 router.get('/', db.getUser);
 router.get('/getfriends/:userID', db.getUserFriends);
-router.get('/searchbyuser/:search', db.searchByUser)
+router.get('/searchbyuser/:search', db.searchByUser); 
+router.get('/getalluseravailabilities', db.getAllUserAvailabilities)
 
 // router.get('/logout', db.logoutUser);
 
 router.post('/register', db.createUser);
 router.post('/login', db.loginUser);
-router.post('/adduseravailability', loginRequired, db.addUserAvailability)
-router.post('/shareavailability/:availabilityID', loginRequired, db.shareAvailabilityWithFriend)
+router.post('/adduseravailability', loginRequired, db.addUserAvailability); 
+router.post('/shareavailability/:availabilityID', loginRequired, db.shareAvailabilityWithFriend); 
 
 module.exports = router;

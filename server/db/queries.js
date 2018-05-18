@@ -166,5 +166,6 @@ module.exports = {
   searchByUser,
   getUser,
   addUserAvailability,
-  shareAvailabilityWithFriend
+  shareAvailabilityWithFriend, 
+  getAllUserAvailabilities
 };
