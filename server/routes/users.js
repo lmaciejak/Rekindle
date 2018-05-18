@@ -14,5 +14,6 @@ router.get('/searchbyuser/:search', db.searchByUser)
 router.post('/register', db.createUser);
 router.post('/login', db.loginUser);
 router.post('/adduseravailability', loginRequired, db.addUserAvailability)
+router.post('/shareavailability/:availabilityID', loginRequired, db.shareAvailabilityWithFriend)
 
 module.exports = router;

@@ -103,12 +103,13 @@ function shareAvailabilityWithFriend(req, res, next) {
   return db
     .task(t => {
       const invitees = req.body.invitees;
+      console.log('invitees', invitees)
       const queries = invitees.map(invitee => {
         return t.none(
           "INSERT INTO availabilityshares (availability_id, usertosharewith_id) " +
             "VALUES (${availability_id}, ${usertosharewith_id})",
           {
-            availability_id: req.params.potluckID,
+            availability_id: req.params.availabilityID,
             usertosharewith_id: invitee.value
           }
         );
