@@ -6,7 +6,6 @@ import TimePicker from "material-ui/TimePicker";
 import Dialog from "material-ui/Dialog";
 import FlatButton from "material-ui/FlatButton";
 import TextField from "material-ui/TextField";
-import Select from "react-select";
 import axios from "axios";
 
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
@@ -28,6 +27,7 @@ class Calendar extends Component {
     super();
     this.state = {
       friendsArr: [],
+      availability_id: '',
       events: [{
         end: new Date('Thu May 17 2018 15:00:00 GMT-0400 (EDT)'),
         start: new Date('Thu May 17 2018 14:10:00 GMT-0400 (EDT)'),
@@ -40,7 +40,7 @@ class Calendar extends Component {
       openEvent: false,
       clickedEvent: {},
       selection: "",
-      selectedFriends: "", 
+      selectedFriendsForCalendar: "", 
       message: ''
     };
   }
@@ -64,14 +64,24 @@ class Calendar extends Component {
   addUserAvailability = () => { 
     axios
       .post(`/users/addUserAvailability`, {
-        availability_starttime: "Tom",
-        availability_endtime: "testtest", 
+        availability_starttime: moment(this.state.start).format('YYYY-MM-DD HH:MM:SS'),
+        availability_endtime: moment(this.state.end).format('YYYY-MM-DD HH:MM:SS'), 
         availability_title: "free"
       })
       .then(res => {
         console.log("res", res);
-        this.setState({
-          message: "success"
+        const availability_id = res.data.availability_id
+        this.setState({ availability_id: availability_id })
+    })
+      .then(() => {
+        axios
+        .post(`/users/shareavailability/${this.state.availability_id}`, {
+          invitees: this.state.selectedFriends
+        })
+        .then(res => {
+          this.setState({
+            selectedFriends: ""
+          });
         });
       })
       .catch(err => {
@@ -175,38 +185,7 @@ class Calendar extends Component {
     });
   };
 
-  submitAvailabilityToFriend = e => {
-    axios
-      .post(`/users/addInviteeToPotluck/${this.props.potluckID["potluckID"]}`, {
-        invitees: this.state.selectedValues
-      })
-      .then(() => {
-        axios
-          .get(
-            `/users/getNewInviteesPotluck/${
-              this.props.potluckID["potluckID"]
-            }/${this.state.potluck_info.organizer_id}`
-          )
-          .then(res => {
-            this.setState({
-              following: res.data,
-              selectedValues: ""
-            });
-          });
-      })
-      .then(() => {
-        axios
-          .get(`/users/getsinglepotluck/${this.props.potluckID["potluckID"]}`)
-          .then(res => {
-            this.setState({
-              potluck_invitations: res.data[1]
-            });
-          });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+
 
   render() {
     console.log("render()");
@@ -238,6 +217,7 @@ class Calendar extends Component {
           handleFriendSelect={this.handleFriendSelect}
           deleteEvent={this.deleteEvent}
           updatedEvent={this.updateEvent}
+          addUserAvailability={this.addUserAvailability}
         />
       </div>
     );

@@ -5,11 +5,23 @@ import TimePicker from "material-ui/TimePicker";
 import TextField from "material-ui/TextField";
 import FlatButton from "material-ui/FlatButton";
 import Select from "react-select";
+// import "./react-select.css";
 
 class SlotAndEventDialog extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      selectedFriends: ""
+    };
   }
+
+  handleFriendSelect = value => {
+    const { selectedFriends } = this.state;
+    this.setState({
+      selectedFriends: value
+    });
+  };
+
 
   render() {
     console.log("props", this.props);
@@ -110,8 +122,8 @@ class SlotAndEventDialog extends Component {
         <Select
           name="form-field-name"
           multi
-          value={this.props.calendarState.selectedFriends}
-          onChange={this.props.handleFriendSelect}
+          value={this.state.selectedFriends}
+          onChange={this.handleFriendSelect}
           options={stateOptions}
           placeholder="Share availability with friends"
         />
