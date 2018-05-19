@@ -104,7 +104,7 @@ class SlotAndEventDialog extends Component {
         color="primary"
           affix="pm"
           format="ampm"
-          defaultTime={moment()}
+          defaultTime={this.props.calendarState.start}
           floatingLabelText="Starting At"
           minutesStep={5}
           value={this.props.calendarState.start}
@@ -116,7 +116,7 @@ class SlotAndEventDialog extends Component {
           format="ampm"
           floatingLabelText="Ending At"
           minutesStep={5}
-          defaultValue={moment()}
+          defaultValue={this.props.calendarState.end}
           value={this.props.calendarState.end}
           onChange={this.props.handleEventEndTime}
 
