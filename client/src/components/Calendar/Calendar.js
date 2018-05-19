@@ -28,13 +28,10 @@ class Calendar extends Component {
     this.state = {
       friendsArr: [],
       availability_id: '',
-      events: [{
-        end: new Date('Thu May 17 2018 15:00:00 GMT-0400 (EDT)'),
-        start: new Date('Thu May 17 2018 14:10:00 GMT-0400 (EDT)'),
-        title:'yoga'}],
+      events: [],
       title: "",
-      start: "",
-      end: "",
+      start: new Date(),
+      end: new Date(),
       description: "",
       openSlot: false,
       openEvent: false,
@@ -63,9 +60,15 @@ class Calendar extends Component {
     axios 
       .get(`/users/getalluseravailabilities`)
       .then(res => { 
-        console.log('res')
+        let dataFormatted = res.data
+        dataFormatted.forEach((elem) => {
+          elem.end = new Date(elem.end);
+          elem.start = new Date(elem.start);
+          })
+        console.log('dataFormatted', dataFormatted)
+        console.log('res.data for all availabilities', res.data)
         this.setState({ 
-          events: res.data
+          events: dataFormatted
         })
       })
       .catch(err => {
@@ -78,8 +81,8 @@ class Calendar extends Component {
   addUserAvailability = () => { 
     axios
       .post(`/users/addUserAvailability`, {
-        availability_starttime: moment(this.state.start).format('YYYY-MM-DD HH:MM:SS'),
-        availability_endtime: moment(this.state.end).format('YYYY-MM-DD HH:MM:SS'), 
+        availability_starttime: moment(this.state.start).format(''),
+        availability_endtime: moment(this.state.end).format(''), 
         availability_title: "free"
       })
       .then(res => {
@@ -202,6 +205,24 @@ class Calendar extends Component {
     });
   };
 
+  eventStyleGetter = (event, start, end, isSelected) => {
+    let newStyle = {
+      backgroundColor: "lightgreen",
+      color: 'black',
+      borderRadius: "0px",
+      border: "none"
+    };
+
+    if (event.isMine){
+      newStyle.backgroundColor = "lightgreen"
+    }
+
+    return {
+      className: "",
+      style: newStyle
+    };
+  }
+
 
 
   render() {
@@ -209,8 +230,13 @@ class Calendar extends Component {
     console.log("this.state", this.state);
     console.log('this.state.start', this.state.start)
     const { selection } = this.state;
-    console.log('date format', moment('Thu May 17 2018 15:00:00 GMT-0400 (EDT)').format('YYYY-MM-DD HH:MM:SS'))
+    // console.log('date format', moment('Thu May 17 2018 15:00:00 GMT-0400 (EDT)').format('YYYY-MM-DD HH:MM:SS'))
+        console.log('date format***', moment('Thu May 17 2018 15:00:00 GMT-0400 (EDT)').format())
+    console.log('date a different try', new Date('Thu May 17 2018 15:00:00 GMT-0400 (EDT)').getTime())
     console.log('second date format', new Date('2018-05-18T06:05:00.000Z'))
+    let someDate = new Date('Thu May 17 2018 15:00:00 GMT-0400 (EDT)')
+    console.log('*****', moment.unix(1526583600000).utc())
+    console.log('****',  moment('Thu May 17 2018 15:00:00 GMT-0400 (EDT)', 'YYYY-MM-DD HH:MM:SS'))
     return (
       <div id="bigCalendar">
         <BigCalendar
@@ -222,6 +248,7 @@ class Calendar extends Component {
           selectable
           onSelectEvent={event => this.handleEventSelected(event)}
           onSelectSlot={slotInfo => this.handleSlotSelected(slotInfo)}
+          eventPropGetter={(this.eventStyleGetter)}
         />
 
         <SlotAndEventDialog

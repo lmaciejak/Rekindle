@@ -7,6 +7,8 @@ import FlatButton from "material-ui/FlatButton";
 import Select from "react-select";
 // import "./react-select.css";
 
+
+
 class SlotAndEventDialog extends Component {
   constructor(props) {
     super(props);
@@ -99,18 +101,25 @@ class SlotAndEventDialog extends Component {
         />
         <br />
         <TimePicker
+        color="primary"
+          affix="pm"
           format="ampm"
+          defaultTime={moment()}
           floatingLabelText="Starting At"
           minutesStep={5}
           value={this.props.calendarState.start}
           onChange={this.props.handleEventStartTime}
         />
         <TimePicker
+        color="secondary"
+          affix="pm"
           format="ampm"
           floatingLabelText="Ending At"
           minutesStep={5}
+          defaultValue={moment()}
           value={this.props.calendarState.end}
           onChange={this.props.handleEventEndTime}
+
         />
         <Select
           name="form-field-name"
