@@ -61,14 +61,22 @@ class Calendar extends Component {
       .get(`/users/getalluseravailabilities`)
       .then(res => { 
         let dataFormatted = res.data
-        dataFormatted.forEach((elem) => {
+
+        dataFormatted[0].forEach((elem) => { 
+          elem.end = new Date(elem.end);
+        elem.start = new Date(elem.start);
+        elem['type'] = 'mine'
+        elem['title'] = `i'm free`
+        })
+        dataFormatted[1].forEach((elem) => {
           elem.end = new Date(elem.end);
           elem.start = new Date(elem.start);
+          elem['type'] = 'friend'
+          elem['title'] = `${elem.username} is free`
           })
-        console.log('dataFormatted', dataFormatted)
-        console.log('res.data for all availabilities', res.data)
+
         this.setState({ 
-          events: dataFormatted
+          events: dataFormatted[0].concat(dataFormatted[1])
         })
       })
       .catch(err => {
@@ -86,19 +94,14 @@ class Calendar extends Component {
         availability_title: "free"
       })
       .then(res => {
-        console.log("res", res);
-        console.log('ran**')
         this.setState({ availability_id: res.data['availability_id']})
-        console.log('avaialbility id ****', this.state.availability_id)
     })
       .then(() => {
-        console.log('avaialbility id ****', this.state.availability_id)
         axios
         .post(`/users/shareavailability/${this.state.availability_id}`, {
           invitees: this.state.selectedFriends
         })
         .then(res => {
-          console.log('rannnnnn')
           this.setState({
             selectedFriends: ""
           });
@@ -207,13 +210,13 @@ class Calendar extends Component {
 
   eventStyleGetter = (event, start, end, isSelected) => {
     let newStyle = {
-      backgroundColor: "lightgreen",
+      backgroundColor: "lightblue ",
       color: 'black',
       borderRadius: "0px",
       border: "none"
     };
 
-    if (event.isMine){
+    if (event.type === 'friend'){
       newStyle.backgroundColor = "lightgreen"
     }
 
@@ -226,17 +229,15 @@ class Calendar extends Component {
 
 
   render() {
-    console.log("render()");
     console.log("this.state", this.state);
-    console.log('this.state.start', this.state.start)
     const { selection } = this.state;
     // console.log('date format', moment('Thu May 17 2018 15:00:00 GMT-0400 (EDT)').format('YYYY-MM-DD HH:MM:SS'))
-        console.log('date format***', moment('Thu May 17 2018 15:00:00 GMT-0400 (EDT)').format())
-    console.log('date a different try', new Date('Thu May 17 2018 15:00:00 GMT-0400 (EDT)').getTime())
-    console.log('second date format', new Date('2018-05-18T06:05:00.000Z'))
-    let someDate = new Date('Thu May 17 2018 15:00:00 GMT-0400 (EDT)')
-    console.log('*****', moment.unix(1526583600000).utc())
-    console.log('****',  moment('Thu May 17 2018 15:00:00 GMT-0400 (EDT)', 'YYYY-MM-DD HH:MM:SS'))
+    //     console.log('date format***', moment('Thu May 17 2018 15:00:00 GMT-0400 (EDT)').format())
+    // console.log('date a different try', new Date('Thu May 17 2018 15:00:00 GMT-0400 (EDT)').getTime())
+    // console.log('second date format', new Date('2018-05-18T06:05:00.000Z'))
+    // let someDate = new Date('Thu May 17 2018 15:00:00 GMT-0400 (EDT)')
+    // console.log('*****', moment.unix(1526583600000).utc())
+    // console.log('****',  moment('Thu May 17 2018 15:00:00 GMT-0400 (EDT)', 'YYYY-MM-DD HH:MM:SS'))
     return (
       <div id="bigCalendar">
         <BigCalendar

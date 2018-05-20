@@ -19,7 +19,7 @@ class SlotAndEventDialog extends Component {
 
 
   render() {
-    console.log("props", this.props);
+    console.log("props********", this.props);
 
     const stateOptions = this.props.calendarState.friendsArr.map(elem => ({
       value: elem.user_id,
@@ -75,7 +75,9 @@ class SlotAndEventDialog extends Component {
             ? `Tell your friends you're free on ${moment(
                 this.props.calendarState.start
               ).format("MMMM Do")}`
-            : `Edit your availability on this day ${moment(
+            :  this.props.calendarState.clickedEvent.type === 'friend' ? `Your Friend's Availability on ${moment(
+              this.props.calendarState.start
+            ).format("MMMM Do")}` : `Edit your availability on ${moment(
                 this.props.calendarState.start
               ).format("MMMM Do")}`
         }
@@ -133,6 +135,9 @@ class SlotAndEventDialog extends Component {
         <br />
         <br />
         <br />
+        {this.props.calendarState.clickedEvent.type === 'friend' ? 
+        <div> <button> make plans </button></div> : 
+        '' }
       </Dialog>
     );
   }
