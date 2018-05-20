@@ -70,8 +70,8 @@ function getUserFriends(req, res, next) {
 function getAllUserAvailabilities(req, res, next) {
   db
     // .any(
-      // `SELECT availability_id, availability_endtime AS end, availability_starttime AS start, availability_title AS title FROM availabilities WHERE availability_user_id = $1`,
-      // [req.user.user_id]
+    // `SELECT availability_id, availability_endtime AS end, availability_starttime AS start, availability_title AS title FROM availabilities WHERE availability_user_id = $1`,
+    // [req.user.user_id]
     // )
     // .then(data => {
     //   res.json(data);
@@ -81,10 +81,14 @@ function getAllUserAvailabilities(req, res, next) {
     // });
     .task("get-everything", t => {
       return t.batch([
-        t.any(`SELECT availability_id, availability_endtime AS end, availability_starttime AS start, availability_title AS title FROM availabilities WHERE availability_user_id = $1`,
-        [req.user.user_id]),
-        t.any(`SELECT * FROM availabilityshares JOIN availabilities ON (availabilityshare_id = availabilities.availability_id) JOIN users ON(availability_user_id = users.user_id) WHERE usertosharewith_id = $1`,        
-        [req.user.user_id])
+        t.any(
+          `SELECT availability_id, availability_endtime AS end, availability_starttime AS start, availability_title AS title FROM availabilities WHERE availability_user_id = $1`,
+          [req.user.user_id]
+        ),
+        t.any(
+          `SELECT availabilityshare_id, availabilities.availability_id, user_id AS availability_sharer, availability_user_id, availability_starttime AS start, availability_endtime AS end, availability_title AS title FROM availabilityshares JOIN availabilities ON (availabilityshare_id = availabilities.availability_id) JOIN users ON(availability_user_id = users.user_id) WHERE usertosharewith_id = $1`,
+          [req.user.user_id]
+        )
       ]);
     })
     .then(data => {
@@ -131,7 +135,7 @@ function shareAvailabilityWithFriend(req, res, next) {
   return db
     .task(t => {
       const invitees = req.body.invitees;
-      console.log('invitees', invitees)
+      console.log("invitees", invitees);
       const queries = invitees.map(invitee => {
         return t.none(
           "INSERT INTO availabilityshares (availability_id, usertosharewith_id) " +
@@ -156,8 +160,8 @@ function addUserAvailability(req, res, next) {
   return db
     .one(
       "INSERT INTO availabilities (availability_user_id, availability_starttime, availability_endtime, availability_title)" +
-     " VALUES (${availability_user_id}, TIMESTAMP ${availability_starttime}, TIMESTAMP ${availability_endtime}, ${availability_title})" + 
-     " RETURNING availability_id",
+        " VALUES (${availability_user_id}, TIMESTAMP ${availability_starttime}, TIMESTAMP ${availability_endtime}, ${availability_title})" +
+        " RETURNING availability_id",
       {
         availability_user_id: req.user.user_id,
         availability_starttime: req.body.availability_starttime,
@@ -166,7 +170,7 @@ function addUserAvailability(req, res, next) {
       }
     )
     .then(data => {
-      res.json({ availability_id: data.availability_id});
+      res.json({ availability_id: data.availability_id });
     })
     .catch(error => {
       res.json(error);
@@ -180,6 +184,6 @@ module.exports = {
   searchByUser,
   getUser,
   addUserAvailability,
-  shareAvailabilityWithFriend, 
+  shareAvailabilityWithFriend,
   getAllUserAvailabilities
 };
