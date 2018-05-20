@@ -62,7 +62,7 @@ VALUES (1, 2, 'accepted', NULL), (1, 3, 'accepted', null);
 INSERT INTO availabilities (availability_user_id, availability_starttime, availability_endtime, availability_title)
 VALUES (2, '2018-06-07 18:30:00', '2018-06-07 20:30:00', 'free'), 
 (3, '2018-06-10 14:00:00', '2018-06-10 21:00:00', 'free'), 
-(1, '2018-06-12 19:00:00', '2018-06-12 21:00:00', 'free'); 
+(1, '2018-06-15 19:00:00', '2018-06-15 20:00:00', 'free'); 
 
 
 INSERT INTO availabilityshares (availability_id, usertosharewith_id) VALUES (1, 1), (1, 3), (2, 1), (3, 2); 
