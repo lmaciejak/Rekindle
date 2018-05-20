@@ -86,7 +86,9 @@ function getAllUserAvailabilities(req, res, next) {
           [req.user.user_id]
         ),
         t.any(
-          `SELECT availabilityshare_id, availabilities.availability_id, username, user_id AS availability_sharer, availability_user_id, availability_starttime AS start, availability_endtime AS end, availability_title AS title FROM availabilityshares JOIN availabilities ON (availabilityshare_id = availabilities.availability_id) JOIN users ON(availability_user_id = users.user_id) WHERE usertosharewith_id = $1`,
+          `SELECT availabilities.availability_id, username, user_id AS availability_sharer, availability_starttime AS start, availability_endtime AS end, availability_title AS title
+          FROM availabilities JOIN users ON (availability_user_id = user_id)
+          WHERE availabilities.availability_id IN (SELECT availabilityshares.availability_id FROM availabilityshares WHERE usertosharewith_id = $1)`,
           [req.user.user_id]
         )
       ]);
