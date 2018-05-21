@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Route, Switch } from "react-router"
+import NavBar from "../NavBar/NavBar";
+import './Dashboard.css'
 
 class Dashboard extends Component {
   constructor() {
@@ -14,7 +16,10 @@ class Dashboard extends Component {
   render() {
     const { user } = this.state;
     return (
-<h2> Hangout Dashboard </h2>
+      <div>
+      <NavBar />
+<h2 className='dashboardTitle'> Hangout Dashboard </h2>
+</div>
 );
 }
 }

@@ -81,7 +81,7 @@ class DemoLogin extends Component {
     console.log("message", this.state.message);
     console.log("isloggedin", this.state.isLoggedIn);
     if (this.state.isLoggedIn === true) {
-      return <Redirect to="/rekindle" />;
+      return <Redirect to="/home" />;
     }
     return (
       <div className="Modal">

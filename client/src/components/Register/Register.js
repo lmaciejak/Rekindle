@@ -119,7 +119,7 @@ class Register extends Component {
     } = this.state;
     console.log("isloggedin", isLoggedIn);
     if (this.state.isLoggedIn === true) {
-      return <Redirect to="/rekindle" />;
+      return <Redirect to="/home" />;
     }
     return (
       <div className="Modal">
