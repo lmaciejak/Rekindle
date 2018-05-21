@@ -115,7 +115,7 @@ class Calendar extends Component {
   }
 
   closeDialog = () => {
-    this.setState({ openEvent: false, openSlot: false });
+    this.setState({ openEvent: false, openSlot: false, clickedEvent: {} });
   };
 
   changeTitle = e => {

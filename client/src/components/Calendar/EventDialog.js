@@ -26,6 +26,17 @@ class SlotAndEventDialog extends Component {
       label: elem.username
     }));
 
+    const planActions = [
+      <FlatButton
+      label="Make Plans"
+      primary={true}
+      keyboardFocused={true}
+      onClick={() => {
+        this.props.setNewAvailability(), this.props.closeDialog(), this.props.addUserAvailability();
+      }}
+    />
+    ]
+
     const availabilityActions = [
       <FlatButton
         label="Cancel"
@@ -84,7 +95,7 @@ class SlotAndEventDialog extends Component {
         actions={
           this.props.calendarState.selection === "slot"
             ? availabilityActions
-            : eventActions
+            : this.props.calendarState.clickedEvent.type === 'friend' ? planActions : eventActions
         }
         modal={false}
         open={
@@ -135,9 +146,6 @@ class SlotAndEventDialog extends Component {
         <br />
         <br />
         <br />
-        {this.props.calendarState.clickedEvent.type ? this.props.calendarState.clickedEvent.type === 'friend' ? 
-        <div>  <FlatButton  label="make plans" primary={true} /></div> : 
-        '' : ''}
     
       </Dialog>
     );
