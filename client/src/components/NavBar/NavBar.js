@@ -133,7 +133,7 @@ class NavBar extends Component {
 
     return (
       <div className="searchbar">
-        <h1 className="searchBarName"> Rekindle </h1>
+        <Link to={'/home'} className='rekindleLink'> <h1 className="searchBarName"> Rekindle </h1></Link>
 
         <Autosuggest
           suggestions={suggestions}
