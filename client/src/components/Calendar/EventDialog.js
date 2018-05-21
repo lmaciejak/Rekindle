@@ -135,9 +135,10 @@ class SlotAndEventDialog extends Component {
         <br />
         <br />
         <br />
-        {this.props.calendarState.clickedEvent.type === 'friend' ? 
-        <div> <button> make plans </button></div> : 
-        '' }
+        {this.props.calendarState.clickedEvent.type ? this.props.calendarState.clickedEvent.type === 'friend' ? 
+        <div>  <FlatButton  label="make plans" primary={true} /></div> : 
+        '' : ''}
+    
       </Dialog>
     );
   }

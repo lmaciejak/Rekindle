@@ -48,6 +48,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/rekindle" render={this.renderHomepage} />
+          <Route exact path="/hangout/:hangoutID" render={this.renderHomepage} />
         </Switch>
       </div>
     );
