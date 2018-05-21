@@ -12,7 +12,7 @@ import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./Calendar.css";
 import SlotAndEventDialog from "./EventDialog";
-import freeImage from '../../images/freeicon.png'
+import freeImage from "../../images/freeicon.png";
 
 // Setup the localizer by providing the moment (or globalize) Object
 // to the correct localizer.
@@ -28,7 +28,7 @@ class Calendar extends Component {
     super();
     this.state = {
       friendsArr: [],
-      availability_id: '',
+      availability_id: "",
       events: [],
       title: "",
       start: new Date(),
@@ -38,9 +38,11 @@ class Calendar extends Component {
       openEvent: false,
       clickedEvent: {},
       selection: "",
-      selectedFriendsForCalendar: "", 
-      selectedFriends: '',
-      message: ''
+      selectedFriendsForCalendar: "",
+      selectedFriends: "",
+      message: "",
+      toggleValue: false, 
+      planInitiated: false
     };
   }
 
@@ -58,62 +60,62 @@ class Calendar extends Component {
           message: `${err.response}`
         });
       });
-    axios 
+    axios
       .get(`/users/getalluseravailabilities`)
-      .then(res => { 
-        let dataFormatted = res.data
+      .then(res => {
+        let dataFormatted = res.data;
 
-        dataFormatted[0].forEach((elem) => { 
-          elem.end = new Date(elem.end);
-        elem.start = new Date(elem.start);
-        elem['type'] = 'mine'
-        elem['title'] = `I'm free`
-        })
-        dataFormatted[1].forEach((elem) => {
+        dataFormatted[0].forEach(elem => {
           elem.end = new Date(elem.end);
           elem.start = new Date(elem.start);
-          elem['type'] = 'friend'
-          elem['title'] = `${elem.username}'s free`
-          })
+          elem["type"] = "mine";
+          elem["title"] = `I'm free`;
+        });
+        dataFormatted[1].forEach(elem => {
+          elem.end = new Date(elem.end);
+          elem.start = new Date(elem.start);
+          elem["type"] = "friend";
+          elem["title"] = `${elem.username}'s free`;
+        });
 
-        this.setState({ 
+        this.setState({
           events: dataFormatted[0].concat(dataFormatted[1])
-        })
+        });
       })
       .catch(err => {
         this.setState({
           message: `${err.response}`
         });
-      })
+      });
   };
 
-  addUserAvailability = () => { 
+  addUserAvailability = () => {
     axios
       .post(`/users/addUserAvailability`, {
-        availability_starttime: moment(this.state.start).format(''),
-        availability_endtime: moment(this.state.end).format(''), 
+        availability_starttime: moment(this.state.start).format(""),
+        availability_endtime: moment(this.state.end).format(""),
         availability_title: "free"
       })
       .then(res => {
-        this.setState({ availability_id: res.data['availability_id']})
-    })
+        this.setState({ availability_id: res.data["availability_id"] });
+      })
       .then(() => {
         axios
-        .post(`/users/shareavailability/${this.state.availability_id}`, {
-          invitees: this.state.selectedFriends
-        })
-        .then(res => {
-          this.setState({
-            selectedFriends: ""
+          .post(`/users/shareavailability/${this.state.availability_id}`, {
+            invitees: this.state.selectedFriends
+          })
+          .then(res => {
+            this.setState({
+              selectedFriends: ""
+            });
           });
-        });
       })
       .catch(err => {
         this.setState({
           message: `${err.response.data}`
         });
       });
-  }
+  };
 
   closeDialog = () => {
     this.setState({ openEvent: false, openSlot: false, clickedEvent: {} });
@@ -129,8 +131,8 @@ class Calendar extends Component {
   };
 
   handleEventStartTime = (event, date) => {
-    console.log('date start', date)
-    console.log('event', event)
+    console.log("date start", date);
+    console.log("event", event);
     this.setState({ start: date });
   };
 
@@ -164,6 +166,13 @@ class Calendar extends Component {
       event => event["start"] !== this.state.start
     );
     this.setState({ events: updatedEvents });
+  };
+
+  makePlan = () => {
+    console.log("make plan fired");
+    this.setState({
+      planInitiated: true
+    });
   };
 
   handleSlotSelected = slotInfo => {
@@ -209,29 +218,38 @@ class Calendar extends Component {
     });
   };
 
+  handleToggle = value => {
+    const { selectedFriends } = this.state;
+    this.setState({
+      toggleValue: this.state.toggleValue === false ? true : false
+    });
+  };
+
   eventStyleGetter = (event, start, end, isSelected) => {
     let newStyle = {
       backgroundColor: "lightblue ",
-      color: 'black',
+      color: "black",
       borderRadius: "0px",
       border: "none"
     };
 
-    if (event.type === 'friend'){
-      newStyle.backgroundColor = "lightgreen"
+    if (event.type === "friend") {
+      newStyle.backgroundColor = "lightgreen";
     }
 
     return {
       className: "",
       style: newStyle
     };
-  }
-
-
+  };
 
   render() {
     console.log("this.state", this.state);
     const { selection } = this.state;
+
+    if(this.state.planInitiated) {
+      return <Redirect to={`/hangout/${this.state.hangoutID}`} />
+    }
 
     return (
       <div id="bigCalendar">
@@ -244,7 +262,7 @@ class Calendar extends Component {
           selectable
           onSelectEvent={event => this.handleEventSelected(event)}
           onSelectSlot={slotInfo => this.handleSlotSelected(slotInfo)}
-          eventPropGetter={(this.eventStyleGetter)}
+          eventPropGetter={this.eventStyleGetter}
         />
 
         <SlotAndEventDialog
@@ -258,6 +276,7 @@ class Calendar extends Component {
           deleteEvent={this.deleteEvent}
           updatedEvent={this.updateEvent}
           addUserAvailability={this.addUserAvailability}
+          handleToggle={this.handleToggle}
         />
       </div>
     );

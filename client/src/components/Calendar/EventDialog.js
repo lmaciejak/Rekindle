@@ -5,6 +5,7 @@ import TimePicker from "material-ui/TimePicker";
 import TextField from "material-ui/TextField";
 import FlatButton from "material-ui/FlatButton";
 import Select from "react-select";
+import Toggle from 'material-ui/Toggle';
 // import "./react-select.css";
 
 
@@ -32,7 +33,7 @@ class SlotAndEventDialog extends Component {
       primary={true}
       keyboardFocused={true}
       onClick={() => {
-        this.props.setNewAvailability(), this.props.closeDialog(), this.props.addUserAvailability();
+        this.props.makePlan();
       }}
     />
     ]
@@ -117,7 +118,6 @@ class SlotAndEventDialog extends Component {
         color="primary"
           affix="pm"
           format="ampm"
-          defaultTime={this.props.calendarState.start}
           floatingLabelText="Starting At"
           minutesStep={5}
           value={this.props.calendarState.start}
@@ -129,7 +129,6 @@ class SlotAndEventDialog extends Component {
           format="ampm"
           floatingLabelText="Ending At"
           minutesStep={5}
-          defaultValue={this.props.calendarState.end}
           value={this.props.calendarState.end}
           onChange={this.props.handleEventEndTime}
 
@@ -142,6 +141,7 @@ class SlotAndEventDialog extends Component {
           options={stateOptions}
           placeholder="Share availability with friends"
         />
+        {this.props.calendarState.clickedEvent.type === 'friend' ? <div> Are you also available? <Toggle onToggle={this.props.handleToggle} /> </div>: ''}
         <br />
         <br />
         <br />
