@@ -9,7 +9,8 @@
   width: 320px;
   height: 30px;
   padding: 10px 20px;
-  font-family: Helvetica, sans-serif;
+  /* font-family: Helvetica, sans-serif; */
+  font-family: 'Raleway', sans-serif;
   font-weight: 300;
   font-size: 16px;
   border: 1px solid rgb(209, 209, 209);
@@ -36,7 +37,8 @@
   width: 360px;
   border: 1px solid #aaa;
   background-color: #fff;
-  font-family: Helvetica, sans-serif;
+  /* font-family: Helvetica, sans-serif; */
+  font-family: 'Raleway', sans-serif;
   font-weight: 300;
   font-size: 16px;
   border-bottom-left-radius: 4px;

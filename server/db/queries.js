@@ -69,16 +69,6 @@ function getUserFriends(req, res, next) {
 
 function getAllUserAvailabilities(req, res, next) {
   db
-    // .any(
-    // `SELECT availability_id, availability_endtime AS end, availability_starttime AS start, availability_title AS title FROM availabilities WHERE availability_user_id = $1`,
-    // [req.user.user_id]
-    // )
-    // .then(data => {
-    //   res.json(data);
-    // })
-    // .catch(error => {
-    //   res.json(error);
-    // });
     .task("get-everything", t => {
       return t.batch([
         t.any(

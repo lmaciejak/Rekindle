@@ -6,6 +6,11 @@
   margin-bottom: 50px;
   /* background-color: rgb(142, 142, 238);  */
   background-color: rgba(255, 255, 255, 0.822); 
+  font-family: 'Raleway', sans-serif;
+}
+
+.rbc-event-content { 
+  height: 20px; 
 }
 
 .rbc-month-view{
@@ -31,5 +36,13 @@
 }
 
 .rbc-toolbar-label { 
-  font-family: 'Homemade Apple', cursive;
+  /* font-family: 'Kavivanar', cursive; */
+  font-size: 25px; 
+  margin-top: 10px; 
+}
+
+
+.calendarIcon { 
+  height: 20px; 
+  margin-top: -40px;
 }

@@ -12,6 +12,7 @@ import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./Calendar.css";
 import SlotAndEventDialog from "./EventDialog";
+import freeImage from '../../images/freeicon.png'
 
 // Setup the localizer by providing the moment (or globalize) Object
 // to the correct localizer.
@@ -66,13 +67,13 @@ class Calendar extends Component {
           elem.end = new Date(elem.end);
         elem.start = new Date(elem.start);
         elem['type'] = 'mine'
-        elem['title'] = `i'm free`
+        elem['title'] = `I'm free`
         })
         dataFormatted[1].forEach((elem) => {
           elem.end = new Date(elem.end);
           elem.start = new Date(elem.start);
           elem['type'] = 'friend'
-          elem['title'] = `${elem.username} is free`
+          elem['title'] = `${elem.username}'s free`
           })
 
         this.setState({ 
@@ -231,13 +232,7 @@ class Calendar extends Component {
   render() {
     console.log("this.state", this.state);
     const { selection } = this.state;
-    // console.log('date format', moment('Thu May 17 2018 15:00:00 GMT-0400 (EDT)').format('YYYY-MM-DD HH:MM:SS'))
-    //     console.log('date format***', moment('Thu May 17 2018 15:00:00 GMT-0400 (EDT)').format())
-    // console.log('date a different try', new Date('Thu May 17 2018 15:00:00 GMT-0400 (EDT)').getTime())
-    // console.log('second date format', new Date('2018-05-18T06:05:00.000Z'))
-    // let someDate = new Date('Thu May 17 2018 15:00:00 GMT-0400 (EDT)')
-    // console.log('*****', moment.unix(1526583600000).utc())
-    // console.log('****',  moment('Thu May 17 2018 15:00:00 GMT-0400 (EDT)', 'YYYY-MM-DD HH:MM:SS'))
+
     return (
       <div id="bigCalendar">
         <BigCalendar

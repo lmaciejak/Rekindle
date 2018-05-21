@@ -15,6 +15,7 @@ const muiTheme = getMuiTheme({
     // clockCircleColor: fade(darkBlack, 0.07),
     // pickerHeaderColor: yellow500,
   },
+  fontFamily: 'Raleway, sans-serif'
 });
 
 ReactDOM.render(
