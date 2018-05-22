@@ -7,6 +7,7 @@ import Dialog from "material-ui/Dialog";
 import FlatButton from "material-ui/FlatButton";
 import TextField from "material-ui/TextField";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -41,8 +42,9 @@ class Calendar extends Component {
       selectedFriendsForCalendar: "",
       selectedFriends: "",
       message: "",
-      toggleValue: false, 
-      planInitiated: false
+      toggleValue: false,
+      planInitiated: false,
+      hangoutID: ""
     };
   }
 
@@ -170,9 +172,19 @@ class Calendar extends Component {
 
   makePlan = () => {
     console.log("make plan fired");
-    this.setState({
-      planInitiated: true
-    });
+    axios
+      .post(`/users/makehangout`, {
+        hangout_availability_id: this.state.clickedEvent.availability_id
+      })
+      .then(res => {
+        console.log("res", res);
+        this.setState({ hangoutID: res.data["hangout_id"] });
+      })
+      .then(() => {
+        this.setState({
+          planInitiated: true
+        });
+      });
   };
 
   handleSlotSelected = slotInfo => {
@@ -245,10 +257,11 @@ class Calendar extends Component {
 
   render() {
     console.log("this.state", this.state);
+    console.log("hangoutID", this.state.hangoutID);
     const { selection } = this.state;
 
-    if(this.state.planInitiated) {
-      return <Redirect to={`/hangout/${this.state.hangoutID}`} />
+    if (this.state.planInitiated) {
+      return <Redirect to={`/hangout/${this.state.hangoutID}`} />;
     }
 
     return (
@@ -277,6 +290,7 @@ class Calendar extends Component {
           updatedEvent={this.updateEvent}
           addUserAvailability={this.addUserAvailability}
           handleToggle={this.handleToggle}
+          makePlan={this.makePlan}
         />
       </div>
     );
