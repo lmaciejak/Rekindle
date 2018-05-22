@@ -9,6 +9,7 @@ import Register from "./components/Register/Register";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Homepage from "./components/Homepage/Homepage";
 import Dashboard from "./components/Dashboard/Dashboard";
+import PlanPage from "./components/PlanPage/PlanPage";
 
 class App extends Component {
   constructor() {
@@ -48,13 +49,18 @@ class App extends Component {
       return <Homepage user={user} />
   }
 
+  renderPlanPage = props => {
+    const { user, fetchingUser } = this.state
+      return <PlanPage user={user} />
+  }
+
   render() {
     return (
       <div className="App">
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/home" render={this.renderHomepage} />
-          <Route exact path="/hangout/:hangoutID" render={this.renderHomepage} />
+          <Route exact path="/hangout/:hangoutID" render={this.renderPlanPage} />
           <Route exact path="/dashboard" render={this.renderDashboard} />
         </Switch>
       </div>

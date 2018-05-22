@@ -177,8 +177,9 @@ class Calendar extends Component {
         hangout_availability_id: this.state.clickedEvent.availability_id
       })
       .then(res => {
-        console.log("res", res);
-        this.setState({ hangoutID: res.data["hangout_id"] });
+        console.log("res", res.data);
+        const id = res.data
+        this.setState({ hangoutID: id['hangout_id'][1]['hangout_id'] });
       })
       .then(() => {
         this.setState({
@@ -258,6 +259,8 @@ class Calendar extends Component {
   render() {
     console.log("this.state", this.state);
     console.log("hangoutID", this.state.hangoutID);
+    // this.state.hangoutID ? console.log('hangoutid', this.state.hangoutID[1]['hangout_id']) : ''
+    
     const { selection } = this.state;
 
     if (this.state.planInitiated) {
