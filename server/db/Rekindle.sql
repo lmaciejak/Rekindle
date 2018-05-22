@@ -36,9 +36,10 @@ CREATE TABLE availabilityshares (
 CREATE TABLE hangouts (
   hangout_id SERIAL PRIMARY KEY, 
   hangout_location VARCHAR, 
+  hangout_availability_id INTEGER REFERENCES availabilities,
   hangout_date date, 
-  hangout_starttime time, 
-  hangout_endtime time, 
+  hangout_starttime timestamp, 
+  hangout_endtime timestamp, 
   hangout_type VARCHAR
 ); 
 

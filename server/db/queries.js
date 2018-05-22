@@ -169,6 +169,25 @@ function addUserAvailability(req, res, next) {
     });
 }
 
+function makeHangout(req, res, next) {
+  console.log('req', req.body.hangout_availability_id)
+  return db
+    .one(
+      "INSERT INTO hangouts (hangout_availability_id)" +
+        " VALUES (${hangout_availability_id})" +
+        " RETURNING hangout_id",
+      {
+        hangout_availability_id: req.body.hangout_availability_id,
+      }
+    )
+    .then(data => {
+      res.json({ hangout_id: data.hangout_id });
+    })
+    .catch(error => {
+      res.json(error);
+    });
+}
+
 module.exports = {
   createUser,
   loginUser,
@@ -177,5 +196,6 @@ module.exports = {
   getUser,
   addUserAvailability,
   shareAvailabilityWithFriend,
-  getAllUserAvailabilities
+  getAllUserAvailabilities, 
+  makeHangout
 };
