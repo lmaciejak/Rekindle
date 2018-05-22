@@ -125,8 +125,8 @@ function getUser(req, res, next) {
 function getHangoutInfo(req, res, next) {
   db
     .any(
-      `SELECT * FROM friendships JOIN users ON(friend_befriended=user_id) WHERE friend_initial=$1 OR friend_befriended=$1`,
-      [req.params.userID]
+      `SELECT * FROM hangouts JOIN availabilities ON (hangout_availability_id=availability_id) WHERE hangout_id =$1`,
+      [req.params.hangoutID]
     )
     .then(data => {
       res.json(data);
@@ -186,16 +186,24 @@ function addUserAvailability(req, res, next) {
 function makeHangout(req, res, next) {
   console.log('req', req.body.hangout_availability_id)
   return db
-    .one(
-      "INSERT INTO hangouts (hangout_availability_id)" +
-        " VALUES (${hangout_availability_id})" +
-        " RETURNING hangout_id",
-      {
-        hangout_availability_id: req.body.hangout_availability_id,
-      }
-    )
+  .task("get-everything", t => {
+    return t.batch([
+      t.none(
+        `UPDATE availabilities SET stage = 'plan' WHERE availabilities.availability_id = $1`,
+        [req.body.hangout_availability_id]
+      ),
+      t.one(
+        "INSERT INTO hangouts (hangout_availability_id)" +
+          " VALUES (${hangout_availability_id})" +
+          " RETURNING hangout_id",
+        {
+          hangout_availability_id: req.body.hangout_availability_id,
+        }
+      )
+    ]);
+  })
     .then(data => {
-      res.json({ hangout_id: data.hangout_id });
+      res.json({ hangout_id: data });
     })
     .catch(error => {
       res.json(error);
@@ -211,5 +219,6 @@ module.exports = {
   addUserAvailability,
   shareAvailabilityWithFriend,
   getAllUserAvailabilities, 
-  makeHangout
+  makeHangout, 
+  getHangoutInfo
 };

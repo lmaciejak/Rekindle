@@ -25,7 +25,8 @@ CREATE TABLE availabilities (
   availability_user_id INTEGER REFERENCES users, 
   availability_starttime timestamp, 
   availability_endtime timestamp, 
-  availability_title VARCHAR); 
+  availability_title VARCHAR, 
+  stage VARCHAR); 
 
 CREATE TABLE availabilityshares (
   availabilityshare_id SERIAL PRIMARY KEY, 
@@ -64,3 +65,5 @@ VALUES (2, '2018-06-07 18:30:00', '2018-06-07 20:30:00', 'free'),
 
 
 INSERT INTO availabilityshares (availability_id, usertosharewith_id) VALUES (1, 1), (1, 3), (2, 1), (3, 2); 
+
+INSERT INTO hangouts (hangout_availability_id) VALUES (1); 
