@@ -20,7 +20,6 @@ class SlotAndEventDialog extends Component {
 
 
   render() {
-    console.log("props********", this.props);
 
     const stateOptions = this.props.calendarState.friendsArr.map(elem => ({
       value: elem.user_id,

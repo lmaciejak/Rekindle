@@ -52,7 +52,6 @@ class Calendar extends Component {
     axios
       .get(`/users/getfriends/1`)
       .then(res => {
-        console.log("res", res);
         this.setState({
           friendsArr: res.data
         });
@@ -65,6 +64,7 @@ class Calendar extends Component {
     axios
       .get(`/users/getalluseravailabilities`)
       .then(res => {
+        console.log('RESSSSSSS', res.data)
         let dataFormatted = res.data;
 
         dataFormatted[0].forEach(elem => {
@@ -77,7 +77,11 @@ class Calendar extends Component {
           elem.end = new Date(elem.end);
           elem.start = new Date(elem.start);
           elem["type"] = "friend";
-          elem["title"] = `${elem.username}'s free`;
+          if(elem.stage = 'plan'){
+            elem["title"] = `hangout plan`;
+          } else { 
+            elem["title"] = `${elem.username}'s free`;
+          }
         });
 
         this.setState({
@@ -124,7 +128,6 @@ class Calendar extends Component {
   };
 
   changeTitle = e => {
-    console.log("e", e);
     this.setState({ title: e });
   };
 
@@ -133,8 +136,6 @@ class Calendar extends Component {
   };
 
   handleEventStartTime = (event, date) => {
-    console.log("date start", date);
-    console.log("event", event);
     this.setState({ start: date });
   };
 
@@ -171,13 +172,11 @@ class Calendar extends Component {
   };
 
   makePlan = () => {
-    console.log("make plan fired");
     axios
       .post(`/users/makehangout`, {
         hangout_availability_id: this.state.clickedEvent.availability_id
       })
       .then(res => {
-        console.log("res", res.data);
         const id = res.data
         this.setState({ hangoutID: id['hangout_id'][1]['hangout_id'] });
       })
@@ -189,7 +188,6 @@ class Calendar extends Component {
   };
 
   handleSlotSelected = slotInfo => {
-    console.log("slot clicked");
     this.setState(
       {
         selection: "slot"
@@ -206,8 +204,6 @@ class Calendar extends Component {
   };
 
   handleEventSelected = event => {
-    console.log("event clicked");
-    console.log("event", event);
     this.setState(
       {
         selection: "event"
@@ -250,6 +246,11 @@ class Calendar extends Component {
       newStyle.backgroundColor = "lightgreen";
     }
 
+    if (event.stage === 'plan'){
+      newStyle.backgroundColor = "red";
+    }
+
+
     return {
       className: "",
       style: newStyle
@@ -258,8 +259,6 @@ class Calendar extends Component {
 
   render() {
     console.log("this.state", this.state);
-    console.log("hangoutID", this.state.hangoutID);
-    // this.state.hangoutID ? console.log('hangoutid', this.state.hangoutID[1]['hangout_id']) : ''
     
     const { selection } = this.state;
 

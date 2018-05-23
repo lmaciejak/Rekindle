@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { slide as Menu } from "react-burger-menu";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Autosuggest from "react-autosuggest";
 import Modal from "react-modal";
@@ -14,19 +13,6 @@ function renderSuggestion(suggestion) {
   return <span>{suggestion.full_name}</span>;
 }
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    width: "15%",
-    height: "28%",
-    textAlign: "center"
-  }
-};
 
 Modal.setAppElement("#root");
 
@@ -121,9 +107,7 @@ class NavBar extends Component {
   }
 
   render() {
-    console.log('rendered')
-    console.log('this.state.suggestions', this.state.suggestions)
-    const { value, suggestions, redirectLanding } = this.state;
+    const { value, suggestions } = this.state;
     const inputProps = {
       placeholder: "Find your friends",
       value,
