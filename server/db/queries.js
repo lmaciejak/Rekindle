@@ -210,6 +210,24 @@ function makeHangout(req, res, next) {
     });
 }
 
+function sendFriendRequest(req, res, next) {
+  return db
+    .none(
+      "INSERT INTO friendships (friend_initial, friend_befriended, befriended_user_status)" +
+       "VALUES (${friend_requester}, ${friend_requested}, 'request')",
+      {
+        friend_requester: req.user.user_id,
+        friend_requested: req.body.availability_starttime,
+      }
+    )
+    .then(data => {
+      res.json("success");
+    })
+    .catch(error => {
+      res.json(error);
+    });
+}
+
 module.exports = {
   createUser,
   loginUser,
@@ -220,5 +238,6 @@ module.exports = {
   shareAvailabilityWithFriend,
   getAllUserAvailabilities, 
   makeHangout, 
-  getHangoutInfo
+  getHangoutInfo, 
+  sendFriendRequest
 };
