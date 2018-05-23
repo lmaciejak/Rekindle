@@ -73,7 +73,7 @@ class Calendar extends Component {
           elem.end = new Date(elem.end);
           elem.start = new Date(elem.start);
           elem["type"] = "friend";
-          if(elem.stage = 'plan'){
+          if(elem.stage === 'plan'){
             elem["title"] = `hangout plan`;
           } else { 
             elem["title"] = `${elem.username}'s free`;
@@ -241,7 +241,7 @@ class Calendar extends Component {
     }
 
     if (event.stage === 'plan'){
-      newStyle.backgroundColor = "red";
+      newStyle.backgroundColor = "lightpink";
     }
 
 
