@@ -10,6 +10,7 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import Homepage from "./components/Homepage/Homepage";
 import Dashboard from "./components/Dashboard/Dashboard";
 import PlanPage from "./components/PlanPage/PlanPage";
+import Profile from "./components/Profile/Profile";
 
 class App extends Component {
   constructor() {
@@ -54,6 +55,11 @@ class App extends Component {
       return <PlanPage user={user} />
   }
 
+  renderProfile = props => {
+    const { user, fetchingUser } = this.state
+      return <Profile user={user} />
+  }
+
   render() {
     return (
       <div className="App">
@@ -62,6 +68,7 @@ class App extends Component {
           <Route exact path="/home" render={this.renderHomepage} />
           <Route exact path="/hangout/:hangoutID" render={this.renderPlanPage} />
           <Route exact path="/dashboard" render={this.renderDashboard} />
+          <Route exact path="/profile/:profileID" render={this.renderProfile} />
         </Switch>
       </div>
     );
