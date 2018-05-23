@@ -53,7 +53,9 @@ INSERT INTO users (username, password, email, full_name, user_img)
   ('Mary', '$2a$10$tHvwaxuv8qwR18wMXmQesuUWOxFT3xjQTTnvauZwYrZ6bM/r53kVW',
   'test@gmail.com', 'Mary Brooke', 'https://openclipart.org/download/247324/abstract-user-flat-1.svg'), 
   ('June', '$2a$10$tHvwaxuv8qwR18wMXmQesuUWOxFT3xjQTTnvauZwYrZ6bM/r53kVW',
-  'test@gmail.com', 'June Davis', 'https://openclipart.org/download/247324/abstract-user-flat-1.svg');
+  'test@gmail.com', 'June Davis', 'https://openclipart.org/download/247324/abstract-user-flat-1.svg'),
+    ('Nathan', '$2a$10$tHvwaxuv8qwR18wMXmQesuUWOxFT3xjQTTnvauZwYrZ6bM/r53kVW',
+  'test@gmail.com', 'Nathan Marks', 'https://openclipart.org/download/247324/abstract-user-flat-1.svg');
 
 INSERT INTO friendships (friend_initial, friend_befriended, befriended_user_status, lastHangoutDate)
 VALUES (1, 2, 'accepted', NULL), (1, 3, 'accepted', null);

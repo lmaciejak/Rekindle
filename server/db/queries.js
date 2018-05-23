@@ -217,7 +217,7 @@ function sendFriendRequest(req, res, next) {
        "VALUES (${friend_requester}, ${friend_requested}, 'request')",
       {
         friend_requester: req.user.user_id,
-        friend_requested: req.body.availability_starttime,
+        friend_requested: req.body.friend_requested,
       }
     )
     .then(data => {
