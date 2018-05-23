@@ -57,7 +57,8 @@ class App extends Component {
 
   renderProfile = props => {
     const { user, fetchingUser } = this.state
-      return <Profile user={user} />
+    const { profileID } = props.match.params
+      return <Profile user={user} profileID={props.match.params}/>
   }
 
   render() {
