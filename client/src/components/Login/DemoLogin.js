@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import Modal from "react-modal";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
@@ -55,7 +54,6 @@ class DemoLogin extends Component {
   handleLoginFormSubmit = e => {
     e.preventDefault();
 
-    const { username, password } = this.state;
     axios
       .post("/users/login", {
         username: "Tom",

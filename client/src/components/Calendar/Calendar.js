@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import BigCalendar from "react-big-calendar";
 import moment from "moment";
-import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
-import TimePicker from "material-ui/TimePicker";
-import Dialog from "material-ui/Dialog";
-import FlatButton from "material-ui/FlatButton";
-import TextField from "material-ui/TextField";
+// import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 
@@ -13,7 +9,7 @@ import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./Calendar.css";
 import SlotAndEventDialog from "./EventDialog";
-import freeImage from "../../images/freeicon.png";
+// import freeImage from "../../images/freeicon.png";
 
 // Setup the localizer by providing the moment (or globalize) Object
 // to the correct localizer.
@@ -22,7 +18,7 @@ import freeImage from "../../images/freeicon.png";
 
 BigCalendar.momentLocalizer(moment);
 
-const DnDCalendar = withDragAndDrop(BigCalendar);
+// const DnDCalendar = withDragAndDrop(BigCalendar);
 
 class Calendar extends Component {
   constructor() {
@@ -221,14 +217,12 @@ class Calendar extends Component {
   };
 
   handleFriendSelect = value => {
-    const { selectedFriends } = this.state;
     this.setState({
       selectedFriends: value
     });
   };
 
   handleToggle = value => {
-    const { selectedFriends } = this.state;
     this.setState({
       toggleValue: this.state.toggleValue === false ? true : false
     });
@@ -259,8 +253,6 @@ class Calendar extends Component {
 
   render() {
     console.log("this.state", this.state);
-    
-    const { selection } = this.state;
 
     if (this.state.planInitiated) {
       return <Redirect to={`/hangout/${this.state.hangoutID}`} />;

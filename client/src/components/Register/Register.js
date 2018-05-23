@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import Modal from "react-modal";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
@@ -63,7 +62,6 @@ class Register extends Component {
   }
 
   handleFormInput = e => {
-    const { confirmpassword, password, message } = this.state;
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -76,7 +74,6 @@ class Register extends Component {
       username,
       password,
       email,
-      confirmpassword,
       full_name
     } = this.state;
     axios
@@ -111,10 +108,7 @@ class Register extends Component {
 
   render() {
     const {
-      confirmpassword,
       password,
-      username,
-      email,
       isLoggedIn
     } = this.state;
     console.log("isloggedin", isLoggedIn);
