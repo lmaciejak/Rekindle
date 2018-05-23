@@ -72,11 +72,11 @@ function getAllUserAvailabilities(req, res, next) {
     .task("get-everything", t => {
       return t.batch([
         t.any(
-          `SELECT availability_id, availability_endtime AS end, availability_starttime AS start, availability_title AS title FROM availabilities WHERE availability_user_id = $1`,
+          `SELECT availability_id, availability_endtime AS end, availability_starttime AS start, availability_title AS title, stage FROM availabilities WHERE availability_user_id = $1`,
           [req.user.user_id]
         ),
         t.any(
-          `SELECT availabilities.availability_id, username, user_id AS availability_sharer, availability_starttime AS start, availability_endtime AS end, availability_title AS title
+          `SELECT availabilities.availability_id, username, user_id AS availability_sharer, availability_starttime AS start, availability_endtime AS end, availability_title AS title, stage
           FROM availabilities JOIN users ON (availability_user_id = user_id)
           WHERE availabilities.availability_id IN (SELECT availabilityshares.availability_id FROM availabilityshares WHERE usertosharewith_id = $1)`,
           [req.user.user_id]
