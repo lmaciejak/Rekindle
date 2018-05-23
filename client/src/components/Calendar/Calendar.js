@@ -241,7 +241,7 @@ class Calendar extends Component {
     }
 
     if (event.stage === 'plan'){
-      newStyle.backgroundColor = "lightpink";
+      newStyle.backgroundColor = "rgb(202, 188, 255)";
     }
 
 

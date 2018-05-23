@@ -5,22 +5,15 @@ import TimePicker from "material-ui/TimePicker";
 import TextField from "material-ui/TextField";
 import FlatButton from "material-ui/FlatButton";
 import Select from "react-select";
-import Toggle from 'material-ui/Toggle';
+import Toggle from "material-ui/Toggle";
 // import "./react-select.css";
-
-
 
 class SlotAndEventDialog extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      // selectedFriends: ""
-    };
   }
 
-
   render() {
-
     const stateOptions = this.props.calendarState.friendsArr.map(elem => ({
       value: elem.user_id,
       label: elem.username
@@ -28,14 +21,14 @@ class SlotAndEventDialog extends Component {
 
     const planActions = [
       <FlatButton
-      label="Make Plans"
-      primary={true}
-      keyboardFocused={true}
-      onClick={() => {
-        this.props.makePlan();
-      }}
-    />
-    ]
+        label="Make Plans"
+        primary={true}
+        keyboardFocused={true}
+        onClick={() => {
+          this.props.makePlan();
+        }}
+      />
+    ];
 
     const availabilityActions = [
       <FlatButton
@@ -44,11 +37,13 @@ class SlotAndEventDialog extends Component {
         onClick={this.props.closeDialog}
       />,
       <FlatButton
-        label="Submit"
+        label="Share"
         primary={true}
         keyboardFocused={true}
         onClick={() => {
-          this.props.setNewAvailability(), this.props.closeDialog(), this.props.addUserAvailability();
+          this.props.setNewAvailability(),
+            this.props.closeDialog(),
+            this.props.addUserAvailability();
         }}
       />
     ];
@@ -86,16 +81,26 @@ class SlotAndEventDialog extends Component {
             ? `Tell your friends you're free on ${moment(
                 this.props.calendarState.start
               ).format("MMMM Do")}`
-            :  this.props.calendarState.clickedEvent.type === 'friend' ? `${this.props.calendarState.clickedEvent.username}'s Availability on ${moment(
-              this.props.calendarState.start
-            ).format("MMMM Do")}` : `Edit your availability on ${moment(
-                this.props.calendarState.start
-              ).format("MMMM Do")}`
+            : this.props.calendarState.clickedEvent.stage === "plan"
+              ? `Planned meetup with ${
+                  this.props.calendarState.clickedEvent.username
+                }`
+              : this.props.calendarState.clickedEvent.type === "friend"
+                ? `${
+                    this.props.calendarState.clickedEvent.username
+                  }'s Availability on ${moment(
+                    this.props.calendarState.start
+                  ).format("MMMM Do")}`
+                : `Edit your availability on ${moment(
+                    this.props.calendarState.start
+                  ).format("MMMM Do")}`
         }
         actions={
           this.props.calendarState.selection === "slot"
             ? availabilityActions
-            : this.props.calendarState.clickedEvent.type === 'friend' ? planActions : eventActions
+            : this.props.calendarState.clickedEvent.type === "friend"
+              ? planActions
+              : eventActions
         }
         modal={false}
         open={
@@ -114,7 +119,7 @@ class SlotAndEventDialog extends Component {
         />
         <br />
         <TimePicker
-        color="primary"
+          color="primary"
           affix="pm"
           format="ampm"
           floatingLabelText="Starting At"
@@ -123,14 +128,13 @@ class SlotAndEventDialog extends Component {
           onChange={this.props.handleEventStartTime}
         />
         <TimePicker
-        color="secondary"
+          color="secondary"
           affix="pm"
           format="ampm"
           floatingLabelText="Ending At"
           minutesStep={5}
           value={this.props.calendarState.end}
           onChange={this.props.handleEventEndTime}
-
         />
         <Select
           name="form-field-name"
@@ -140,12 +144,19 @@ class SlotAndEventDialog extends Component {
           options={stateOptions}
           placeholder="Share availability with friends"
         />
-        {this.props.calendarState.clickedEvent.type === 'friend' ? <div> Are you also available? <Toggle onToggle={this.props.handleToggle} /> </div>: ''}
+        {this.props.calendarState.clickedEvent.type === "friend" ? (
+          <div>
+            {" "}
+            Are you also available?{" "}
+            <Toggle onToggle={this.props.handleToggle} />{" "}
+          </div>
+        ) : (
+          ""
+        )}
         <br />
         <br />
         <br />
         <br />
-    
       </Dialog>
     );
   }
