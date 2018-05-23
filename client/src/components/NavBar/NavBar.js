@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { Redirect, Switch } from "react-router";
 import axios from "axios";
 import Autosuggest from "react-autosuggest";
 import Modal from "react-modal";
@@ -107,6 +108,7 @@ class NavBar extends Component {
   }
 
   render() {
+    console.log('finalsuggestion', this.state.finalSuggestion)
     const { value, suggestions } = this.state;
     const inputProps = {
       placeholder: "Find your friends",
@@ -114,7 +116,9 @@ class NavBar extends Component {
       onChange: this.onChange,
       onKeyPress: this.onKeyPress
     };
-
+    if (this.state.redirect) {
+      return <Switch><Redirect to={`/profile/${this.state.finalSuggestion[0].user_id}`} /> </Switch>;
+    }
     return (
       <div className="searchbar">
         <Link to={'/home'} className='rekindleLink'> <h1 className="searchBarName"> Rekindle </h1></Link>
