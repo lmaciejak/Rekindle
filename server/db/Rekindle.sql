@@ -38,7 +38,8 @@ CREATE TABLE hangouts (
   hangout_id SERIAL PRIMARY KEY, 
   hangout_location VARCHAR, 
   hangout_availability_id INTEGER REFERENCES availabilities,
-  hangout_type VARCHAR
+  hangout_type VARCHAR, 
+  hangout_confirmed boolean 
 ); 
 
 CREATE TABLE hangoutparticipants (
@@ -61,7 +62,7 @@ INSERT INTO friendships (friend_initial, friend_befriended, befriended_user_stat
 VALUES (1, 2, 'accepted', NULL), (1, 3, 'accepted', null);
 
 INSERT INTO availabilities (availability_user_id, availability_starttime, availability_endtime, availability_title)
-VALUES (2, '2018-06-07 18:30:00', '2018-06-07 20:30:00', 'free'), 
+VALUES (1, '2018-02-06 19:00:00', '2018-02-06 21:00:00', 'free'), (1, '2018-04-06 19:00:00', '2018-04-06 21:00:00', 'free'), (1, '2018-05-28 19:00:00', '2018-05-28 21:00:00', 'free'), (2, '2018-06-07 18:30:00', '2018-06-07 20:30:00', 'free'), 
 (3, '2018-06-10 14:00:00', '2018-06-10 21:00:00', 'free'), 
 (1, '2018-06-15 19:00:00', '2018-06-15 20:00:00', 'free'); 
 
