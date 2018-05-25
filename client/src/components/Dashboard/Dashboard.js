@@ -16,9 +16,13 @@ class Dashboard extends Component {
   render() {
     const { user } = this.state;
     return (
-      <div>
+      <div >
       <NavBar />
+      <div className='hangoutDashboardContainer'> 
+      <div className="hangoutDashboardContent">
 <h2 className='dashboardTitle'> Hangout Dashboard </h2>
+</div>
+</div>
 </div>
 );
 }

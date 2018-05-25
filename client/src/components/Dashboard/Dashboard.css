@@ -1,3 +1,14 @@
-.dashboardTitle { 
+/* .dashboardTitle { 
   padding-top: 100px; 
+} */
+
+.hangoutDashboardContainer { 
+  padding-top: 100px; 
+}
+
+.hangoutDashboardContent { 
+  background-color: white;  
+  width: 400px; 
+  display: flex; 
+  justify-content: center; 
 }
