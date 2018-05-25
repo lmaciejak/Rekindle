@@ -19,6 +19,17 @@ class SlotAndEventDialog extends Component {
       label: elem.username
     }));
 
+    const confirmPlan = [
+      <FlatButton
+      label="Confirm hangout"
+      primary={true}
+      keyboardFocused={true}
+      onClick={() => {
+        this.props.makePlan();
+      }}
+    />
+    ]
+
     const planActions = [
       <FlatButton
         label="Make Plans"
@@ -98,7 +109,7 @@ class SlotAndEventDialog extends Component {
         actions={
           this.props.calendarState.selection === "slot"
             ? availabilityActions
-            : this.props.calendarState.clickedEvent.type === "friend"
+            : this.props.calendarState.clickedEvent.stage === "plan" ? confirmPlan : this.props.calendarState.clickedEvent.type === "friend"
               ? planActions
               : eventActions
         }
@@ -110,13 +121,7 @@ class SlotAndEventDialog extends Component {
         }
         onRequestClose={this.props.closeDialog}
       >
-        <TextField
-          floatingLabelText="Suggest an activity"
-          name="title"
-          onChange={e => {
-            this.props.changeTitle(e.target.value);
-          }}
-        />
+
         <br />
         <TimePicker
           color="primary"
@@ -125,7 +130,7 @@ class SlotAndEventDialog extends Component {
           floatingLabelText="Starting At"
           minutesStep={5}
           value={this.props.calendarState.start}
-          onChange={this.props.handleEventStartTime}
+          onChange={this.props.calendarState.clickedEvent.type === "friend" ? '' : this.props.handleEventStartTime}
         />
         <TimePicker
           color="secondary"
@@ -163,3 +168,12 @@ class SlotAndEventDialog extends Component {
 }
 
 export default SlotAndEventDialog;
+
+
+// <TextField
+// floatingLabelText="Suggest an activity"
+// name="title"
+// onChange={e => {
+//   this.props.changeTitle(e.target.value);
+// }}
+// />
