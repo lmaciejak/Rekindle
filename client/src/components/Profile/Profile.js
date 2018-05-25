@@ -33,7 +33,7 @@ class Profile extends React.Component {
 
   handleAddFriend = () => { 
     axios 
-    
+  
   }
 
   render() {

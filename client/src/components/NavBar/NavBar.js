@@ -132,6 +132,8 @@ class NavBar extends Component {
           inputProps={inputProps}
           onSuggestionSelected={this.onSuggestionSelected}
         />
+
+        <Link to={'/dashboard'} className='rekindleLink'> <p> Dashboard </p> </Link>
       </div>
     );
   }
