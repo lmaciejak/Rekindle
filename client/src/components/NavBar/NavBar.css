@@ -92,8 +92,13 @@
   padding-left: 25px;
 }
 
-.searchBarName:hover { 
+.searchBarName:hover {
   transform: scale(1.05);
+}
+
+.iconContainer {
+  margin-left: 100px;
+  margin-top: 13px;
 }
 
 .rekindleLink {
@@ -102,6 +107,7 @@
 
 .navIcon {
   width: 40px;
+  padding: 10px;
 }
 
 .navIcon:hover {

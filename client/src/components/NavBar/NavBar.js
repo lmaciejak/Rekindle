@@ -141,19 +141,20 @@ class NavBar extends Component {
           inputProps={inputProps}
           onSuggestionSelected={this.onSuggestionSelected}
         />
-
-        <Link to={"/dashboard"} className="rekindleLink">
-          {" "}
-          <img src={dashboard} className="navIcon" />
-        </Link>
-        <Link to={"/home"} className="rekindleLink">
-          {" "}
-          <img src={calendar} className="navIcon" />{" "}
-        </Link>
-        <Link to={"/hangouts"} className="rekindleLink">
-          {" "}
-          <img src={hangout} className="navIcon" />{" "}
-        </Link>
+        <div className="iconContainer">
+          <Link to={"/dashboard"} className="rekindleLink">
+            {" "}
+            <img src={dashboard} className="navIcon" />
+          </Link>
+          <Link to={"/home"} className="rekindleLink">
+            {" "}
+            <img src={calendar} className="navIcon" />{" "}
+          </Link>
+          <Link to={"/hangouts"} className="rekindleLink">
+            {" "}
+            <img src={hangout} className="navIcon" />{" "}
+          </Link>
+        </div>
       </div>
     );
   }
