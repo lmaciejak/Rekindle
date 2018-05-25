@@ -1,7 +1,7 @@
 .react-autosuggest__container {
   position: relative;
-  margin-left: 300px; 
-  margin-top: 14px; 
+  margin-left: 300px;
+  margin-top: 14px;
 }
 
 .react-autosuggest__input {
@@ -10,7 +10,7 @@
   height: 30px;
   padding: 10px 20px;
   /* font-family: Helvetica, sans-serif; */
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-weight: 300;
   font-size: 16px;
   border: 1px solid rgb(209, 209, 209);
@@ -38,7 +38,7 @@
   border: 1px solid #aaa;
   background-color: #fff;
   /* font-family: Helvetica, sans-serif; */
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-weight: 300;
   font-size: 16px;
   border-bottom-left-radius: 4px;
@@ -76,22 +76,34 @@
   display: flex;
   /* justify-content: center; */
   z-index: 40;
-  margin-bottom: -40px; 
-  margin-top: -20px; 
+  margin-bottom: -40px;
+  margin-top: -20px;
 }
 
-.searchBarName { 
-  font-family: 'Homemade Apple', cursive;
-  font-size: 60px; 
-  z-index: 1; 
-  color: rgb(255, 230, 0); 
-  font-family: 'Yesteryear', cursive;
+.searchBarName {
+  font-family: "Homemade Apple", cursive;
+  font-size: 60px;
+  z-index: 1;
+  color: rgb(255, 230, 0);
+  font-family: "Yesteryear", cursive;
   text-shadow: 3px 2px #000000;
-  margin-top: 0; 
-  margin-bottom: 0; 
-  padding-left: 25px; 
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 25px;
 }
 
-.rekindleLink { 
-  text-decoration: none; 
+.searchBarName:hover { 
+  transform: scale(1.05);
+}
+
+.rekindleLink {
+  text-decoration: none;
+}
+
+.navIcon {
+  width: 40px;
+}
+
+.navIcon:hover {
+  transform: scale(1.1);
 }
