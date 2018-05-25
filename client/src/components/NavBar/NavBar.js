@@ -134,6 +134,8 @@ class NavBar extends Component {
         />
 
         <Link to={'/dashboard'} className='rekindleLink'> <p> Dashboard </p> </Link>
+        <Link to={'/home'} className='rekindleLink'> <p> Calendar </p> </Link>
+        <Link to={'/hangouts'} className='rekindleLink'> <p> Hangouts </p> </Link>
       </div>
     );
   }
