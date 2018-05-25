@@ -92,6 +92,8 @@ class Calendar extends Component {
   };
 
   addUserAvailability = () => {
+    const eventsList = this.state.events
+    this.setState({ events: [...eventsList, {'start': this.state.start, 'end': this.state.end, 'title': `I'm free`} ]});
     axios
       .post(`/users/addUserAvailability`, {
         availability_starttime: moment(this.state.start).format(""),
