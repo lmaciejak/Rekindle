@@ -130,7 +130,7 @@ class SlotAndEventDialog extends Component {
           floatingLabelText="Starting At"
           minutesStep={5}
           value={this.props.calendarState.start}
-          onChange={this.props.calendarState.clickedEvent.type === "friend" ? '' : this.props.handleEventStartTime}
+          onChange={this.props.handleEventStartTime}
         />
         <TimePicker
           color="secondary"
