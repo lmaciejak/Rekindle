@@ -73,7 +73,9 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   /* background-color: rgba(44, 226, 135, 0.829); */
   /* background-color: rgb(76, 59, 235); */
-  background-color: rgb(129, 243, 177); 
+  /* background-color: rgb(129, 243, 177);  */
+  /* background-color: aqua;  */
+  background-color: rgb(53, 80, 201); 
 
   display: flex;
   /* justify-content: center; */

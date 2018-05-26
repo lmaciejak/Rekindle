@@ -54,6 +54,11 @@
 .rbc-event-content:hover {
   /* background-color: rgb(253, 234, 136);  */
   background-color: rgb(236, 235, 235); 
+  box-shadow: 0 2px 0px 0 rgb(236, 235, 235), 0 5px 5px 0 rgb(236, 235, 235);
+}
+
+.rbc-event:hover { 
+  background-color: rgb(236, 235, 235); 
 }
 
 .rbc-event-content { 
