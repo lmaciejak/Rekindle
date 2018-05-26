@@ -15,24 +15,49 @@
 
 .rbc-month-view{
   flex-basis: 500px !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .rbc-toolbar-label {
   font-weight: bold;
   font-size: 22px;
-  color: rgb(0, 0, 0)
+  color: rgb(0, 0, 0);
 }
 
 .rbc-date-cell {
   color: rgb(0, 0, 0);
 }
 
+.rbc-day-bg:hover { 
+  /* background-color: rgba(129, 243, 177, 0.438);   */
+  cursor: pointer;
+  /* background-color: rgb(248, 237, 179);  */
+  background-color: rgb(236, 235, 235); 
+}
+
 .rbc-day { 
   background-color: black; 
 }
 
+.rbc-day-bg { 
+    box-shadow: 0 0.5px 0.5px 0 rgba(168, 168, 168, 0.2), 0 0.5px 0.5px 0 rgba(95, 95, 95, 0.19);
+}
+
+.rbc-month-row { 
+  box-shadow: 0 0.5px 0.5px 0 rgba(122, 122, 122, 0.2), 0 0.5px 0.5px 0 rgba(83, 83, 83, 0.19);
+}
+
 .rbc-today {
   background-color: rgb(196, 226, 250) !important;
+}
+
+.rbc-event-content:hover {
+  /* background-color: rgb(253, 234, 136);  */
+  background-color: rgb(236, 235, 235); 
+}
+
+.rbc-event-content { 
+  box-shadow: 0 2px 0px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.19);
 }
 
 .rbc-toolbar-label { 
@@ -40,11 +65,6 @@
   font-size: 25px; 
   margin-top: 10px; 
 }
-
-.rbc-month-view { 
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
 
 .calendarIcon { 
   height: 20px; 
