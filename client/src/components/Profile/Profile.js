@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { Route, Switch } from "react-router";
 import { Redirect } from "react-router";
+import { withRouter } from 'react-router-dom';
 import NavBar from "../NavBar/NavBar";
 import './Profile.css'
 
@@ -17,7 +18,23 @@ class Profile extends React.Component {
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount = (props) => {
+      this.loadProfile();
+  };
+
+  componentWillReceiveProps(nextProps) {
+    if(this.props.user_id !== nextProps.user_id) {
+      this.loadProfile();
+    }
+  }
+
+  // componentDidUpdate(prevProps,prevState){
+  //   if(prevProps !== this.props){
+  //     this.loadProfile()
+  //   }
+  // }
+
+  loadProfile = (props) => { 
     axios
       .get(`/users/getprofile/${this.state.profileID}`)
       .then(res => {
@@ -31,7 +48,7 @@ class Profile extends React.Component {
           message: `${err.response}`
         });
       });
-  };
+  }
 
   handleAddFriend = () => { 
     axios 
@@ -47,6 +64,7 @@ class Profile extends React.Component {
         <NavBar />
         <div className="profilePageMain">
         <div className="profilePageContent">
+        <img className="profileImage" src={this.state.profileInfo.user_img} />
           <h1> {this.state.profileInfo.full_name} </h1>
           <button onClick={this.handleAddFriend}> Add Friend </button> 
         </div>
@@ -56,4 +74,4 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile;
+export default withRouter(Profile);

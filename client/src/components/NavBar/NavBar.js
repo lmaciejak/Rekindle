@@ -166,7 +166,7 @@ class NavBar extends Component {
           <div onClick={this.handleClickLogout} className="rekindleLink tooltip">
           {" "}
           <img src={logout} className="navIcon" />{" "}
-          <span className="tooltiptext">Logout</span>
+          <span class="tooltiptext">Logout</span>
         </div>
         </div>
       </div>

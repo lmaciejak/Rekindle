@@ -15,3 +15,7 @@
 .profilePageContainer { 
   margin-top: 10px; 
 }
+
+.profileImage { 
+  width: 200px; 
+}
