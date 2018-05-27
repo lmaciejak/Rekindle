@@ -1,31 +1,36 @@
-.formButton { 
+.formButton {
   /* padding: 15px 32px; */
   border: none;
-  width: 140px; 
-  height: 40px; 
+  width: 140px;
+  height: 40px;
   /* background-color: rgb(72, 255, 0);  */
   /* background-color: rgb(255, 125, 175);  */
   /* background-color: rgb(79, 238, 198);  */
-    background-color: rgba(44, 226, 135, 0.829); 
-  font-size: 20px; 
-  font-family: 'Mitr', sans-serif;
-  color: rgb(0, 0, 0); 
+  background-color: rgba(44, 226, 135, 0.829);
+  font-size: 20px;
+  font-family: "Mitr", sans-serif;
+  color: rgb(0, 0, 0);
   /* color: rgb(248, 248, 248);  */
-  margin-right: 20px; 
-  margin-left: 20px; 
-  border-radius: 5px; 
-  z-index: 10; 
+  margin-right: 20px;
+  margin-left: 20px;
+  border-radius: 5px;
+  z-index: 10;
   /* background-color: rgba(201, 201, 201, 0.815);  */
 }
 
-.Modal { 
-  z-index: 10000; 
+.Modal {
+  z-index: 10000;
 }
 
 .ReactModal__Overlay {
   z-index: 10000;
 }
 
-button:focus {outline:0;}
+button:focus {
+  outline: 0;
+}
 
-button:hover { transform: scale(1.1); }
+button:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
