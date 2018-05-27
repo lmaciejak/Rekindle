@@ -127,6 +127,22 @@ function getUser(req, res, next) {
     });
 }
 
+function getProfile(req, res, next) {
+  db
+    .any(
+      `SELECT user_id, username, email, full_name, user_img
+          FROM users
+          WHERE user_id=$1`,
+      [req.params.userID]
+    )
+    .then(data => {
+      res.json(data);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+}
+
 function getHangoutInfo(req, res, next) {
   db
     .any(
@@ -240,6 +256,7 @@ module.exports = {
   getUserFriends,
   searchByUser,
   getUser,
+  getProfile, 
   addUserAvailability,
   shareAvailabilityWithFriend,
   getAllUserAvailabilities, 

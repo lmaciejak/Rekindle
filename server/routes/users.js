@@ -10,6 +10,7 @@ router.get('/getfriends/:userID', db.getUserFriends);
 router.get('/searchbyuser/:search', db.searchByUser); 
 router.get('/getalluseravailabilities', db.getAllUserAvailabilities)
 router.get('/gethangoutinfo/:hangoutID', db.getHangoutInfo)
+router.get('/getprofile/:userID', db.getProfile)
 router.get('/logout', loginRequired, db.logoutUser);
 
 // router.get('/logout', db.logoutUser);
