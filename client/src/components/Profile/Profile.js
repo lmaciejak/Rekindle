@@ -11,17 +11,18 @@ class Profile extends React.Component {
     this.state = {
       user: "",
       fetchingUser: true,
-      hangoutInfo: [], 
+      profileInfo: [], 
       profileID: this.props.profileID['profileID']
     };
   }
 
   componentDidMount = () => {
     axios
-      .get(`/users/gethangoutinfo/2`)
+      .get(`/users/getprofile/${this.state.profileID}`)
       .then(res => {
+        console.log('RES!!!!!', res)
         this.setState({
-          hangoutInfo: res.data[0]
+          profileInfo: res.data[0]
         });
       })
       .catch(err => {
@@ -38,12 +39,13 @@ class Profile extends React.Component {
 
   render() {
     const { user } = this.state;
+    console.log('state------', this.state)
     console.log('this.state.profileID *****', this.state.profileID)
     return (
       <div className="planPageContainer">
         <NavBar />
         <div className="planPageContent">
-          <h1> User Profile Page </h1>
+          <h1> {this.state.profileInfo.full_name} </h1>
           <button onClick={this.handleAddFriend}> Add Friend </button> 
         </div>
       </div>

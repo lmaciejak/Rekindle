@@ -151,22 +151,22 @@ class NavBar extends Component {
           <Link to={"/dashboard"} className="rekindleLink tooltip">
             {" "}
             <img src={dashboard} className="navIcon" />
-            <span class="tooltiptext">Dashboard</span>
+            <span className="tooltiptext">Dashboard</span>
           </Link>
           <Link to={"/home"} className="rekindleLink tooltip">
             {" "}
             <img src={calendar} className="navIcon" />{" "}
-            <span class="tooltiptext">Calendar</span>
+            <span className="tooltiptext">Calendar</span>
           </Link>
           <Link to={"/hangouts"} className="rekindleLink tooltip">
             {" "}
             <img src={hangout} className="navIcon" />{" "}
-            <span class="tooltiptext">Hangouts</span>
+            <span className="tooltiptext">Hangouts</span>
           </Link>
           <div onClick={this.handleClickLogout} className="rekindleLink tooltip">
           {" "}
           <img src={logout} className="navIcon" />{" "}
-          <span class="tooltiptext">Logout</span>
+          <span className="tooltiptext">Logout</span>
         </div>
         </div>
       </div>
