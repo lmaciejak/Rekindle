@@ -3,6 +3,7 @@ import axios from "axios";
 import { Route, Switch } from "react-router";
 import { Redirect } from "react-router";
 import NavBar from "../NavBar/NavBar";
+import './Profile.css'
 
 
 class Profile extends React.Component {
@@ -42,11 +43,13 @@ class Profile extends React.Component {
     console.log('state------', this.state)
     console.log('this.state.profileID *****', this.state.profileID)
     return (
-      <div className="planPageContainer">
+      <div className="profilePageContainer">
         <NavBar />
-        <div className="planPageContent">
+        <div className="profilePageMain">
+        <div className="profilePageContent">
           <h1> {this.state.profileInfo.full_name} </h1>
           <button onClick={this.handleAddFriend}> Add Friend </button> 
+        </div>
         </div>
       </div>
     );
