@@ -14,29 +14,14 @@ class Profile extends React.Component {
       user: "",
       fetchingUser: true,
       profileInfo: [], 
-      profileID: this.props.profileID['profileID']
+      profileID: this.props.profileID['profileID'], 
+      reload: false
     };
   }
 
-  componentDidMount = (props) => {
-      this.loadProfile();
-  };
-
-  componentWillReceiveProps(nextProps) {
-    if(this.props.user_id !== nextProps.user_id) {
-      this.loadProfile();
-    }
-  }
-
-  // componentDidUpdate(prevProps,prevState){
-  //   if(prevProps !== this.props){
-  //     this.loadProfile()
-  //   }
-  // }
-
   loadProfile = (props) => { 
     axios
-      .get(`/users/getprofile/${this.state.profileID}`)
+      .get(`/users/getprofile/${this.props.profileID['profileID']}`)
       .then(res => {
         console.log('RES!!!!!', res)
         this.setState({
@@ -50,14 +35,31 @@ class Profile extends React.Component {
       });
   }
 
+  componentDidMount = () => {
+      this.loadProfile();
+  };
+
+  componentWillReceiveProps(props) {
+      this.loadProfile();
+  }
+
+  componentDidUpdate(prevProps,prevState){
+    console.log('prevprops', prevProps)
+    if(prevProps !== this.props){
+      this.loadProfile()
+            // window.location.reload()
+    }
+  }
+
   handleAddFriend = () => { 
     axios 
   
   }
 
-  render() {
+  render(props) {
     const { user } = this.state;
     console.log('state------', this.state)
+    console.log('propsssssss', this.props)
     console.log('this.state.profileID *****', this.state.profileID)
     return (
       <div className="profilePageContainer">

@@ -9,6 +9,7 @@ import dashboard from "../../images/dashboard.png";
 import calendar from "../../images/calendar.png";
 import hangout from "../../images/hangout.png";
 import logout from "../../images/logout.png";
+import { withRouter } from 'react-router-dom';
 
 function getSuggestionValue(suggestion) {
   return suggestion.full_name;
@@ -103,6 +104,8 @@ class NavBar extends Component {
       redirect: true,
       value: "",
       modalIsOpen: true
+    }, () => { 
+      this.props.history.push(`/profile/${this.state.finalSuggestion[0].user_id}`)
     });
   };
 
@@ -110,7 +113,7 @@ class NavBar extends Component {
     event.preventDefault();
   }
 
-  render() {
+  render(props) {
     console.log("finalsuggestion", this.state.finalSuggestion);
     const { value, suggestions } = this.state;
     const inputProps = {
@@ -120,11 +123,9 @@ class NavBar extends Component {
       onKeyPress: this.onKeyPress
     };
     if (this.state.redirect) {
-      return (
-        <Switch>
-          <Redirect to={`/profile/${this.state.finalSuggestion[0].user_id}`} />{" "}
-        </Switch>
-      );
+      // return (
+        
+      // );
     }
 
     if(this.state.redirectLanding) {
@@ -166,7 +167,7 @@ class NavBar extends Component {
           <div onClick={this.handleClickLogout} className="rekindleLink tooltip">
           {" "}
           <img src={logout} className="navIcon" />{" "}
-          <span class="tooltiptext">Logout</span>
+          <span className="tooltiptext">Logout</span>
         </div>
         </div>
       </div>
@@ -174,4 +175,4 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
+export default withRouter(NavBar);
