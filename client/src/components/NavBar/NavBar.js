@@ -142,17 +142,20 @@ class NavBar extends Component {
           onSuggestionSelected={this.onSuggestionSelected}
         />
         <div className="iconContainer">
-          <Link to={"/dashboard"} className="rekindleLink">
+          <Link to={"/dashboard"} className="rekindleLink tooltip">
             {" "}
             <img src={dashboard} className="navIcon" />
+            <span class="tooltiptext">Dashboard</span>
           </Link>
-          <Link to={"/home"} className="rekindleLink">
+          <Link to={"/home"} className="rekindleLink tooltip">
             {" "}
             <img src={calendar} className="navIcon" />{" "}
+            <span class="tooltiptext">Calendar</span>
           </Link>
-          <Link to={"/hangouts"} className="rekindleLink">
+          <Link to={"/hangouts"} className="rekindleLink tooltip">
             {" "}
             <img src={hangout} className="navIcon" />{" "}
+            <span class="tooltiptext">Hangouts</span>
           </Link>
         </div>
       </div>
