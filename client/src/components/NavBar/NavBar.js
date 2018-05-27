@@ -10,7 +10,7 @@ import calendar from "../../images/calendar.png";
 import hangout from "../../images/hangout.png";
 
 function getSuggestionValue(suggestion) {
-  return suggestion;
+  return suggestion.full_name;
 }
 
 function renderSuggestion(suggestion) {
