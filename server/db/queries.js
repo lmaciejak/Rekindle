@@ -53,6 +53,11 @@ function loginUser(req, res, next) {
   })(req, res, next);
 }
 
+function logoutUser(req, res, next) {
+  req.logout();
+  res.status(200).send("log out success");
+}
+
 function getUserFriends(req, res, next) {
   db
     .any(
@@ -231,6 +236,7 @@ function sendFriendRequest(req, res, next) {
 module.exports = {
   createUser,
   loginUser,
+  logoutUser,
   getUserFriends,
   searchByUser,
   getUser,
