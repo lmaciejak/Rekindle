@@ -8,6 +8,7 @@ import "./NavBar.css";
 import dashboard from "../../images/dashboard.png";
 import calendar from "../../images/calendar.png";
 import hangout from "../../images/hangout.png";
+import logout from "../../images/logout.png";
 
 function getSuggestionValue(suggestion) {
   return suggestion.full_name;
@@ -125,6 +126,11 @@ class NavBar extends Component {
         </Switch>
       );
     }
+
+    if(this.state.redirectLanding) {
+      return <Redirect to='/' />
+    }
+
     return (
       <div className="searchbar">
         <Link to={"/home"} className="rekindleLink">
@@ -157,6 +163,11 @@ class NavBar extends Component {
             <img src={hangout} className="navIcon" />{" "}
             <span class="tooltiptext">Hangouts</span>
           </Link>
+          <div onClick={this.handleClickLogout} className="rekindleLink tooltip">
+          {" "}
+          <img src={logout} className="navIcon" />{" "}
+          <span class="tooltiptext">Logout</span>
+        </div>
         </div>
       </div>
     );
