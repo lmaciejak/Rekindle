@@ -15,7 +15,8 @@ class Profile extends React.Component {
       fetchingUser: true,
       profileInfo: [], 
       profileID: this.props.profileID['profileID'], 
-      reload: false
+      reload: false, 
+      message: ''
     };
   }
 
@@ -53,6 +54,19 @@ class Profile extends React.Component {
 
   handleAddFriend = () => { 
     axios 
+    .post(`/users/sendFriendRequest`, {
+      friend_requested: this.state.profileID
+    })
+    .then(res => {
+      this.setState({
+        message: res
+      });
+    })
+.catch(err => {
+  this.setState({
+    message: `${err.response.data}`
+  });
+});
   
   }
 
