@@ -59,7 +59,7 @@ class Profile extends React.Component {
   render(props) {
     const { user } = this.state;
     console.log('state------', this.state)
-    console.log('propsssssss', this.props)
+    console.log('profile propsssssss', this.props)
     console.log('this.state.profileID *****', this.state.profileID)
     return (
       <div className="profilePageContainer">
@@ -68,7 +68,8 @@ class Profile extends React.Component {
         <div className="profilePageContent">
         <img className="profileImage" src={this.state.profileInfo.user_img} />
           <h1> {this.state.profileInfo.full_name} </h1>
-          <button onClick={this.handleAddFriend}> Add Friend </button> 
+          <h4 className='userLocation'> {this.state.profileInfo.user_location} </h4>
+          <button className='addFriendButton' onClick={this.handleAddFriend}> Add Friend </button> 
         </div>
         </div>
       </div>
