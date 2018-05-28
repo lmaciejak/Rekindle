@@ -1,6 +1,6 @@
 .react-autosuggest__container {
   position: relative;
-  margin-left: 300px;
+  margin-left: 100px;
   margin-top: 14px;
 }
 
@@ -78,7 +78,7 @@
   background-color: rgb(53, 80, 201); 
 
   display: flex;
-  /* justify-content: center; */
+  justify-content: space-around;
   z-index: 40;
   margin-bottom: -40px;
   margin-top: -20px;
@@ -101,7 +101,7 @@
 }
 
 .iconContainer {
-  margin-left: 100px;
+  /* margin-left: 100px; */
   margin-top: 13px;
 }
 
@@ -150,4 +150,66 @@
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+
+@media only screen and (max-width: 1000px) {
+
+  .iconContainer { 
+    display: none; 
+  }
+
+.burger-menu,
+.burger-menu.open {
+  display: inline-block;
+  cursor: pointer;
+  position: fixed;
+  right: 40px;
+  top: 20px;
+  z-index: 9999;
+  background: #fff;
+  padding: 10px;
+  border-radius: 25px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.burger-menu .bar1,
+.bar2,
+.bar3 {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+.burger-menu.open .bar1 {
+  -webkit-transform: rotate(-45deg) translate(-4px, 4px);
+  transform: rotate(-45deg) translate(-4px, 4px);
+}
+
+.burger-menu.open .bar2 {
+  opacity: 0;
+}
+
+.burger-menu.open .bar3 {
+  -webkit-transform: rotate(45deg) translate(-6px, -6px);
+  transform: rotate(45deg) translate(-6px, -6px);
+}
+
+.popUpStyles { 
+  font-family: "sans-serif"; 
+  text-align: center; 
+  margin-top: 40px;  
+}
+
+.menuList { 
+  list-style-type: none;
+  margin-top: -100px; 
+  margin-left: -40px; 
+}
+
+.menuLi { 
+  font-size: 32px; 
+}
+
 }

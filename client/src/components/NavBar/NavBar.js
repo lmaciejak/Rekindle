@@ -10,6 +10,7 @@ import calendar from "../../images/calendar.png";
 import hangout from "../../images/hangout.png";
 import logout from "../../images/logout.png";
 import { withRouter } from 'react-router-dom';
+import BurgerMenu from "./BurgerMenu";
 
 function getSuggestionValue(suggestion) {
   return suggestion.full_name;
@@ -170,6 +171,7 @@ class NavBar extends Component {
           <span className="tooltiptext">Logout</span>
         </div>
         </div>
+        <BurgerMenu />
       </div>
     );
   }
