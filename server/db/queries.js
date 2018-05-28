@@ -130,7 +130,7 @@ function getUser(req, res, next) {
 function getProfile(req, res, next) {
   db
     .any(
-      `SELECT user_id, username, email, full_name, user_img
+      `SELECT user_id, username, email, full_name, user_img, user_location
           FROM users
           WHERE user_id=$1`,
       [req.params.userID]

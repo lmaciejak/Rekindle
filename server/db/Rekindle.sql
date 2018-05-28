@@ -9,7 +9,8 @@ CREATE TABLE users (
   password VARCHAR NOT NULL,
   email VARCHAR,
   full_name VARCHAR,
-  user_img VARCHAR
+  user_img VARCHAR, 
+  user_location VARCHAR
   );
 
 CREATE TABLE friendships ( 
@@ -48,15 +49,15 @@ CREATE TABLE hangoutparticipants (
 ); 
 
 /* password for test is testtest */
-INSERT INTO users (username, password, email, full_name, user_img)
+INSERT INTO users (username, password, email, full_name, user_img, user_location)
   VALUES ('Tom', '$2a$10$tHvwaxuv8qwR18wMXmQesuUWOxFT3xjQTTnvauZwYrZ6bM/r53kVW',
-  'test@gmail.com', 'Tom Waters', 'https://openclipart.org/download/247324/abstract-user-flat-1.svg'), 
+  'test@gmail.com', 'Tom Waters', 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Creative-Tail-People-man.svg/256px-Creative-Tail-People-man.svg.png', 'New York, NY'), 
   ('Mary', '$2a$10$tHvwaxuv8qwR18wMXmQesuUWOxFT3xjQTTnvauZwYrZ6bM/r53kVW',
-  'test@gmail.com', 'Mary Brooke', 'https://openclipart.org/download/247324/abstract-user-flat-1.svg'), 
+  'test@gmail.com', 'Mary Brooke', 'https://www.svgrepo.com/show/28663/woman.svg', 'Queens, NY'), 
   ('June', '$2a$10$tHvwaxuv8qwR18wMXmQesuUWOxFT3xjQTTnvauZwYrZ6bM/r53kVW',
-  'test@gmail.com', 'June Davis', 'https://openclipart.org/download/247324/abstract-user-flat-1.svg'),
+  'test@gmail.com', 'June Davis', 'https://www.svgrepo.com/show/51589/girl.svg', 'Brooklyn, NY'),
     ('Nathan', '$2a$10$tHvwaxuv8qwR18wMXmQesuUWOxFT3xjQTTnvauZwYrZ6bM/r53kVW',
-  'test@gmail.com', 'Nathan Marks', 'https://openclipart.org/download/247324/abstract-user-flat-1.svg');
+  'test@gmail.com', 'Nathan Marks', 'https://www.svgrepo.com/show/106034/man.svg', 'Bronx, NY');
 
 INSERT INTO friendships (friend_initial, friend_befriended, befriended_user_status, lastHangoutDate)
 VALUES (1, 2, 'accepted', NULL), (1, 3, 'accepted', null);
