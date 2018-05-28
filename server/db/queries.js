@@ -157,6 +157,20 @@ function getHangoutInfo(req, res, next) {
     });
 }
 
+function getDashboardHangouts(req, res, next) {
+  db
+    .any(
+      `SELECT availabilities.availability_id, availability_starttime, availability_endtime, availabilityshare_id, usertosharewith_id, username, full_name, user_img, user_location FROM availabilities JOIN availabilityshares ON(availabilities.availability_id = availabilityshares.availability_id) JOIN users ON (availabilityshares.usertosharewith_id = users.user_id) WHERE hangout_confirmed = 'yes' AND usertosharewith_id IN (SELECT friend_befriended FROM friendships JOIN users ON(friend_befriended=user_id) WHERE friend_initial=$1 OR friend_befriended=$1) ORDER BY availability_endtime DESC`,
+      [req.user.user_id]
+    )
+    .then(data => {
+      res.json(data);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+}
+
 /* post */
 function shareAvailabilityWithFriend(req, res, next) {
   return db
@@ -257,6 +271,7 @@ module.exports = {
   searchByUser,
   getUser,
   getProfile, 
+  getDashboardHangouts,
   addUserAvailability,
   shareAvailabilityWithFriend,
   getAllUserAvailabilities, 

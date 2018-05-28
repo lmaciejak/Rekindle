@@ -11,6 +11,7 @@ router.get('/searchbyuser/:search', db.searchByUser);
 router.get('/getalluseravailabilities', db.getAllUserAvailabilities)
 router.get('/gethangoutinfo/:hangoutID', db.getHangoutInfo)
 router.get('/getprofile/:userID', db.getProfile)
+router.get('/getdashboardhangouts', db.getDashboardHangouts)
 router.get('/logout', loginRequired, db.logoutUser);
 
 // router.get('/logout', db.logoutUser);

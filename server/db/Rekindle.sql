@@ -32,7 +32,8 @@ CREATE TABLE availabilities (
 CREATE TABLE availabilityshares (
   availabilityshare_id SERIAL PRIMARY KEY, 
   availability_id INTEGER REFERENCES availabilities, 
-  usertosharewith_id INTEGER REFERENCES users
+  usertosharewith_id INTEGER REFERENCES users, 
+  hangout_confirmed VARCHAR
 ); 
 
 CREATE TABLE hangouts (
@@ -71,6 +72,8 @@ VALUES (1, '2018-02-06 19:00:00', '2018-02-06 21:00:00', 'free'),
 (1, '2018-06-15 19:00:00', '2018-06-15 20:00:00', 'free'); 
 
 
-INSERT INTO availabilityshares (availability_id, usertosharewith_id) VALUES (4, 1), (4, 3), (5, 1), (1, 2); 
+INSERT INTO availabilityshares (availability_id, usertosharewith_id, hangout_confirmed) 
+VALUES (4, 1, 'no'), (4, 3, 'no'), (5, 1, 'no'), 
+(1, 2, 'yes'), (2, 2, 'yes'), (3, 3, 'yes'); 
 
 INSERT INTO hangouts (hangout_availability_id) VALUES (1); 
