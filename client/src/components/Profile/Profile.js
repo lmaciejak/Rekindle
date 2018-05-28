@@ -81,11 +81,11 @@ class Profile extends React.Component {
 
   render(props) {
     const { user } = this.state;
-    
+
     console.log("state------", this.state);
     console.log("profile propsssssss", this.props);
-    console.log("first", this.props.profileID.profileID);
-    console.log("second", this.props.user.user_id);
+    console.log("first", typeof(this.props.profileID.profileID));
+    console.log("second", typeof(this.props.user.user_id));
 
     return (
       <div className="profilePageContainer">
@@ -101,7 +101,7 @@ class Profile extends React.Component {
               {" "}
               {this.state.profileInfo.user_location}{" "}
             </h4>
-            {this.props.profileID.profileID === 1 ? (
+            {parseInt(this.props.profileID.profileID) ===  parseInt(this.props.user.user_id) ? (
               <button className="addFriendButton"> Edit Profile </button>
             ) : (
               <button
