@@ -162,14 +162,15 @@
 .burger-menu.open {
   display: inline-block;
   cursor: pointer;
-  position: fixed;
+  /* position: fixed; */
   right: 40px;
-  top: 20px;
+  /* top: 80px; */
   z-index: 9999;
   background: #fff;
   padding: 10px;
   border-radius: 25px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  margin-top: 25px; 
 }
 
 .burger-menu .bar1,

@@ -16,11 +16,11 @@ export default ({ close }) => (
       </li>
       <li className="menuLi" onClick={close}>
         <Link
-          to={"/about"}
+          to={"/dashboard"}
           style={{ textDecoration: "none", color: "rgb(53, 53, 53)" }}
         >
           {" "}
-          About{" "}
+          Dashboard{" "}
         </Link>
       </li>
       <li className="menuLi" onClick={close}>
