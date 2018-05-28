@@ -53,16 +53,23 @@ class Dashboard extends Component {
         <NavBar />
         <div className="hangoutDashboardContainer">
           <div className="hangoutDashboardContent">
-            <h2 className="dashboardTitle"> Hangout Dashboard </h2>
+            <h1 className="dashboardTitle"> Hangout Dashboard </h1>
             {this.state.dashboardInfo
               ? this.state.dashboardInfo.map(elem => (
-                  <div>
+                  <div className='dashboardUserInfo'>
                     {" "}
-                    {elem.full_name}
+                    {elem.timeDif > 1 ? (
+                      <span className="timeDiff">
+                        {elem.timeDif} days have passed
+                      </span>
+                    ) : (
+                      <span className="timeDiff">1 day has passed</span>
+                    )}{" "}
+                    <br />
+                    since you last saw {elem.full_name}
+                    <br />
                     <br />
                     <img src={elem.user_img} className="dashboardImage" />
-                    <br />
-                    {elem.availability_starttime}
                   </div>
                 ))
               : ""}
@@ -74,3 +81,5 @@ class Dashboard extends Component {
 }
 
 export default Dashboard;
+
+// Last hangout date {new Date(elem.availability_starttime).toString().slice(0, 15)}
