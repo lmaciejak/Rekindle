@@ -21,11 +21,16 @@ class Dashboard extends Component {
         console.log("RES!!!!!", res);
         let tracker = {};
         let newArr = [];
-        let arr = res.data
+        let arr = res.data;
         arr.forEach(elem => {
           console.log("elem", elem["usertosharewith_id"]);
           if (!tracker[elem["usertosharewith_id"]]) {
             tracker[elem["usertosharewith_id"]] = 1;
+            let date1 = new Date(elem.availability_starttime);
+            var date2 = new Date();
+            var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+            var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+            elem["timeDif"] = diffDays;
             newArr.unshift(elem);
           }
         });
@@ -49,14 +54,18 @@ class Dashboard extends Component {
         <div className="hangoutDashboardContainer">
           <div className="hangoutDashboardContent">
             <h2 className="dashboardTitle"> Hangout Dashboard </h2>
-            {this.state.dashboardInfo ? this.state.dashboardInfo.map((elem) => ( 
-              <div> {elem.full_name} 
-              <br /> 
-              <img src={elem.user_img} />
-              <br /> 
-              {elem.availability_starttime}
-              </div> 
-            )) : ''}
+            {this.state.dashboardInfo
+              ? this.state.dashboardInfo.map(elem => (
+                  <div>
+                    {" "}
+                    {elem.full_name}
+                    <br />
+                    <img src={elem.user_img} className="dashboardImage" />
+                    <br />
+                    {elem.availability_starttime}
+                  </div>
+                ))
+              : ""}
           </div>
         </div>
       </div>
