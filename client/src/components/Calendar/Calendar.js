@@ -129,10 +129,6 @@ class Calendar extends Component {
     this.setState({ title: e });
   };
 
-  setDescription = e => {
-    this.setState({ desc: e });
-  };
-
   handleEventStartTime = (event, date) => {
     this.setState({ start: date });
   };
