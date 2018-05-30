@@ -48,3 +48,18 @@
 .registerButton {
   margin-left: 100px;
 }
+
+@media screen and (max-width: 600px) {
+  .landingName {
+    font-size: 100px;
+  }
+}
+
+.landingTagLine {
+  font-size: 25px;
+  margin-top: -80px;
+}
+
+.formButton {
+  width: 100px;
+}
