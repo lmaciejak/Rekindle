@@ -22,7 +22,7 @@ class LandingPage extends React.Component {
       <div className="landingContainer">
         <img
           className="landingImage"
-          src="https://images.pexels.com/photos/325521/pexels-photo-325521.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350"
+          // src="https://images.pexels.com/photos/325521/pexels-photo-325521.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350"
         />
         <h1 className="landingName"> Rekindle </h1>
         <h4 className="landingTagLine">
