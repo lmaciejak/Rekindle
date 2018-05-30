@@ -219,24 +219,24 @@ function addUserAvailability(req, res, next) {
 }
 
 function makeHangout(req, res, next) {
-  console.log('req', req.body.hangout_availability_id)
+  console.log("req", req.body.hangout_availability_id);
   return db
-  .task("get-everything", t => {
-    return t.batch([
-      t.none(
-        `UPDATE availabilities SET stage = 'plan' WHERE availabilities.availability_id = $1`,
-        [req.body.hangout_availability_id]
-      ),
-      t.one(
-        "INSERT INTO hangouts (hangout_availability_id)" +
-          " VALUES (${hangout_availability_id})" +
-          " RETURNING hangout_id",
-        {
-          hangout_availability_id: req.body.hangout_availability_id,
-        }
-      )
-    ]);
-  })
+    .task("get-everything", t => {
+      return t.batch([
+        t.none(
+          `UPDATE availabilities SET stage = 'plan' WHERE availabilities.availability_id = $1`,
+          [req.body.hangout_availability_id]
+        ),
+        t.one(
+          "INSERT INTO hangouts (hangout_availability_id)" +
+            " VALUES (${hangout_availability_id})" +
+            " RETURNING hangout_id",
+          {
+            hangout_availability_id: req.body.hangout_availability_id
+          }
+        )
+      ]);
+    })
     .then(data => {
       res.json({ hangout_id: data });
     })
@@ -249,14 +249,37 @@ function sendFriendRequest(req, res, next) {
   return db
     .none(
       "INSERT INTO friendships (friend_initial, friend_befriended, befriended_user_status)" +
-       "VALUES (${friend_requester}, ${friend_requested}, 'request')",
+        "VALUES (${friend_requester}, ${friend_requested}, 'request')",
       {
         friend_requester: req.user.user_id,
-        friend_requested: req.body.friend_requested,
+        friend_requested: req.body.friend_requested
       }
     )
     .then(data => {
       res.json("success");
+    })
+    .catch(error => {
+      res.json(error);
+    });
+}
+
+function deleteAvailability(req, res, next) {
+  return db
+    .task("get-everything", t => {
+      return t.batch([
+        t.none("DELETE FROM hangouts WHERE hangout_availability_id=$1;", [
+          req.params.availabilityID
+        ]),
+        t.none("DELETE FROM availabilityshares WHERE availability_id=$1;", [
+          req.params.availabilityID
+        ]),
+        t.none("DELETE FROM availabilities WHERE availability_id=$1;", [
+          req.params.availabilityID
+        ])
+      ]);
+    })
+    .then(data => {
+      res.json("deleted");
     })
     .catch(error => {
       res.json(error);
@@ -270,12 +293,13 @@ module.exports = {
   getUserFriends,
   searchByUser,
   getUser,
-  getProfile, 
+  getProfile,
   getDashboardHangouts,
   addUserAvailability,
   shareAvailabilityWithFriend,
-  getAllUserAvailabilities, 
-  makeHangout, 
-  getHangoutInfo, 
-  sendFriendRequest
+  getAllUserAvailabilities,
+  makeHangout,
+  getHangoutInfo,
+  sendFriendRequest,
+  deleteAvailability
 };
