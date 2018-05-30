@@ -74,7 +74,7 @@ class Calendar extends Component {
           elem.start = new Date(elem.start);
           elem["type"] = "friend";
           if(elem.stage === 'plan'){
-            elem["title"] = `hangout plan`;
+            elem["title"] = `Hangout plan`;
           } else { 
             elem["title"] = `${elem.username}'s free`;
           }
@@ -279,7 +279,7 @@ class Calendar extends Component {
           handleEventEndTime={this.handleEventEndTime}
           handleFriendSelect={this.handleFriendSelect}
           deleteEvent={this.deleteEvent}
-          updatedEvent={this.updateEvent}
+          updateEvent={this.updateEvent}
           addUserAvailability={this.addUserAvailability}
           handleToggle={this.handleToggle}
           makePlan={this.makePlan}

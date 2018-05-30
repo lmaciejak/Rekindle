@@ -21,6 +21,12 @@ class SlotAndEventDialog extends Component {
 
     const confirmPlan = [
       <FlatButton
+      label="Cancel"
+      primary={false}
+      keyboardFocused={true}
+      onClick={this.props.closeDialog}
+    />,
+      <FlatButton
       label="Confirm hangout"
       primary={true}
       keyboardFocused={true}
@@ -31,6 +37,12 @@ class SlotAndEventDialog extends Component {
     ]
 
     const planActions = [
+      <FlatButton
+      label="Cancel"
+      primary={false}
+      keyboardFocused={true}
+      onClick={this.props.closeDialog}
+    />,
       <FlatButton
         label="Make Plans"
         primary={true}
@@ -78,7 +90,6 @@ class SlotAndEventDialog extends Component {
         label="Confirm Edit"
         primary={true}
         keyboardFocused={true}
-        onClick={this.closeDialog}
         onClick={() => {
           this.props.updateEvent(), this.props.closeDialog();
         }}
