@@ -26,8 +26,7 @@ class Register extends Component {
       username: "",
       password: "",
       confirmpassword: "",
-      firstname: "",
-      lastname: "",
+      full_name: "",
       email: "",
       isLoggedIn: false,
       message: "",
@@ -70,12 +69,8 @@ class Register extends Component {
   handleLoginFormSubmit = e => {
     e.preventDefault();
 
-    const {
-      username,
-      password,
-      email,
-      full_name
-    } = this.state;
+    const { username, password, email, full_name } = this.state;
+    console.log("this.state login form submit", this.state);
     axios
       .post("/users/register", {
         username: username,
@@ -107,11 +102,7 @@ class Register extends Component {
   };
 
   render() {
-    const {
-      password,
-      isLoggedIn
-    } = this.state;
-    console.log("isloggedin", isLoggedIn);
+    const { password, isLoggedIn } = this.state;
     if (this.state.isLoggedIn === true) {
       return <Redirect to="/home" />;
     }
@@ -179,6 +170,7 @@ class Register extends Component {
                 name="confirmpassword"
                 required
               />{" "}
+              <br />
               <br />
               <button className="formButton">Register</button>
             </form>
