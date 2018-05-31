@@ -263,11 +263,10 @@ function sendFriendRequest(req, res, next) {
   return db
     .none(
       "INSERT INTO friendships (friend_initial, friend_befriended, befriended_user_status)" +
-        "VALUES (${friend_requester}, ${friend_requested}, 'request')",
+        "VALUES (${friend_requester}, ${friend_requested}, 'accepted')",
       {
         friend_requester: req.user.user_id,
-        friend_requested: req.body.friend_requested, 
-        befriended_user_status: 'accepted'
+        friend_requested: req.body.friend_requested
       }
     )
     .then(data => {
@@ -331,6 +330,6 @@ module.exports = {
   makeHangout,
   getHangoutInfo,
   sendFriendRequest,
-  unfriend, 
+  unfriend,
   deleteAvailability
 };

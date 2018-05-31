@@ -11,10 +11,10 @@ router.get('/searchbyuser/:search', db.searchByUser);
 router.get('/getalluseravailabilities', db.getAllUserAvailabilities)
 router.get('/gethangoutinfo/:hangoutID', db.getHangoutInfo)
 router.get('/getprofile/:userID', db.getProfile)
+router.get('/checkfriend/:userID', db.checkFriend)
 router.get('/getdashboardhangouts', db.getDashboardHangouts)
 router.get('/logout', loginRequired, db.logoutUser);
 
-// router.get('/logout', db.logoutUser);
 
 router.post('/register', db.createUser);
 router.post('/login', db.loginUser);
