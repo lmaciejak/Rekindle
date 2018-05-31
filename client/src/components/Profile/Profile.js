@@ -25,7 +25,6 @@ class Profile extends React.Component {
     axios
       .get(`/users/getprofile/${this.props.profileID["profileID"]}`)
       .then(res => {
-        console.log("RES!!!!!", res);
         this.setState({
           profileInfo: res.data[0]
         });
@@ -39,9 +38,6 @@ class Profile extends React.Component {
     axios
       .get(`/users/checkfriend/${this.props.profileID.profileID}`)
       .then(res => {
-        console.log("this.state.profileid", this.state.profileID);
-        console.log("RES@@@@@", res);
-        console.log("res.data[0]", res.data[0]);
         if (res.data[0]) {
           this.setState({
             isFriend: true
@@ -68,21 +64,19 @@ class Profile extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("prevprops", prevProps);
     if (prevProps !== this.props) {
       this.loadProfile();
-      // window.location.reload()
     }
   }
 
   handleAddFriend = () => {
     axios
       .post(`/users/sendFriendRequest`, {
-        friend_requested: this.state.profileID
+        friend_requested: this.props.profileID.profileID
       })
       .then(res => {
         this.setState({
-          message: res
+          isFriend: true
         });
       })
       .catch(err => {
@@ -94,10 +88,10 @@ class Profile extends React.Component {
 
   handleDeleteFriend = () => {
     axios
-      .post(`/users/unfriend/${this.props.profileID}`)
+      .post(`/users/unfriend/${this.props.profileID.profileID}`)
       .then(res => {
         this.setState({
-          message: res
+          isFriend: false
         });
       })
       .catch(err => {
@@ -112,8 +106,6 @@ class Profile extends React.Component {
 
     console.log("state------", this.state);
     console.log("profile propsssssss", this.props);
-    console.log("first", typeof this.props.profileID.profileID);
-    console.log("second", typeof this.props.user.user_id);
 
     return (
       <div className="profilePageContainer">
@@ -135,7 +127,7 @@ class Profile extends React.Component {
             ) : this.state.isFriend ? (
               <button
                 className="addFriendButton"
-                onClick={this.handleAddFriend}
+                onClick={this.handleDeleteFriend}
               >
                 {" "}
                 Unfriend{" "}
