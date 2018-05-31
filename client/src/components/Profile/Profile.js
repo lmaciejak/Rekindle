@@ -16,7 +16,8 @@ class Profile extends React.Component {
       profileID: this.props.profileID.profileID,
       reload: false,
       message: "",
-      displayEditBtn: false
+      displayEditBtn: false,
+      isFriend: ""
     };
   }
 
@@ -29,15 +30,27 @@ class Profile extends React.Component {
           profileInfo: res.data[0]
         });
       })
-      .then(() => {
-        if (this.props.profileID.profileID !== this.props.user.user_id) {
+      .catch(err => {
+        this.setState({
+          message: `${err.response}`
+        });
+      });
+
+    axios
+      .get(`/users/checkfriend/${this.props.profileID.profileID}`)
+      .then(res => {
+        console.log("this.state.profileid", this.state.profileID);
+        console.log("RES@@@@@", res);
+        console.log("res.data[0]", res.data[0]);
+        if (res.data[0]) {
           this.setState({
-            displayEditBtn: true
+            isFriend: true
           });
-        } else
-          ({
-            displayEditBtn: false
+        } else {
+          this.setState({
+            isFriend: false
           });
+        }
       })
       .catch(err => {
         this.setState({
@@ -79,13 +92,28 @@ class Profile extends React.Component {
       });
   };
 
+  handleDeleteFriend = () => {
+    axios
+      .post(`/users/unfriend/${this.props.profileID}`)
+      .then(res => {
+        this.setState({
+          message: res
+        });
+      })
+      .catch(err => {
+        this.setState({
+          message: `${err.response.data}`
+        });
+      });
+  };
+
   render(props) {
     const { user } = this.state;
 
     console.log("state------", this.state);
     console.log("profile propsssssss", this.props);
-    console.log("first", typeof(this.props.profileID.profileID));
-    console.log("second", typeof(this.props.user.user_id));
+    console.log("first", typeof this.props.profileID.profileID);
+    console.log("second", typeof this.props.user.user_id);
 
     return (
       <div className="profilePageContainer">
@@ -101,8 +129,17 @@ class Profile extends React.Component {
               {" "}
               {this.state.profileInfo.user_location}{" "}
             </h4>
-            {parseInt(this.props.profileID.profileID) ===  parseInt(this.props.user.user_id) ? (
+            {parseInt(this.props.profileID.profileID) ===
+            parseInt(this.props.user.user_id) ? (
               <button className="addFriendButton"> Edit Profile </button>
+            ) : this.state.isFriend ? (
+              <button
+                className="addFriendButton"
+                onClick={this.handleAddFriend}
+              >
+                {" "}
+                Unfriend{" "}
+              </button>
             ) : (
               <button
                 className="addFriendButton"
