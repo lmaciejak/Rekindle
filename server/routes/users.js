@@ -22,5 +22,6 @@ router.post('/adduseravailability', loginRequired, db.addUserAvailability);
 router.post('/shareavailability/:availabilityID', loginRequired, db.shareAvailabilityWithFriend); 
 router.post('/makehangout', db.makeHangout); 
 router.post('/sendFriendRequest', db.sendFriendRequest)
+router.post('/deleteavailability/:availabilityID', db.deleteAvailability)
 
 module.exports = router;

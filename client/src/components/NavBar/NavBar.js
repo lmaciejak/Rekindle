@@ -160,11 +160,6 @@ class NavBar extends Component {
             <img src={calendar} className="navIcon" />{" "}
             <span className="tooltiptext">Calendar</span>
           </Link>
-          <Link to={"/hangouts"} className="rekindleLink tooltip">
-            {" "}
-            <img src={hangout} className="navIcon" />{" "}
-            <span className="tooltiptext">Hangouts</span>
-          </Link>
           <div onClick={this.handleClickLogout} className="rekindleLink tooltip">
           {" "}
           <img src={logout} className="navIcon" />{" "}
@@ -178,3 +173,9 @@ class NavBar extends Component {
 }
 
 export default withRouter(NavBar);
+
+// <Link to={"/hangouts"} className="rekindleLink tooltip">
+// {" "}
+// <img src={hangout} className="navIcon" />{" "}
+// <span className="tooltiptext">Hangouts</span>
+// </Link>
