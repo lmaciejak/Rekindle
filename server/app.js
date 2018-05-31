@@ -28,7 +28,7 @@ app.use(session({
 }));
 
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../frontend/build')));
+app.use(express.static(path.join(__dirname, '../client/build')));
 // app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(passport.initialize());
@@ -46,7 +46,7 @@ app.use('/', index);
 app.use('/users', users);
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '../frontend/build/index.html'));
+  res.sendFile(path.join(__dirname + '../client/build/index.html'));
 });
 
 // catch 404 and forward to error handler
