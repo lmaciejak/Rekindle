@@ -252,8 +252,23 @@ function sendFriendRequest(req, res, next) {
         "VALUES (${friend_requester}, ${friend_requested}, 'request')",
       {
         friend_requester: req.user.user_id,
-        friend_requested: req.body.friend_requested
+        friend_requested: req.body.friend_requested, 
+        befriended_user_status: 'accepted'
       }
+    )
+    .then(data => {
+      res.json("success");
+    })
+    .catch(error => {
+      res.json(error);
+    });
+}
+
+function unfriend(req, res, next) {
+  return db
+    .none(
+      `DELETE FROM friendships WHERE friend_befriended = $1 AND friend_initial = $2 OR friend_initial = $1 AND friend_befriended =$2`,
+      [req.user.user_id, req.params.userID]
     )
     .then(data => {
       res.json("success");
@@ -301,5 +316,6 @@ module.exports = {
   makeHangout,
   getHangoutInfo,
   sendFriendRequest,
+  unfriend, 
   deleteAvailability
 };
