@@ -40,7 +40,8 @@ class Calendar extends Component {
       message: "",
       toggleValue: false,
       planInitiated: false,
-      hangoutID: ""
+      hangoutID: "",
+      message: ""
     };
   }
 
@@ -60,7 +61,7 @@ class Calendar extends Component {
     axios
       .get(`/users/getalluseravailabilities`)
       .then(res => {
-        console.log('RESSSSSSS', res.data)
+        console.log("RESSSSSSS", res.data);
         let dataFormatted = res.data;
 
         dataFormatted[0].forEach(elem => {
@@ -73,9 +74,9 @@ class Calendar extends Component {
           elem.end = new Date(elem.end);
           elem.start = new Date(elem.start);
           elem["type"] = "friend";
-          if(elem.stage === 'plan'){
+          if (elem.stage === "plan") {
             elem["title"] = `Hangout plan`;
-          } else { 
+          } else {
             elem["title"] = `${elem.username}'s free`;
           }
         });
@@ -92,8 +93,13 @@ class Calendar extends Component {
   };
 
   addUserAvailability = () => {
-    const eventsList = this.state.events
-    this.setState({ events: [...eventsList, {'start': this.state.start, 'end': this.state.end, 'title': `I'm free`} ]});
+    const eventsList = this.state.events;
+    this.setState({
+      events: [
+        ...eventsList,
+        { start: this.state.start, end: this.state.end, title: `I'm free` }
+      ]
+    });
     axios
       .post(`/users/addUserAvailability`, {
         availability_starttime: moment(this.state.start).format(""),
@@ -159,6 +165,21 @@ class Calendar extends Component {
   };
 
   deleteEvent = () => {
+    axios
+      .post(
+        `/users/deleteavailability/${this.state.clickedEvent.availability_id}`
+      )
+      .then(res => {
+        this.setState({
+          message: res
+        });
+      })
+      .catch(err => {
+        this.setState({
+          message: `${err.response.data}`
+        });
+      });
+
     let updatedEvents = this.state.events.filter(
       event => event["start"] !== this.state.start
     );
@@ -171,8 +192,8 @@ class Calendar extends Component {
         hangout_availability_id: this.state.clickedEvent.availability_id
       })
       .then(res => {
-        const id = res.data
-        this.setState({ hangoutID: id['hangout_id'][1]['hangout_id'] });
+        const id = res.data;
+        this.setState({ hangoutID: id["hangout_id"][1]["hangout_id"] });
       })
       .then(() => {
         this.setState({
@@ -238,10 +259,9 @@ class Calendar extends Component {
       newStyle.backgroundColor = "lightgreen";
     }
 
-    if (event.stage === 'plan'){
+    if (event.stage === "plan") {
       newStyle.backgroundColor = "rgb(202, 188, 255)";
     }
-
 
     return {
       className: "",
