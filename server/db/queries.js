@@ -171,6 +171,20 @@ function getDashboardHangouts(req, res, next) {
     });
 }
 
+function checkFriend(req, res, next) {
+  db
+    .any(
+      `SELECT * FROM friendships WHERE friend_befriended = $1 AND friend_initial = $2 OR friend_initial = $1 AND friend_befriended =$2`,
+      [req.user.user_id, req.params.userID]
+    )
+    .then(data => {
+      res.json(data);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+}
+
 /* post */
 function shareAvailabilityWithFriend(req, res, next) {
   return db
@@ -310,6 +324,7 @@ module.exports = {
   getUser,
   getProfile,
   getDashboardHangouts,
+  checkFriend,
   addUserAvailability,
   shareAvailabilityWithFriend,
   getAllUserAvailabilities,
