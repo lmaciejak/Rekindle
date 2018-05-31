@@ -66,7 +66,7 @@
   width: 100%;
   /* background-color: #ff5f00; */
   padding-top: 10px;
-  padding-bottom: 9px;
+  padding-bottom: 6px;
   border-bottom-width: 3px;
   border-bottom-style: solid;
   border-bottom-color: rgb(235, 232, 232);
@@ -75,7 +75,7 @@
   /* background-color: rgb(76, 59, 235); */
   /* background-color: rgb(129, 243, 177);  */
   /* background-color: aqua;  */
-  background-color: rgb(53, 80, 201); 
+  background-color: rgb(53, 80, 201);
 
   display: flex;
   justify-content: space-around;
@@ -91,9 +91,10 @@
   color: rgb(255, 230, 0);
   font-family: "Yesteryear", cursive;
   text-shadow: 1px 3px 1px #000000;
-  margin-top: 0;
-  margin-bottom: 0;
+  margin-top: 5px;
+  margin-bottom: -3px;
   padding-left: 25px;
+  padding-bottom: 0; 
 }
 
 .searchBarName:hover {
@@ -102,7 +103,7 @@
 
 .iconContainer {
   /* margin-left: 100px; */
-  margin-top: 13px;
+  margin-top: 17px;
 }
 
 .rekindleLink {
@@ -113,14 +114,13 @@
   width: 40px;
   padding: 10px;
   /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
-  margin-left: 20px; 
+  margin-left: 20px;
 }
 
 .navIcon:hover {
   transform: scale(1.1);
   cursor: pointer;
 }
-
 
 .tooltip {
   position: relative;
@@ -139,7 +139,7 @@
 
   width: 120px;
   top: 85%;
-  left: 50%; 
+  left: 50%;
   margin-left: -50px; /* Use half of the width (120/2 = 60), to center the tooltip */
 
   /* Position the tooltip text - see examples below! */
@@ -153,64 +153,62 @@
 }
 
 @media only screen and (max-width: 1000px) {
-
-  .iconContainer { 
-    display: none; 
+  .iconContainer {
+    display: none;
   }
 
-.burger-menu,
-.burger-menu.open {
-  display: inline-block;
-  cursor: pointer;
-  /* position: fixed; */
-  right: 40px;
-  /* top: 80px; */
-  z-index: 9999;
-  background: #fff;
-  padding: 10px;
-  border-radius: 25px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  margin-top: 25px; 
-}
+  .burger-menu,
+  .burger-menu.open {
+    display: inline-block;
+    cursor: pointer;
+    /* position: fixed; */
+    right: 40px;
+    /* top: 80px; */
+    z-index: 9999;
+    background: #fff;
+    padding: 10px;
+    border-radius: 25px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    margin-top: 25px;
+  }
 
-.burger-menu .bar1,
-.bar2,
-.bar3 {
-  width: 25px;
-  height: 3px;
-  background-color: #333;
-  margin: 4px 0;
-  transition: 0.4s;
-}
+  .burger-menu .bar1,
+  .bar2,
+  .bar3 {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 4px 0;
+    transition: 0.4s;
+  }
 
-.burger-menu.open .bar1 {
-  -webkit-transform: rotate(-45deg) translate(-4px, 4px);
-  transform: rotate(-45deg) translate(-4px, 4px);
-}
+  .burger-menu.open .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-4px, 4px);
+    transform: rotate(-45deg) translate(-4px, 4px);
+  }
 
-.burger-menu.open .bar2 {
-  opacity: 0;
-}
+  .burger-menu.open .bar2 {
+    opacity: 0;
+  }
 
-.burger-menu.open .bar3 {
-  -webkit-transform: rotate(45deg) translate(-6px, -6px);
-  transform: rotate(45deg) translate(-6px, -6px);
-}
+  .burger-menu.open .bar3 {
+    -webkit-transform: rotate(45deg) translate(-6px, -6px);
+    transform: rotate(45deg) translate(-6px, -6px);
+  }
 
-.popUpStyles { 
-  font-family: "sans-serif"; 
-  text-align: center; 
-  margin-top: 40px;  
-}
+  .popUpStyles {
+    font-family: "sans-serif";
+    text-align: center;
+    margin-top: 40px;
+  }
 
-.menuList { 
-  list-style-type: none;
-  margin-top: -100px; 
-  margin-left: -40px; 
-}
+  .menuList {
+    list-style-type: none;
+    margin-top: -100px;
+    margin-left: -40px;
+  }
 
-.menuLi { 
-  font-size: 32px; 
-}
-
+  .menuLi {
+    font-size: 32px;
+  }
 }

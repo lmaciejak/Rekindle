@@ -9,7 +9,7 @@ import dashboard from "../../images/dashboard.png";
 import calendar from "../../images/calendar.png";
 import hangout from "../../images/hangout.png";
 import logout from "../../images/logout.png";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 import BurgerMenu from "./BurgerMenu";
 
 function getSuggestionValue(suggestion) {
@@ -100,14 +100,19 @@ class NavBar extends Component {
     event,
     { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }
   ) => {
-    this.setState({
-      finalSuggestion: [suggestion],
-      redirect: true,
-      value: "",
-      modalIsOpen: true
-    }, () => { 
-      this.props.history.push(`/profile/${this.state.finalSuggestion[0].user_id}`)
-    });
+    this.setState(
+      {
+        finalSuggestion: [suggestion],
+        redirect: true,
+        value: "",
+        modalIsOpen: true
+      },
+      () => {
+        this.props.history.push(
+          `/profile/${this.state.finalSuggestion[0].user_id}`
+        );
+      }
+    );
   };
 
   showSettings(event) {
@@ -123,14 +128,9 @@ class NavBar extends Component {
       onChange: this.onChange,
       onKeyPress: this.onKeyPress
     };
-    if (this.state.redirect) {
-      // return (
-        
-      // );
-    }
 
-    if(this.state.redirectLanding) {
-      return <Redirect to='/' />
+    if (this.state.redirectLanding) {
+      return <Redirect to="/" />;
     }
 
     return (
@@ -160,11 +160,14 @@ class NavBar extends Component {
             <img src={calendar} className="navIcon" />{" "}
             <span className="tooltiptext">Calendar</span>
           </Link>
-          <div onClick={this.handleClickLogout} className="rekindleLink tooltip">
-          {" "}
-          <img src={logout} className="navIcon" />{" "}
-          <span className="tooltiptext">Logout</span>
-        </div>
+          <div
+            onClick={this.handleClickLogout}
+            className="rekindleLink tooltip"
+          >
+            {" "}
+            <img src={logout} className="navIcon" />{" "}
+            <span className="tooltiptext">Logout</span>
+          </div>
         </div>
         <BurgerMenu />
       </div>
