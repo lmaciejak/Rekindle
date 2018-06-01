@@ -41,7 +41,8 @@ class Calendar extends Component {
       toggleValue: false,
       planInitiated: false,
       hangoutID: "",
-      message: ""
+      message: "", 
+      invitedFriends: []
     };
   }
 
@@ -156,7 +157,6 @@ class Calendar extends Component {
     const index = events.findIndex(event => event === clickedEvent);
     const updatedEvent = events.slice();
     updatedEvent[index].title = title;
-    updatedEvent[index].desc = desc;
     updatedEvent[index].start = start;
     updatedEvent[index].end = end;
     this.setState({
@@ -219,6 +219,7 @@ class Calendar extends Component {
   };
 
   handleEventSelected = event => {
+    console.log('&&&&event', event)
     this.setState(
       {
         selection: "event"
@@ -231,7 +232,21 @@ class Calendar extends Component {
           end: event.end,
           title: event.title,
           desc: event.desc
+        }, 
+      () => { 
+        axios
+        .get(`/users/getinvitedfriends/${this.state.clickedEvent.availability_id}`)
+        .then(res => {
+          this.setState({
+            invitedFriends: res.data
+          });
         })
+        .catch(err => {
+          this.setState({
+            message: err.response.status
+          });
+        });
+      })
     );
   };
 

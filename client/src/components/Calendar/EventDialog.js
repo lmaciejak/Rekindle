@@ -6,14 +6,17 @@ import TextField from "material-ui/TextField";
 import FlatButton from "material-ui/FlatButton";
 import Select from "react-select";
 import Toggle from "material-ui/Toggle";
-// import "./react-select.css";
+import axios from "axios";
 
 class SlotAndEventDialog extends Component {
   constructor(props) {
     super(props);
   }
 
-  render() {
+  render(props) {
+    console.log("dialogPROPA", this.state);   
+    console.log("dialogPROPA2", this.props);
+
     const stateOptions = this.props.calendarState.friendsArr.map(elem => ({
       value: elem.user_id,
       label: elem.username
@@ -21,28 +24,28 @@ class SlotAndEventDialog extends Component {
 
     const confirmPlan = [
       <FlatButton
-      label="Cancel"
-      primary={false}
-      keyboardFocused={true}
-      onClick={this.props.closeDialog}
-    />,
+        label="Cancel"
+        primary={false}
+        keyboardFocused={true}
+        onClick={this.props.closeDialog}
+      />,
       <FlatButton
-      label="Confirm hangout"
-      primary={true}
-      keyboardFocused={true}
-      onClick={() => {
-        this.props.makePlan();
-      }}
-    />
-    ]
+        label="Confirm hangout"
+        primary={true}
+        keyboardFocused={true}
+        onClick={() => {
+          this.props.makePlan();
+        }}
+      />
+    ];
 
     const planActions = [
       <FlatButton
-      label="Cancel"
-      primary={false}
-      keyboardFocused={true}
-      onClick={this.props.closeDialog}
-    />,
+        label="Cancel"
+        primary={false}
+        keyboardFocused={true}
+        onClick={this.props.closeDialog}
+      />,
       <FlatButton
         label="Make Plans"
         primary={true}
@@ -120,9 +123,11 @@ class SlotAndEventDialog extends Component {
         actions={
           this.props.calendarState.selection === "slot"
             ? availabilityActions
-            : this.props.calendarState.clickedEvent.stage === "plan" ? confirmPlan : this.props.calendarState.clickedEvent.type === "friend"
-              ? planActions
-              : eventActions
+            : this.props.calendarState.clickedEvent.stage === "plan"
+              ? confirmPlan
+              : this.props.calendarState.clickedEvent.type === "friend"
+                ? planActions
+                : eventActions
         }
         modal={false}
         open={
@@ -132,7 +137,6 @@ class SlotAndEventDialog extends Component {
         }
         onRequestClose={this.props.closeDialog}
       >
-
         <br />
         <TimePicker
           color="primary"
@@ -152,13 +156,18 @@ class SlotAndEventDialog extends Component {
           value={this.props.calendarState.end}
           onChange={this.props.handleEventEndTime}
         />
+        {this.props.calendarState.selection !== "slot"
+          ?  <div>Availability shared with {this.props.calendarState.invitedFriends[0] ? this.props.calendarState.invitedFriends.map(elem => (
+              <li className="invitedFriends">{elem.username}</li>
+            )) : 'none of your friends yet'
+          } </div>: ""}
         <Select
           name="form-field-name"
           multi
           value={this.props.calendarState.selectedFriends}
           onChange={this.props.handleFriendSelect}
           options={stateOptions}
-          placeholder="Share availability with friends"
+          placeholder={this.props.calendarState.invitedFriends[0] ? "Share availability with more of your friends" : "Share availability with friends"}
         />
         {this.props.calendarState.clickedEvent.type === "friend" ? (
           <div>
@@ -179,7 +188,6 @@ class SlotAndEventDialog extends Component {
 }
 
 export default SlotAndEventDialog;
-
 
 // <TextField
 // floatingLabelText="Suggest an activity"
