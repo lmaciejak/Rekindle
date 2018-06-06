@@ -14,6 +14,8 @@ router.get('/getprofile/:userID', db.getProfile)
 router.get('/checkfriend/:userID', db.checkFriend)
 router.get('/getdashboardhangouts', db.getDashboardHangouts)
 router.get('/logout', loginRequired, db.logoutUser);
+router.get('/getinvitedfriends/:availabilityID', db.getInvitedFriends);
+
 
 
 router.post('/register', db.createUser);
