@@ -77,7 +77,10 @@ class Calendar extends Component {
           elem["type"] = "friend";
           if (elem.stage === "plan") {
             elem["title"] = `Hangout plan`;
-          } else {
+          } else if (elem.stage === "confirmed") {
+            elem["title"] = `Past hangout`;
+          }
+          else {
             elem["title"] = `${elem.username}'s free`;
           }
         });
@@ -276,6 +279,10 @@ class Calendar extends Component {
 
     if (event.stage === "plan") {
       newStyle.backgroundColor = "rgb(202, 188, 255)";
+    }
+
+    if (event.stage === "confirmed") {
+      newStyle.backgroundColor = "#cccccc";
     }
 
     return {

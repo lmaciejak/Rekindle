@@ -123,7 +123,8 @@ class SlotAndEventDialog extends Component {
         actions={
           this.props.calendarState.selection === "slot"
             ? availabilityActions
-            : this.props.calendarState.clickedEvent.stage === "plan"
+            : this.props.calendarState.clickedEvent.stage === "confirmed" ? 
+            ' ' : this.props.calendarState.clickedEvent.stage === "plan"
               ? confirmPlan
               : this.props.calendarState.clickedEvent.type === "friend"
                 ? planActions
@@ -161,6 +162,7 @@ class SlotAndEventDialog extends Component {
               <li className="invitedFriends">{elem.username}</li>
             )) : 'none of your friends yet'
           } </div>: ""}
+          { this.props.calendarState.clickedEvent.stage !== "confirmed" ? 
         <Select
           name="form-field-name"
           multi
@@ -169,6 +171,7 @@ class SlotAndEventDialog extends Component {
           options={stateOptions}
           placeholder={this.props.calendarState.invitedFriends[0] ? "Share availability with more of your friends" : "Share availability with friends"}
         />
+        : '' } 
         <br />
         <br />
         <br />
