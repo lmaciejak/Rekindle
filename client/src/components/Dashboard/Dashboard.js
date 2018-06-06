@@ -24,8 +24,8 @@ class Dashboard extends Component {
         let arr = res.data;
         arr.forEach(elem => {
           console.log("elem", elem["usertosharewith_id"]);
-          if (!tracker[elem["usertosharewith_id"]]) {
-            tracker[elem["usertosharewith_id"]] = 1;
+          if (!tracker[elem["availability_user_id"]]) {
+            tracker[elem["availability_user_id"]] = 1;
             let date1 = new Date(elem.availability_starttime);
             var date2 = new Date();
             var timeDiff = Math.abs(date2.getTime() - date1.getTime());

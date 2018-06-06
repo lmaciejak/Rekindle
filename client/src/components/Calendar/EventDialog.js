@@ -169,15 +169,6 @@ class SlotAndEventDialog extends Component {
           options={stateOptions}
           placeholder={this.props.calendarState.invitedFriends[0] ? "Share availability with more of your friends" : "Share availability with friends"}
         />
-        {this.props.calendarState.clickedEvent.type === "friend" ? (
-          <div>
-            {" "}
-            Are you also available?{" "}
-            <Toggle onToggle={this.props.handleToggle} />{" "}
-          </div>
-        ) : (
-          ""
-        )}
         <br />
         <br />
         <br />
@@ -196,3 +187,14 @@ export default SlotAndEventDialog;
 //   this.props.changeTitle(e.target.value);
 // }}
 // />
+
+
+// {this.props.calendarState.clickedEvent.type === "friend" ? (
+//   <div>
+//     {" "}
+//     Are you also available?{" "}
+//     <Toggle onToggle={this.props.handleToggle} />{" "}
+//   </div>
+// ) : (
+//   ""
+// )}
