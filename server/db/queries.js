@@ -185,6 +185,20 @@ function checkFriend(req, res, next) {
     });
 }
 
+function getInvitedFriends(req, res, next) {
+  db
+    .any(
+      `SELECT username FROM availabilityshares JOIN users ON(usertosharewith_id = user_id) WHERE availability_id = $1`,
+      [req.params.availabilityID]
+    )
+    .then(data => {
+      res.json(data);
+    })
+    .catch(error => {
+      res.json(error);
+    });
+}
+
 /* post */
 function shareAvailabilityWithFriend(req, res, next) {
   return db
@@ -324,6 +338,7 @@ module.exports = {
   getProfile,
   getDashboardHangouts,
   checkFriend,
+  getInvitedFriends,
   addUserAvailability,
   shareAvailabilityWithFriend,
   getAllUserAvailabilities,
