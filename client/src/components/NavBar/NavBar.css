@@ -212,3 +212,39 @@
     font-size: 32px;
   }
 }
+
+
+@media only screen and (max-width: 882px) {
+  .react-autosuggest__input{ 
+    margin-left: -120px;
+    width: 280px; 
+  }
+
+  .react-autosuggest__suggestions-container--open{ 
+    margin-left: -120px; 
+    width: 320px;
+  }
+  
+  .searchBarName { 
+    font-size: 40px; 
+    margin-top: 20px; 
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  .react-autosuggest__input{ 
+    margin-left: -110px;
+    width: 150px; 
+  }
+
+  .react-autosuggest__suggestions-container--open{ 
+    margin-left: -110px; 
+    width: 190px;
+  }
+
+  .searchBarName { 
+    font-size: 40px; 
+    margin-top: 20px; 
+    margin-left: -30px; 
+  }
+}
