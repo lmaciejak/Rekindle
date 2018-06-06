@@ -63,17 +63,18 @@ INSERT INTO users (username, password, email, full_name, user_img, user_location
 INSERT INTO friendships (friend_initial, friend_befriended, befriended_user_status, lastHangoutDate)
 VALUES (1, 2, 'accepted', NULL), (1, 3, 'accepted', null);
 
-INSERT INTO availabilities (availability_user_id, availability_starttime, availability_endtime, availability_title)
-VALUES (1, '2018-02-06 19:00:00', '2018-02-06 21:00:00', 'free'), 
-(1, '2018-04-06 19:00:00', '2018-04-06 21:00:00', 'free'), 
-(1, '2018-05-28 19:00:00', '2018-05-28 21:00:00', 'free'), 
-(2, '2018-06-07 18:30:00', '2018-06-07 20:30:00', 'free'), 
-(3, '2018-06-10 14:00:00', '2018-06-10 21:00:00', 'free'), 
-(1, '2018-06-15 19:00:00', '2018-06-15 20:00:00', 'free'); 
+INSERT INTO availabilities (availability_user_id, availability_starttime, availability_endtime, availability_title, stage)
+VALUES (1, '2018-02-06 19:00:00', '2018-02-06 21:00:00', 'free', NULL), 
+(1, '2018-04-06 19:00:00', '2018-04-06 21:00:00', 'free', NULL), 
+(1, '2018-05-28 19:00:00', '2018-05-28 21:00:00', 'free', NULL), 
+(2, '2018-06-07 18:30:00', '2018-06-07 20:30:00', 'free', NULL), 
+(3, '2018-06-10 14:00:00', '2018-06-10 21:00:00', 'free', NULL), 
+(1, '2018-06-15 19:00:00', '2018-06-15 20:00:00', 'free', NULL), 
+(3, '2018-06-19 19:00:00', '2018-06-19 21:00:00', 'free', 'plan'); 
 
 
 INSERT INTO availabilityshares (availability_id, usertosharewith_id, hangout_confirmed) 
 VALUES (4, 1, 'no'), (4, 3, 'no'), (5, 1, 'no'), 
-(1, 2, 'yes'), (2, 2, 'yes'), (3, 3, 'yes'); 
+(1, 2, 'yes'), (2, 2, 'yes'), (3, 3, 'yes'), (7, 1, 'no'), (7, 2, 'no'); 
 
 INSERT INTO hangouts (hangout_availability_id) VALUES (1); 
