@@ -11,17 +11,13 @@ import NavBar from "../NavBar/NavBar";
 class Homepage extends React.Component {
   constructor() {
     super();
-    this.state = {
-      user: "",
-      fetchingUser: true
-    };
   }
 
   render() {
-    const { user } = this.state;
+    console.log('this.props.user', this.props.user)
     return (
       <div className="homepageContainer">
-        <NavBar />
+        <NavBar user={this.props.user} />
         <div className="calendarBig">
         <Calendar />
         </div>

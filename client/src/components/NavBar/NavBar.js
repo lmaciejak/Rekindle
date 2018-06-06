@@ -121,6 +121,7 @@ class NavBar extends Component {
 
   render(props) {
     console.log("finalsuggestion", this.state.finalSuggestion);
+    console.log('navpropsss', this.props)
     const { value, suggestions } = this.state;
     const inputProps = {
       placeholder: "Find your friends",

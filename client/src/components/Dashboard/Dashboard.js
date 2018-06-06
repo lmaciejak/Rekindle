@@ -50,7 +50,7 @@ class Dashboard extends Component {
     console.log("dashboard", this.state.dashboardInfo);
     return (
       <div className="hangoutPage">
-        <NavBar />
+        <NavBar user={this.props.user} />
         <div className="hangoutDashboardContainer">
           <div className="hangoutDashboardContent">
             <h1 className="dashboardTitle"> Hangout Dashboard </h1>

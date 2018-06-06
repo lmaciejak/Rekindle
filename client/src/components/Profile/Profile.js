@@ -105,11 +105,12 @@ class Profile extends React.Component {
     const { user } = this.state;
 
     console.log("state------", this.state);
-    console.log("profile propsssssss", this.props);
+    console.log("profile.profileid", this.props.profileID.profileID);
+    console.log('props.user.user_id', this.props.user.user_id)
 
     return (
       <div className="profilePageContainer">
-        <NavBar />
+        <NavBar  user={this.props.user} />
         <div className="profilePageMain">
           <div className="profilePageContent">
             <img
