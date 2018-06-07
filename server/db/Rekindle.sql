@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS rekindle;
-CREATE DATABASE rekindle;
+-- DROP DATABASE IF EXISTS rekindle;
+-- CREATE DATABASE rekindle;
 
-\c rekindle
+-- \c rekindle
 
 CREATE TABLE users (
   user_id SERIAL PRIMARY KEY,
