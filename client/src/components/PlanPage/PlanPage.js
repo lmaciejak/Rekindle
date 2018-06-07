@@ -42,10 +42,10 @@ class PlanPage extends React.Component {
       <div className="planPageContainer">
         <NavBar />
         <div className="planPageMainContent">
-        <div className="planPageContent">
-          <h1> {dateStart.toString()} </h1>
-          <h1> hello </h1>
-        </div>
+          <div className="planPageContent">
+            <h1> Plan Your Hangout </h1>
+            <h3> {dateStart.toString()} </h3>
+          </div>
         </div>
       </div>
     );
