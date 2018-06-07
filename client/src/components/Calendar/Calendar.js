@@ -190,6 +190,12 @@ class Calendar extends Component {
   };
 
   makePlan = () => {
+    const { title, desc, start, end, events, clickedEvent } = this.state;
+    const index = events.findIndex(event => event === clickedEvent);
+    const updatedEvent = events.slice();
+    updatedEvent[index].stage = 'plan';
+    updatedEvent[index].title = 'Hangout plan';
+
     axios
       .post(`/users/makehangout`, {
         hangout_availability_id: this.state.clickedEvent.availability_id
@@ -198,12 +204,33 @@ class Calendar extends Component {
         const id = res.data;
         this.setState({ hangoutID: id["hangout_id"][1]["hangout_id"] });
       })
-      .then(() => {
-        this.setState({
-          planInitiated: true
-        });
-      });
+      // .then(() => {
+      //   this.setState({
+      //     planInitiated: true
+      //   });
+      // });
   };
+
+  confirmPlan = () => { 
+    const { title, desc, start, end, events, clickedEvent } = this.state;
+    const index = events.findIndex(event => event === clickedEvent);
+    const updatedEvent = events.slice();
+    updatedEvent[index].stage = 'confirmed';
+    updatedEvent[index].title = 'Past hangout';
+
+    axios
+    .post(`/users/confirmplan`, {
+      hangout_availability_id: this.state.clickedEvent.availability_id
+    })
+    .then(res => {
+      this.setState({ message: 'success' });
+    })
+
+  }
+      // .then(res => {
+    //   const id = res.data;
+    //   this.setState({ hangoutID: id["hangout_id"][1]["hangout_id"] });
+    // })
 
   handleSlotSelected = slotInfo => {
     this.setState(
@@ -325,6 +352,7 @@ class Calendar extends Component {
           addUserAvailability={this.addUserAvailability}
           handleToggle={this.handleToggle}
           makePlan={this.makePlan}
+          confirmPlan={this.confirmPlan}
         />
       </div>
     );

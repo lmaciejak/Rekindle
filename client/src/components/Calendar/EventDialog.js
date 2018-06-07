@@ -14,7 +14,7 @@ class SlotAndEventDialog extends Component {
   }
 
   render(props) {
-    console.log("dialogPROPA", this.state);   
+    console.log("dialogPROPA", this.state);
     console.log("dialogPROPA2", this.props);
 
     const stateOptions = this.props.calendarState.friendsArr.map(elem => ({
@@ -34,7 +34,7 @@ class SlotAndEventDialog extends Component {
         primary={true}
         keyboardFocused={true}
         onClick={() => {
-          this.props.makePlan();
+          this.props.confirmPlan(), this.props.closeDialog();
         }}
       />
     ];
@@ -47,11 +47,11 @@ class SlotAndEventDialog extends Component {
         onClick={this.props.closeDialog}
       />,
       <FlatButton
-        label="Make Plans"
+        label="I'm also free"
         primary={true}
         keyboardFocused={true}
         onClick={() => {
-          this.props.makePlan();
+          this.props.makePlan(), this.props.closeDialog();
         }}
       />
     ];
@@ -123,12 +123,13 @@ class SlotAndEventDialog extends Component {
         actions={
           this.props.calendarState.selection === "slot"
             ? availabilityActions
-            : this.props.calendarState.clickedEvent.stage === "confirmed" ? 
-            ' ' : this.props.calendarState.clickedEvent.stage === "plan"
-              ? confirmPlan
-              : this.props.calendarState.clickedEvent.type === "friend"
-                ? planActions
-                : eventActions
+            : this.props.calendarState.clickedEvent.stage === "confirmed"
+              ? " "
+              : this.props.calendarState.clickedEvent.stage === "plan"
+                ? confirmPlan
+                : this.props.calendarState.clickedEvent.type === "friend"
+                  ? planActions
+                  : eventActions
         }
         modal={false}
         open={
@@ -157,21 +158,34 @@ class SlotAndEventDialog extends Component {
           value={this.props.calendarState.end}
           onChange={this.props.handleEventEndTime}
         />
-        {this.props.calendarState.selection !== "slot"
-          ?  <div>Availability shared with {this.props.calendarState.invitedFriends[0] ? this.props.calendarState.invitedFriends.map(elem => (
-              <li className="invitedFriends">{elem.username}</li>
-            )) : 'none of your friends yet'
-          } </div>: ""}
-          { this.props.calendarState.clickedEvent.stage !== "confirmed" ? 
-        <Select
-          name="form-field-name"
-          multi
-          value={this.props.calendarState.selectedFriends}
-          onChange={this.props.handleFriendSelect}
-          options={stateOptions}
-          placeholder={this.props.calendarState.invitedFriends[0] ? "Share availability with more of your friends" : "Share availability with friends"}
-        />
-        : '' } 
+        {this.props.calendarState.selection !== "slot" ? (
+          <div>
+            Availability shared with{" "}
+            {this.props.calendarState.invitedFriends[0]
+              ? this.props.calendarState.invitedFriends.map(elem => (
+                  <li className="invitedFriends">{elem.username}</li>
+                ))
+              : "none of your friends yet"}{" "}
+          </div>
+        ) : (
+          ""
+        )}
+        {this.props.calendarState.clickedEvent.stage !== "confirmed" ? (
+          <Select
+            name="form-field-name"
+            multi
+            value={this.props.calendarState.selectedFriends}
+            onChange={this.props.handleFriendSelect}
+            options={stateOptions}
+            placeholder={
+              this.props.calendarState.invitedFriends[0]
+                ? "Share availability with more of your friends"
+                : "Share availability with friends"
+            }
+          />
+        ) : (
+          ""
+        )}
         <br />
         <br />
         <br />
@@ -190,7 +204,6 @@ export default SlotAndEventDialog;
 //   this.props.changeTitle(e.target.value);
 // }}
 // />
-
 
 // {this.props.calendarState.clickedEvent.type === "friend" ? (
 //   <div>
