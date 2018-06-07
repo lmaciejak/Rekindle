@@ -22,7 +22,8 @@ router.post('/register', db.createUser);
 router.post('/login', db.loginUser);
 router.post('/adduseravailability', loginRequired, db.addUserAvailability); 
 router.post('/shareavailability/:availabilityID', loginRequired, db.shareAvailabilityWithFriend); 
-router.post('/makehangout', db.makeHangout); 
+router.post('/makehangout', db.makeHangout);
+router.post('/confirmplan', db.confirmPlan);  
 router.post('/sendFriendRequest', db.sendFriendRequest)
 router.post('/unfriend/:userID', db.unfriend)
 router.post('/deleteavailability/:availabilityID', db.deleteAvailability)

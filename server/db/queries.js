@@ -160,8 +160,9 @@ function getHangoutInfo(req, res, next) {
 function getDashboardHangouts(req, res, next) {
   db
     .any(
-      `SELECT availabilities.availability_id, availability_starttime, availability_endtime, availabilityshare_id, usertosharewith_id, username, full_name, user_img, user_location FROM availabilities JOIN availabilityshares ON(availabilities.availability_id = availabilityshares.availability_id) JOIN users ON (availabilityshares.usertosharewith_id = users.user_id) WHERE hangout_confirmed = 'yes' AND usertosharewith_id IN (SELECT friend_befriended FROM friendships JOIN users ON(friend_befriended=user_id) WHERE friend_initial=$1 OR friend_befriended=$1) ORDER BY availability_endtime DESC`,
-      [req.user.user_id]
+      // `SELECT availabilities.availability_id, availability_starttime, availability_endtime, availabilityshare_id, usertosharewith_id, username, full_name, user_img, user_location FROM availabilities JOIN availabilityshares ON(availabilities.availability_id = availabilityshares.availability_id) JOIN users ON (availabilityshares.usertosharewith_id = users.user_id) WHERE hangout_confirmed = 'yes' AND usertosharewith_id IN (SELECT friend_befriended FROM friendships JOIN users ON(friend_befriended=user_id) WHERE friend_initial=$1 OR friend_befriended=$1) ORDER BY availability_endtime DESC`,
+      `SELECT availabilities.availability_id, availability_starttime, availability_endtime, availabilities.availability_user_id, availabilityshare_id, usertosharewith_id, username, full_name, user_img, user_location FROM availabilities JOIN availabilityshares ON(availabilities.availability_id = availabilityshares.availability_id) JOIN users ON (availabilities.availability_user_id = users.user_id) WHERE hangout_confirmed = 'yes' ORDER BY availability_endtime DESC`
+      // [req.user.user_id]
     )
     .then(data => {
       res.json(data);
@@ -273,6 +274,21 @@ function makeHangout(req, res, next) {
     });
 }
 
+
+function confirmPlan(req, res, next) {
+  return db
+    .none(
+      `UPDATE availabilities SET stage = 'confirmed' WHERE availabilities.availability_id = $1`,
+      [req.body.hangout_availability_id]
+    )
+    .then(data => {
+      res.json("success");
+    })
+    .catch(error => {
+      res.json(error);
+    });
+}
+
 function sendFriendRequest(req, res, next) {
   return db
     .none(
@@ -343,6 +359,7 @@ module.exports = {
   shareAvailabilityWithFriend,
   getAllUserAvailabilities,
   makeHangout,
+  confirmPlan, 
   getHangoutInfo,
   sendFriendRequest,
   unfriend,
