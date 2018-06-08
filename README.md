@@ -7,6 +7,8 @@ Rekindle makes it easier to hangout with your friends and stay in touch. Users i
 ## Features
 
 ### User Authentication 
+Users can register or login. Authentication is handled using passport and bcrypt. 
+
 ![Alt text](./assets/rekindle-login.gif?raw=true "Authentication")
 
 ### Scheduling 
@@ -15,8 +17,10 @@ Rekindle makes it easier to hangout with your friends and stay in touch. Users i
 
 ### Dashboard 
 
-![Alt text](./assets/rekindle-dashboard.png?raw=true "Dashboard")
+The dashboard displays the user's friends and the last time a user saw their friend. Friends at the top are the ones seen the longest time ago and a specific number of days since the last hangout is displayed. 
+
+![Alt text](./assets/rekindle-dashboard.gif?raw=true "Dashboard")
 
 ### Live Search 
 
-![Alt text](./assets/rekindle-search.png?raw=true "Live Search")
+![Alt text](./assets/rekindle-search.gif?raw=true "Live Search")
