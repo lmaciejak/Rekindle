@@ -6,6 +6,9 @@ Rekindle makes it easier to hangout with your friends and stay in touch. Users i
 
 ## Features
 
+### User Authentication 
+![Alt text](./assets/rekindle-login.gif?raw=true "Authentication")
+
 ### Scheduling 
 
 ![Alt text](./assets/calendar-screen.png?raw=true "Calendar View")
