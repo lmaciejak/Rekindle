@@ -7,8 +7,16 @@ Rekindle makes it easier to hangout with your friends and stay in touch. Users i
 ## Features
 
 ### User Authentication 
-[![https://gyazo.com/af86e5a52a63d94733bf87cbaea1cfa1](https://i.gyazo.com/af86e5a52a63d94733bf87cbaea1cfa1.gif)](https://gyazo.com/af86e5a52a63d94733bf87cbaea1cfa1)
+![Alt text](./assets/rekindle-login.gif?raw=true "Authentication")
 
 ### Scheduling 
 
 ![Alt text](./assets/calendar-screen.png?raw=true "Calendar View")
+
+### Dashboard 
+
+![Alt text](./assets/rekindle-dashboard.png?raw=true "Dashboard")
+
+### Live Search 
+
+![Alt text](./assets/rekindle-search.png?raw=true "Live Search")
