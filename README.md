@@ -7,23 +7,25 @@ Rekindle makes it easier to hangout with your friends and stay in touch. Users i
 ## Getting Started 
 
 ### Clone the repo
-1. git clone git@github.com:lmaciejak/Rekindle.git
+* git clone git@github.com:lmaciejak/Rekindle.git
 
 ### Setting up the database 
 
 PostgreSQL was used as the database and you will need to have it installed in order to seed the database. Once installed follow these directions: 
 
-1. cd Rekindle/server/db
-2. psql -f Rekindle.sql
+* cd Rekindle/server/db
+* psql -f Rekindle.sql
 
 ### How to run the app
-1. cd Rekindle/server
-2. npm install && npm start 
-3. cd ../client
-4. npm install && npm start 
+* cd Rekindle/server
+* npm install && npm start 
+* cd ../client
+* npm install && npm start 
 
 
-## Features
+## How The App Works and Features
+
+It has become increasingly easy to lose touch with our friends given today's busy lifestyles. 
 
 ### User Authentication 
 Users can register or login. Authentication is handled using passport and bcrypt. 
