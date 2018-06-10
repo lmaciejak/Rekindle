@@ -1,8 +1,27 @@
 # Rekindle
 
-Rekindle makes it easier to hangout with your friends and stay in touch. Users input times during which they are free and choose which friends they want to share those availabilities with. 
+Rekindle makes it easier to hangout with your friends and stay in touch. Users input times during which they are free and choose which friends they want to share those availabilities with. To encourage you to see your friends more frequenly, a user dashboard displays the last time you hung out with your friends with the friends seen the longest time ago at the top with the number of days since last hangout. 
 
 ![Alt text](./assets/rekindle-landing.png?raw=true "Landing Page")
+
+## Getting Started 
+
+# Clone the repo
+1. git clone git@github.com:lmaciejak/Rekindle.git
+
+# Setting up the database 
+
+PostgreSQL was used as the database and you will need to have it installed in order to seed the database. Once installed follow these directions: 
+
+1. cd Rekindle/server/db
+2. psql -f Rekindle.sql
+
+# How to run the app
+1. cd Rekindle/server
+2. npm install && npm start 
+3. cd ../client
+4. npm install && npm start 
+
 
 ## Features
 
