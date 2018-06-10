@@ -47,3 +47,9 @@ The dashboard displays the user's friends and the last time a user saw their fri
 Using react-autosuggest, users can search for their friends and proceed to their profile pages. As users type a friend's name, with each keystroke, the results are updated. 
 
 ![Alt text](./assets/rekindle-search.gif?raw=true "Live Search")
+
+
+### The Future of Rekindle 
+
+* Creating hangout pages where users can finalize hangout information. 
+* Suggestions on events happening in your area based on the times during which you are available.
