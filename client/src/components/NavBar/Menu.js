@@ -23,33 +23,6 @@ export default ({ close }) => (
           Dashboard{" "}
         </Link>
       </li>
-      <li className="menuLi" onClick={close}>
-        <Link
-          to={"/projects"}
-          style={{ textDecoration: "none", color: "rgb(53, 53, 53)" }}
-        >
-          {" "}
-          Projects{" "}
-        </Link>
-      </li>
-      <li className="menuLi" onClick={close}>
-        <Link
-          to={"/skills"}
-          style={{ textDecoration: "none", color: "rgb(53, 53, 53)" }}
-        >
-          {" "}
-          Skills{" "}
-        </Link>
-      </li>
-      <li className="menuLi" onClick={close}>
-        <Link
-          to={"/resume"}
-          style={{ textDecoration: "none", color: "rgb(53, 53, 53)" }}
-        >
-          {" "}
-          Resume{" "}
-        </Link>
-      </li>
     </ul>
   </div>
 );
