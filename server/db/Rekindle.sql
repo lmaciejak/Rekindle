@@ -64,13 +64,13 @@ INSERT INTO friendships (friend_initial, friend_befriended, befriended_user_stat
 VALUES (1, 2, 'accepted', NULL), (1, 3, 'accepted', null);
 
 INSERT INTO availabilities (availability_user_id, availability_starttime, availability_endtime, availability_title, stage)
-VALUES (2, '2018-02-06 19:00:00', '2018-02-06 21:00:00', 'free', 'confirmed'), 
-(2, '2018-04-06 19:00:00', '2018-04-06 21:00:00', 'free', 'confirmed'), 
-(3, '2018-05-28 19:00:00', '2018-05-28 21:00:00', 'free', 'confirmed'), 
-(2, '2018-06-07 18:30:00', '2018-06-07 20:30:00', 'free', NULL), 
-(3, '2018-06-10 14:00:00', '2018-06-10 21:00:00', 'free', NULL), 
-(1, '2018-06-15 19:00:00', '2018-06-15 20:00:00', 'free', NULL), 
-(3, '2018-06-19 19:00:00', '2018-06-19 21:00:00', 'free', 'plan'); 
+VALUES (2, '2019-02-06 19:00:00', '2018-02-06 21:00:00', 'free', 'confirmed'), 
+(2, '2019-02-05 19:00:00', '2018-04-06 21:00:00', 'free', 'confirmed'), 
+(3, '2019-03-09 19:00:00', '2018-05-28 21:00:00', 'free', 'confirmed'), 
+(2, '2019-03-07 18:30:00', '2018-06-07 20:30:00', 'free', NULL), 
+(3, '2019-03-10 14:00:00', '2018-06-10 21:00:00', 'free', NULL), 
+(1, '2019-03-15 19:00:00', '2018-06-15 20:00:00', 'free', NULL), 
+(3, '2019-03-23 19:00:00', '2018-06-19 21:00:00', 'free', 'plan'); 
 
 
 INSERT INTO availabilityshares (availability_id, usertosharewith_id, hangout_confirmed) 
